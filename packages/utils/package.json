@@ -1,0 +1,9 @@
+{
+  "name": "@idea-ui/utils",
+  "version": "1.0.0",
+  "description": "idea-ui utils",
+  "main": "index.ts",
+  "keywords": ["idea-ui", "utils"],
+  "author": "",
+  "license": "MIT"
+}

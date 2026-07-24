@@ -1,0 +1,9 @@
+{
+  "name": "@idea-ui/locale",
+  "version": "1.0.0",
+  "description": "idea-ui locale",
+  "main": "index.ts",
+  "keywords": ["idea-ui", "locale"],
+  "author": "",
+  "license": "MIT"
+}

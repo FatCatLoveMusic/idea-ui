@@ -1,0 +1,9 @@
+{
+  "name": "@idea-ui/theme-chalk",
+  "version": "1.0.0",
+  "description": "idea-ui theme chalk",
+  "main": "src/index.less",
+  "keywords": ["idea-ui", "theme"],
+  "author": "",
+  "license": "MIT"
+}

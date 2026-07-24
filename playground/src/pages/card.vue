@@ -1,0 +1,1 @@
+<template><div class="demo-page"><h2>Card 卡片</h2><p class="demo-desc">卡片容器，用于展示一组信息。</p><div class="demo-section"><h3>基础用法</h3><div class="demo-block"><IdeaCard title="卡片标题"><p>卡片内容区域</p><template #footer><span style="color:#909399;">底部信息</span></template></IdeaCard></div></div></div></template>

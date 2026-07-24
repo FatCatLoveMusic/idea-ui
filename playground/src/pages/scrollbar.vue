@@ -1,0 +1,1 @@
+<template><div class="demo-page"><h2>Scrollbar 滚动条</h2><p class="demo-desc">自定义样式的滚动条组件。</p><div class="demo-section"><h3>基础用法</h3><div class="demo-block" style="height: 300px;"><IdeaScrollbar><div v-for="i in 20" :key="i" style="padding: 8px 0;">滚动内容行 {{ i }}</div></IdeaScrollbar></div></div></div></template>
