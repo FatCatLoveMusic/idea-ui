@@ -1,9 +1,9 @@
 import * as utils from './utils'
 
 export const $idea = {
-  ...utils,
+	...utils,
 }
 
 export const defaults = {
-  $idea,
+	$idea,
 }

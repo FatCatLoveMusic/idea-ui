@@ -1,18 +1,18 @@
 <template>
-  <div class="demo-page">
-    <h2>Drawer 抽屉</h2>
-    <p class="demo-desc">从屏幕边缘滑出的面板。</p>
+	<div class="demo-page">
+		<h2>Drawer 抽屉</h2>
+		<p class="demo-desc">从屏幕边缘滑出的面板。</p>
 
-    <div class="demo-section">
-      <h3>基础用法</h3>
-      <div class="demo-block">
-        <button class="demo-btn" @click="visible = true">打开 Drawer</button>
-        <IdeaDrawer v-model="visible" title="抽屉标题">
-          <p>这里是抽屉的内容区域</p>
-        </IdeaDrawer>
-      </div>
-    </div>
-  </div>
+		<div class="demo-section">
+			<h3>基础用法</h3>
+			<div class="demo-block">
+				<button class="demo-btn" @click="visible = true">打开 Drawer</button>
+				<IdeaDrawer v-model="visible" title="抽屉标题">
+					<p>这里是抽屉的内容区域</p>
+				</IdeaDrawer>
+			</div>
+		</div>
+	</div>
 </template>
 
 <script setup lang="ts">

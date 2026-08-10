@@ -3,8 +3,8 @@
 import { ref } from 'vue'
 const activeTab = ref('tab1')
 const tabs = [
-  { name: 'tab1', label: '标签一' },
-  { name: 'tab2', label: '标签二' },
-  { name: 'tab3', label: '标签三' },
+	{ name: 'tab1', label: '标签一' },
+	{ name: 'tab2', label: '标签二' },
+	{ name: 'tab3', label: '标签三' },
 ]
 </script>

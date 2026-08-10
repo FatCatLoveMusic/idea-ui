@@ -1,32 +1,32 @@
 {
-  "compilerOptions": {
-    "target": "ES2020",
-    "useDefineForClassFields": true,
-    "module": "ESNext",
-    "lib": ["ES2020", "DOM", "DOM.Iterable"],
-    "skipLibCheck": true,
+	"compilerOptions": {
+		"target": "ES2020",
+		"useDefineForClassFields": true,
+		"module": "ESNext",
+		"lib": ["ES2020", "DOM", "DOM.Iterable"],
+		"skipLibCheck": true,
 
-    /* Bundler mode */
-    "moduleResolution": "bundler",
-    "allowImportingTsExtensions": true,
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "noEmit": true,
-    "jsx": "preserve",
+		/* Bundler mode */
+		"moduleResolution": "bundler",
+		"allowImportingTsExtensions": true,
+		"resolveJsonModule": true,
+		"isolatedModules": true,
+		"noEmit": true,
+		"jsx": "preserve",
 
-    /* Linting */
-    "strict": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true,
+		/* Linting */
+		"strict": true,
+		"noUnusedLocals": true,
+		"noUnusedParameters": true,
+		"noFallthroughCasesInSwitch": true,
 
-    /* Paths */
-    "baseUrl": ".",
-    "paths": {
-      "@idea-ui/*": ["packages/*"],
-      "idea-ui": ["packages/index.ts"]
-    }
-  },
-  "include": ["packages/**/*.ts", "packages/**/*.d.ts", "packages/**/*.vue", "playground/**/*.ts", "playground/**/*.vue"],
-  "exclude": ["node_modules"]
+		/* Paths */
+		"baseUrl": ".",
+		"paths": {
+			"@idea-ui/*": ["packages/*"],
+			"idea-ui": ["packages/index.ts"]
+		}
+	},
+	"include": ["packages/**/*.ts", "packages/**/*.d.ts", "packages/**/*.vue", "playground/**/*.ts", "playground/**/*.vue"],
+	"exclude": ["node_modules"]
 }

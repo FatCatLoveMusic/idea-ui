@@ -34,75 +34,75 @@ loadMessages('zh-tw', zhTW)
 loadMessages('en', en)
 
 const components = [
-  BackTop,
-  CollapseTransition,
-  NoData,
-  Skeleton,
-  Scrollbar,
-  Dialog,
-  Drawer,
-  Collapse,
-  Tabs,
-  DividerLine,
-  EmptyCard,
-  Versions,
-  Segment,
-  Steps,
-  Timeline,
-  TableAddBtn,
-  TableTabs,
-  Card,
-  ButtonGroup,
-  Link,
-  TileFilter,
+	BackTop,
+	CollapseTransition,
+	NoData,
+	Skeleton,
+	Scrollbar,
+	Dialog,
+	Drawer,
+	Collapse,
+	Tabs,
+	DividerLine,
+	EmptyCard,
+	Versions,
+	Segment,
+	Steps,
+	Timeline,
+	TableAddBtn,
+	TableTabs,
+	Card,
+	ButtonGroup,
+	Link,
+	TileFilter,
 ]
 
 const install = (app: App, options?: { locale?: string }) => {
-  // Install locale plugin
-  app.use(localePlugin, { locale: (options?.locale as 'zh-cn' | 'zh-tw' | 'en') || 'zh-cn' })
+	// Install locale plugin
+	app.use(localePlugin, { locale: (options?.locale as 'zh-cn' | 'zh-tw' | 'en') || 'zh-cn' })
 
-  // Register all components using their install method
-  components.forEach((component) => {
-    if (typeof component.install === 'function') {
-      component.install(app)
-    } else {
-      app.component(component.name || '', component)
-    }
-  })
+	// Register all components using their install method
+	components.forEach((component) => {
+		if (typeof component.install === 'function') {
+			component.install(app)
+		} else {
+			app.component(component.name || '', component)
+		}
+	})
 
-  // Mount global $idea
-  app.config.globalProperties.$idea = $idea
+	// Mount global $idea
+	app.config.globalProperties.$idea = $idea
 }
 
 export default {
-  install,
-  // Locale functions
-  loadMessages,
+	install,
+	// Locale functions
+	loadMessages,
 }
 
 // Named exports
 export {
-  BackTop,
-  CollapseTransition,
-  NoData,
-  Skeleton,
-  Scrollbar,
-  Dialog,
-  Drawer,
-  Collapse,
-  Tabs,
-  DividerLine,
-  EmptyCard,
-  Versions,
-  Segment,
-  Steps,
-  Timeline,
-  TableAddBtn,
-  TableTabs,
-  Card,
-  ButtonGroup,
-  Link,
-  TileFilter,
+	BackTop,
+	CollapseTransition,
+	NoData,
+	Skeleton,
+	Scrollbar,
+	Dialog,
+	Drawer,
+	Collapse,
+	Tabs,
+	DividerLine,
+	EmptyCard,
+	Versions,
+	Segment,
+	Steps,
+	Timeline,
+	TableAddBtn,
+	TableTabs,
+	Card,
+	ButtonGroup,
+	Link,
+	TileFilter,
 }
 
 export { $idea }

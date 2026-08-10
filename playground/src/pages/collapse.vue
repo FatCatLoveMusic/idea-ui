@@ -3,8 +3,8 @@
 import { ref } from 'vue'
 const activeNames = ref(['1'])
 const items = [
-  { name: '1', title: '一致 Consistency' },
-  { name: '2', title: '反馈 Feedback' },
-  { name: '3', title: '效率 Efficiency' },
+	{ name: '1', title: '一致 Consistency' },
+	{ name: '2', title: '反馈 Feedback' },
+	{ name: '3', title: '效率 Efficiency' },
 ]
 </script>

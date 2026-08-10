@@ -1,116 +1,270 @@
 // 主题色变量 - 默认 (light/orange)
 :root {
-  --idea-color-primary: #ED6F22;
-  --idea-color-primary-light-1: #f07b3c;
-  --idea-color-primary-light-2: #f2874f;
-  --idea-color-primary-light-3: #f49f6d;
-  --idea-color-primary-light-4: #f6b78d;
-  --idea-color-primary-light-5: #f9cfae;
-  --idea-color-primary-light-6: #fbe7d0;
-  --idea-color-primary-light-7: #fdf3e8;
-  --idea-color-primary-light-8: #fef9f3;
-  --idea-color-primary-light-9: #fffcf8;
-  --idea-color-primary-dark-1: #d6641f;
-  --idea-color-primary-dark-2: #be591b;
-  --idea-color-primary-dark-3: #a74e18;
-  --idea-color-primary-dark-4: #8f4314;
-  --idea-color-primary-dark-5: #773811;
-  --idea-color-primary-dark-6: #5f2d0e;
-  --idea-color-primary-dark-7: #47220a;
-  --idea-color-primary-dark-8: #301607;
-  --idea-color-primary-dark-9: #180b03;
+	--idea-color-primary: #ED6F22;
+	--idea-color-primary-light-1: #f07b3c;
+	--idea-color-primary-light-2: #f2874f;
+	--idea-color-primary-light-3: #f49f6d;
+	--idea-color-primary-light-4: #f6b78d;
+	--idea-color-primary-light-5: #f9cfae;
+	--idea-color-primary-light-6: #fbe7d0;
+	--idea-color-primary-light-7: #fdf3e8;
+	--idea-color-primary-light-8: #fef9f3;
+	--idea-color-primary-light-9: #fffcf8;
+	--idea-color-primary-dark-1: #d6641f;
+	--idea-color-primary-dark-2: #be591b;
+	--idea-color-primary-dark-3: #a74e18;
+	--idea-color-primary-dark-4: #8f4314;
+	--idea-color-primary-dark-5: #773811;
+	--idea-color-primary-dark-6: #5f2d0e;
+	--idea-color-primary-dark-7: #47220a;
+	--idea-color-primary-dark-8: #301607;
+	--idea-color-primary-dark-9: #180b03;
 
-  --idea-color-success: #46c620;
-  --idea-color-warning: #ff8330;
-  --idea-color-danger: #ff5651;
-  --idea-color-info: #3acaf0;
+	--idea-color-success: #46c620;
+	--idea-color-warning: #ff8330;
+	--idea-color-danger: #ff5651;
+	--idea-color-info: #3acaf0;
 
-  --idea-color-text-primary: #303133;
-  --idea-color-text-regular: #606266;
-  --idea-color-text-secondary: #909399;
-  --idea-color-text-placeholder: #C0C4CC;
+	// RGB 三元组（供 Element Plus 的 rgb(var(--el-*-rgb) / alpha) 半透明色使用）
+	--idea-color-primary-rgb: 237, 111, 34;
+	--idea-color-success-rgb: 70, 198, 32;
+	--idea-color-warning-rgb: 255, 131, 48;
+	--idea-color-danger-rgb: 255, 86, 81;
+	--idea-color-info-rgb: 58, 202, 240;
 
-  --idea-color-border: #DCDFE6;
-  --idea-color-border-light: #E4E7ED;
-  --idea-color-border-lighter: #EBEEF5;
-  --idea-color-border-extra-light: #F2F6FC;
+	// 状态色渐变（编译期用 mix() 生成，公式与 Element Plus 一致：
+	// light-N = 混白 N×10%，dark-2 = 混黑 20%；主题不覆盖状态色，声明在 :root 即可）
+	--idea-color-success-light-3: mix(#ffffff, #46c620, 30%);
+	--idea-color-success-light-5: mix(#ffffff, #46c620, 50%);
+	--idea-color-success-light-7: mix(#ffffff, #46c620, 70%);
+	--idea-color-success-light-8: mix(#ffffff, #46c620, 80%);
+	--idea-color-success-light-9: mix(#ffffff, #46c620, 90%);
+	--idea-color-success-dark-2: mix(#000000, #46c620, 20%);
+	--idea-color-warning-light-3: mix(#ffffff, #ff8330, 30%);
+	--idea-color-warning-light-5: mix(#ffffff, #ff8330, 50%);
+	--idea-color-warning-light-7: mix(#ffffff, #ff8330, 70%);
+	--idea-color-warning-light-8: mix(#ffffff, #ff8330, 80%);
+	--idea-color-warning-light-9: mix(#ffffff, #ff8330, 90%);
+	--idea-color-warning-dark-2: mix(#000000, #ff8330, 20%);
+	--idea-color-danger-light-3: mix(#ffffff, #ff5651, 30%);
+	--idea-color-danger-light-5: mix(#ffffff, #ff5651, 50%);
+	--idea-color-danger-light-7: mix(#ffffff, #ff5651, 70%);
+	--idea-color-danger-light-8: mix(#ffffff, #ff5651, 80%);
+	--idea-color-danger-light-9: mix(#ffffff, #ff5651, 90%);
+	--idea-color-danger-dark-2: mix(#000000, #ff5651, 20%);
+	--idea-color-info-light-3: mix(#ffffff, #3acaf0, 30%);
+	--idea-color-info-light-5: mix(#ffffff, #3acaf0, 50%);
+	--idea-color-info-light-7: mix(#ffffff, #3acaf0, 70%);
+	--idea-color-info-light-8: mix(#ffffff, #3acaf0, 80%);
+	--idea-color-info-light-9: mix(#ffffff, #3acaf0, 90%);
+	--idea-color-info-dark-2: mix(#000000, #3acaf0, 20%);
 
-  --idea-bg-color: #ffffff;
-  --idea-bg-color-page: #f2f3f5;
-  --idea-bg-color-overlay: #ffffff;
+	--idea-color-text-primary: #303133;
+	--idea-color-text-regular: #606266;
+	--idea-color-text-secondary: #909399;
+	--idea-color-text-placeholder: #C0C4CC;
 
-  --idea-border-radius: 4px;
-  --idea-border-radius-sm: 2px;
-  --idea-border-radius-lg: 8px;
-  --idea-border-radius-round: 20px;
+	--idea-color-border: #DCDFE6;
+	--idea-color-border-light: #E4E7ED;
+	--idea-color-border-lighter: #EBEEF5;
+	--idea-color-border-extra-light: #F2F6FC;
 
-  --idea-font-size: 14px;
-  --idea-font-size-sm: 12px;
-  --idea-font-size-lg: 16px;
+	--idea-bg-color: #ffffff;
+	--idea-bg-color-page: #f2f3f5;
+	--idea-bg-color-overlay: #ffffff;
 
-  --idea-spacing-xs: 4px;
-  --idea-spacing-sm: 8px;
-  --idea-spacing-md: 16px;
-  --idea-spacing-lg: 24px;
-  --idea-spacing-xl: 32px;
+	--idea-border-radius: 4px;
+	--idea-border-radius-sm: 2px;
+	--idea-border-radius-lg: 8px;
+	--idea-border-radius-round: 20px;
 
-  // RTL 支持
-  --direction: ltr;
-  --start: left;
-  --end: right;
-  --flex-direction: row;
-  --scale-x: 1;
+	--idea-font-size: 14px;
+	--idea-font-size-sm: 12px;
+	--idea-font-size-lg: 16px;
+
+	--idea-spacing-xs: 4px;
+	--idea-spacing-sm: 8px;
+	--idea-spacing-md: 16px;
+	--idea-spacing-lg: 24px;
+	--idea-spacing-xl: 32px;
+
+	// RTL 支持
+	--direction: ltr;
+	--start: left;
+	--end: right;
+	--flex-direction: row;
+	--scale-x: 1;
+}
+
+// Element Plus 兼容变量
+// 必须与 --idea-* 声明在同一个元素上（:root 及各主题类），
+// 这样 var() 才会按当前主题解析，Element Plus 组件才能随主题联动。
+:root,
+.theme-blue,
+.theme-red,
+.theme-dark-blue {
+	// 主色与状态色
+	--el-color-primary: var(--idea-color-primary);
+	--el-color-primary-light-3: var(--idea-color-primary-light-3);
+	--el-color-primary-light-5: var(--idea-color-primary-light-5);
+	--el-color-primary-light-7: var(--idea-color-primary-light-7);
+	--el-color-primary-light-8: var(--idea-color-primary-light-8);
+	--el-color-primary-light-9: var(--idea-color-primary-light-9);
+	--el-color-primary-dark-2: var(--idea-color-primary-dark-2);
+	--el-color-primary-rgb: var(--idea-color-primary-rgb);
+	--el-color-success: var(--idea-color-success);
+	--el-color-success-light-3: var(--idea-color-success-light-3);
+	--el-color-success-light-5: var(--idea-color-success-light-5);
+	--el-color-success-light-7: var(--idea-color-success-light-7);
+	--el-color-success-light-8: var(--idea-color-success-light-8);
+	--el-color-success-light-9: var(--idea-color-success-light-9);
+	--el-color-success-dark-2: var(--idea-color-success-dark-2);
+	--el-color-success-rgb: var(--idea-color-success-rgb);
+	--el-color-warning: var(--idea-color-warning);
+	--el-color-warning-light-3: var(--idea-color-warning-light-3);
+	--el-color-warning-light-5: var(--idea-color-warning-light-5);
+	--el-color-warning-light-7: var(--idea-color-warning-light-7);
+	--el-color-warning-light-8: var(--idea-color-warning-light-8);
+	--el-color-warning-light-9: var(--idea-color-warning-light-9);
+	--el-color-warning-dark-2: var(--idea-color-warning-dark-2);
+	--el-color-warning-rgb: var(--idea-color-warning-rgb);
+	--el-color-danger: var(--idea-color-danger);
+	--el-color-danger-light-3: var(--idea-color-danger-light-3);
+	--el-color-danger-light-5: var(--idea-color-danger-light-5);
+	--el-color-danger-light-7: var(--idea-color-danger-light-7);
+	--el-color-danger-light-8: var(--idea-color-danger-light-8);
+	--el-color-danger-light-9: var(--idea-color-danger-light-9);
+	--el-color-danger-dark-2: var(--idea-color-danger-dark-2);
+	--el-color-danger-rgb: var(--idea-color-danger-rgb);
+	--el-color-error: var(--idea-color-danger);
+	--el-color-error-light-3: var(--idea-color-danger-light-3);
+	--el-color-error-light-5: var(--idea-color-danger-light-5);
+	--el-color-error-light-7: var(--idea-color-danger-light-7);
+	--el-color-error-light-8: var(--idea-color-danger-light-8);
+	--el-color-error-light-9: var(--idea-color-danger-light-9);
+	--el-color-error-dark-2: var(--idea-color-danger-dark-2);
+	--el-color-error-rgb: var(--idea-color-danger-rgb);
+	--el-color-info: var(--idea-color-info);
+	--el-color-info-light-3: var(--idea-color-info-light-3);
+	--el-color-info-light-5: var(--idea-color-info-light-5);
+	--el-color-info-light-7: var(--idea-color-info-light-7);
+	--el-color-info-light-8: var(--idea-color-info-light-8);
+	--el-color-info-light-9: var(--idea-color-info-light-9);
+	--el-color-info-dark-2: var(--idea-color-info-dark-2);
+	--el-color-info-rgb: var(--idea-color-info-rgb);
+
+	// 文本色（--el-button-text-color 等组件级变量通过它们联动）
+	--el-text-color-primary: var(--idea-color-text-primary);
+	--el-text-color-regular: var(--idea-color-text-regular);
+	--el-text-color-secondary: var(--idea-color-text-secondary);
+	--el-text-color-placeholder: var(--idea-color-text-placeholder);
+	--el-text-color-disabled: var(--idea-color-text-placeholder);
+
+	// 禁用态（禁用按钮/输入框的背景、边框、文字）
+	--el-disabled-bg-color: var(--idea-bg-color-page);
+	--el-disabled-border-color: var(--idea-color-border);
+	--el-disabled-text-color: var(--idea-color-text-placeholder);
+
+	// 边框色
+	--el-border-color: var(--idea-color-border);
+	--el-border-color-light: var(--idea-color-border-light);
+	--el-border-color-lighter: var(--idea-color-border-lighter);
+	--el-border-color-extra-light: var(--idea-color-border-extra-light);
+	--el-border-color-dark: var(--idea-color-border);
+	--el-border-color-darker: var(--idea-color-border);
+	--el-border-color-hover: var(--idea-color-border-light);
+	// 简写必须在同一元素上重新声明，否则 var(--el-border-color) 会在 :root 处固化
+	--el-border: var(--el-border-width) var(--el-border-style) var(--el-border-color);
+
+	// 背景色
+	--el-bg-color: var(--idea-bg-color);
+	--el-bg-color-page: var(--idea-bg-color-page);
+	--el-bg-color-overlay: var(--idea-bg-color-overlay);
+
+	// 填充色（hover 背景 / 表格表头 / 分割等）
+	--el-fill-color: var(--idea-color-border-light);
+	--el-fill-color-light: var(--idea-color-border-extra-light);
+	--el-fill-color-lighter: var(--idea-color-border-extra-light);
+	--el-fill-color-extra-light: var(--idea-color-border-extra-light);
+	--el-fill-color-dark: var(--idea-color-border);
+	--el-fill-color-darker: var(--idea-color-border);
+	--el-fill-color-blank: var(--idea-bg-color);
+
+	// 圆角
+	--el-border-radius-base: var(--idea-border-radius);
+	--el-border-radius-small: var(--idea-border-radius-sm);
+	--el-border-radius-round: var(--idea-border-radius-round);
+	--el-border-radius-circle: 100%;
+
+	// 字号
+	--el-font-size-extra-small: var(--idea-font-size-sm);
+	--el-font-size-small: var(--idea-font-size-sm);
+	--el-font-size-base: var(--idea-font-size);
+	--el-font-size-medium: var(--idea-font-size-lg);
+	--el-font-size-large: var(--idea-font-size-lg);
+}
+
+// 默认按钮文字跟随品牌主色。
+// 注意：--el-button-text-color 是 .el-button 元素级变量（element-plus 在 .el-button 上
+// 声明为 var(--el-text-color-regular)）。CSS 自定义属性中，元素自身的声明优先于继承值，
+// 所以放在 :root/.theme-* 上不会生效，必须直接在 .el-button 元素上覆盖。
+// :not() 排除带类型的按钮（primary/success 等需要白色文字），避免覆盖其样式。
+.el-button:not(.el-button--primary):not(.el-button--success):not(.el-button--warning):not(.el-button--danger):not(.el-button--info) {
+	--el-button-text-color: var(--idea-color-primary);
 }
 
 // 蓝色主题
 .theme-blue {
-  --idea-color-primary: #458aff;
-  --idea-color-primary-light-1: #5a9aff;
-  --idea-color-primary-light-2: #6da8ff;
-  --idea-color-primary-light-3: #8dbcff;
-  --idea-color-primary-light-4: #aed0ff;
-  --idea-color-primary-light-5: #cee3ff;
-  --idea-color-primary-light-6: #e0eeff;
-  --idea-color-primary-light-7: #ebf4ff;
-  --idea-color-primary-light-8: #f5f9ff;
-  --idea-color-primary-light-9: #fafcff;
-  --idea-color-primary-dark-1: #3e7ce6;
-  --idea-color-primary-dark-2: #376ecc;
-  --idea-color-primary-dark-3: #3060b3;
-  --idea-color-primary-dark-4: #295299;
-  --idea-color-primary-dark-5: #224580;
-  --idea-color-primary-dark-6: #1c3766;
-  --idea-color-primary-dark-7: #15294d;
-  --idea-color-primary-dark-8: #0e1b33;
-  --idea-color-primary-dark-9: #070e1a;
+	--idea-color-primary: #458aff;
+	--idea-color-primary-rgb: 69, 138, 255;
+	--idea-color-primary-light-1: #5a9aff;
+	--idea-color-primary-light-2: #6da8ff;
+	--idea-color-primary-light-3: #8dbcff;
+	--idea-color-primary-light-4: #aed0ff;
+	--idea-color-primary-light-5: #cee3ff;
+	--idea-color-primary-light-6: #e0eeff;
+	--idea-color-primary-light-7: #ebf4ff;
+	--idea-color-primary-light-8: #f5f9ff;
+	--idea-color-primary-light-9: #fafcff;
+	--idea-color-primary-dark-1: #3e7ce6;
+	--idea-color-primary-dark-2: #376ecc;
+	--idea-color-primary-dark-3: #3060b3;
+	--idea-color-primary-dark-4: #295299;
+	--idea-color-primary-dark-5: #224580;
+	--idea-color-primary-dark-6: #1c3766;
+	--idea-color-primary-dark-7: #15294d;
+	--idea-color-primary-dark-8: #0e1b33;
+	--idea-color-primary-dark-9: #070e1a;
 }
 
 // 红色主题
 .theme-red {
-  --idea-color-primary: #ff5651;
+	--idea-color-primary: #ff5651;
+	--idea-color-primary-rgb: 255, 86, 81;
 }
 
 // 深蓝主题
 .theme-dark-blue {
-  --idea-color-primary: #1e5b8c;
-  --idea-bg-color: #1a1a2e;
-  --idea-bg-color-page: #16213e;
-  --idea-bg-color-overlay: #1a1a2e;
-  --idea-color-text-primary: #e0e0e0;
-  --idea-color-text-regular: #b0b0b0;
-  --idea-color-text-secondary: #808080;
-  --idea-color-text-placeholder: #606060;
-  --idea-color-border: #404040;
-  --idea-color-border-light: #353535;
-  --idea-color-border-lighter: #2a2a2a;
-  --idea-color-border-extra-light: #222222;
+	--idea-color-primary: #1e5b8c;
+	--idea-color-primary-rgb: 30, 91, 140;
+	--idea-bg-color: #1a1a2e;
+	--idea-bg-color-page: #16213e;
+	--idea-bg-color-overlay: #1a1a2e;
+	--idea-color-text-primary: #e0e0e0;
+	--idea-color-text-regular: #b0b0b0;
+	--idea-color-text-secondary: #808080;
+	--idea-color-text-placeholder: #606060;
+	--idea-color-border: #404040;
+	--idea-color-border-light: #353535;
+	--idea-color-border-lighter: #2a2a2a;
+	--idea-color-border-extra-light: #222222;
 }
 
 // RTL 布局
 [dir="rtl"] {
-  --direction: rtl;
-  --start: right;
-  --end: left;
-  --flex-direction: row-reverse;
-  --scale-x: -1;
+	--direction: rtl;
+	--start: right;
+	--end: left;
+	--flex-direction: row-reverse;
+	--scale-x: -1;
 }
