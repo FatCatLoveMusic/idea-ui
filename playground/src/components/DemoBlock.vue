@@ -171,7 +171,7 @@ const copyCode = async () => {
 .lang-tab {
 	padding: 4px 12px;
 	font-size: 12px;
-	color: #909399;
+	color: var(--idea-color-text-secondary);
 	background: transparent;
 	border: none;
 	border-radius: 2px;
@@ -184,7 +184,7 @@ const copyCode = async () => {
 
 	&.active {
 		color: #fff;
-		background: #409eff;
+		background: var(--idea-color-primary);
 	}
 }
 
