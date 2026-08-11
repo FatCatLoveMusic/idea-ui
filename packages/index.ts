@@ -4,6 +4,7 @@ import { localePlugin, loadMessages } from './locale'
 import zhCN from './locale/zh-cn'
 import zhTW from './locale/zh-tw'
 import en from './locale/en'
+import type { LanguagePack, Language } from './locale'
 
 // Components
 import { BackTop } from './components/back-top'
@@ -57,9 +58,9 @@ const components = [
 	TileFilter,
 ]
 
-const install = (app: App, options?: { locale?: string }) => {
-	// Install locale plugin
-	app.use(localePlugin, { locale: (options?.locale as 'zh-cn' | 'zh-tw' | 'en') || 'zh-cn' })
+const install = (app: App, options?: { locale?: Language | LanguagePack }) => {
+	// Install locale plugin（locale 可以是语言标识字符串或语言包对象，与 element-plus 用法一致）
+	app.use(localePlugin, { locale: options?.locale || 'zh-cn' })
 
 	// Register all components using their install method
 	components.forEach((component) => {
@@ -106,4 +107,6 @@ export {
 }
 
 export { $idea }
+export { zhCN, zhTW, en }
 export { useLocale, setLocale, loadMessages as loadLocaleMessages } from './locale'
+export type { Language, LanguagePack, LocaleMessages } from './locale'

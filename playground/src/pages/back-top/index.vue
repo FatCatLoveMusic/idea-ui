@@ -1,32 +1,33 @@
 <template>
 	<div class="demo-page">
-		<h2>Back Top 回到顶部</h2>
-		<p class="demo-desc">返回页面顶部的操作按钮。</p>
+		<h2>{{ t('backTop.title') }}</h2>
+		<p class="demo-desc">{{ t('backTop.desc') }}</p>
 
 		<div class="demo-section">
-			<h3>基础用法</h3>
+			<h3>{{ t('common.sections.basic') }}</h3>
 			<DemoBlock :code-ts="basicCodeTs" :code-js="basicCodeJs">
 				<div ref="scrollContainer" class="scroll-demo" style="height: 300px; overflow-y: auto; position: relative;">
-					<p v-for="i in 20" :key="i" class="scroll-item">滚动内容行 {{ i }}，向下滚动查看回到顶部按钮</p>
+					<p v-for="i in 20" :key="i" class="scroll-item">{{ t('backTop.demo.scrollLine', { index: i }) }}</p>
 					<IdeaBackTop :visibility-height="100" :target="getScrollContainer" />
 				</div>
 			</DemoBlock>
 		</div>
 
 		<div class="demo-section">
-			<h3>API</h3>
+			<h3>{{ t('common.sections.api') }}</h3>
 			<el-table :data="apiTableData" border stripe>
-				<el-table-column prop="param" label="参数" />
-				<el-table-column prop="type" label="类型" />
-				<el-table-column prop="default" label="默认值" />
-				<el-table-column prop="desc" label="说明" />
+				<el-table-column prop="param" :label="t('common.table.param')" />
+				<el-table-column prop="type" :label="t('common.table.type')" />
+				<el-table-column prop="default" :label="t('common.table.default')" />
+				<el-table-column prop="desc" :label="t('common.table.desc')" />
 			</el-table>
 		</div>
 	</div>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
+import { t } from '../../locale'
 import DemoBlock from '../../components/DemoBlock.vue'
 import { basicCodeTs, basicCodeJs } from './index.codes'
 
@@ -34,13 +35,13 @@ const scrollContainer = ref<HTMLElement | null>(null)
 
 const getScrollContainer = () => scrollContainer.value
 
-const apiTableData = [
-	{ param: 'visibility-height', type: 'number', default: '400', desc: '滚动高度达到此值时显示按钮' },
-	{ param: 'back-position', type: 'number', default: '0', desc: '回到顶部的位置' },
-	{ param: 'custom-style', type: 'object', default: '-', desc: '自定义样式' },
-	{ param: 'transition-name', type: 'string', default: 'fade', desc: '过渡动画名称' },
-	{ param: 'target', type: 'function', default: '-', desc: '设置滚动目标元素' },
-]
+const apiTableData = computed(() => [
+	{ param: 'visibility-height', type: 'number', default: '400', desc: t('backTop.api.visibilityHeight') },
+	{ param: 'back-position', type: 'number', default: '0', desc: t('backTop.api.backPosition') },
+	{ param: 'custom-style', type: 'object', default: '-', desc: t('backTop.api.customStyle') },
+	{ param: 'transition-name', type: 'string', default: 'fade', desc: t('backTop.api.transitionName') },
+	{ param: 'target', type: 'function', default: '-', desc: t('backTop.api.target') },
+])
 </script>
 
 <style scoped lang="less">
@@ -54,6 +55,4 @@ const apiTableData = [
 	padding: 8px 0;
 	color: #606266;
 }
-
-
 </style>

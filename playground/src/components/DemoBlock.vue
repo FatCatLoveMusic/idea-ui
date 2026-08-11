@@ -7,7 +7,7 @@
 		<div class="demo-block-actions">
 			<el-button @click="showCode = !showCode">
 				<span class="btn-icon">{{ showCode ? '▲' : '▼' }}</span>
-				{{ showCode ? '隐藏代码' : '显示代码' }}
+				{{ showCode ? t('common.code.hide') : t('common.code.show') }}
 			</el-button>
 		</div>
 
@@ -37,7 +37,7 @@
 						<rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
 						<path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
 					</svg>
-					<span>{{ copied ? '已复制' : '复制' }}</span>
+					<span>{{ copied ? t('common.code.copied') : t('common.code.copy') }}</span>
 				</button>
 			</div>
 			<div class="code-panel-body">
@@ -58,6 +58,7 @@ import hljs from 'highlight.js'
 import xml from 'highlight.js/lib/languages/xml'
 import javascript from 'highlight.js/lib/languages/javascript'
 import typescript from 'highlight.js/lib/languages/typescript'
+import { t } from '../locale'
 
 hljs.registerLanguage('xml', xml)
 hljs.registerLanguage('javascript', javascript)

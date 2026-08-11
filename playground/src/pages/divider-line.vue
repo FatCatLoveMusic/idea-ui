@@ -1,1 +1,0 @@
-<template><div class="demo-page"><h2>Divider 分割线</h2><p class="demo-desc">用于分隔内容区域。</p><div class="demo-section"><h3>基础用法</h3><div class="demo-block"><p>内容区域一</p><IdeaDividerLine /><p>内容区域二</p><IdeaDividerLine text="文字分割" /><p>内容区域三</p></div></div></div></template>

@@ -1,85 +1,110 @@
 <template>
 	<div class="app-layout" :class="[themeClass, { 'is-rtl': isRtl }]" :dir="isRtl ? 'rtl' : 'ltr'">
-		<header class="app-header">
-			<div class="app-header__left">
-				<h1 class="app-logo" @click="$router.push('/')">idea-ui</h1>
-				<span class="app-version">v1.0.0</span>
+		<el-config-provider :locale="epLocale">
+			<header class="app-header">
+				<div class="app-header__left">
+					<h1 class="app-logo" @click="$router.push('/')">idea-ui</h1>
+					<span class="app-version">v1.0.0</span>
+				</div>
+				<div class="app-header__right">
+					<select v-model="currentLang" @change="changeLang" class="lang-select">
+						<option value="zh-cn">简体中文</option>
+						<option value="zh-tw">繁體中文</option>
+						<option value="en">English</option>
+					</select>
+					<select v-model="currentTheme" @change="changeTheme" class="theme-select">
+						<option value="">默认主题</option>
+						<option value="theme-blue">蓝色主题</option>
+						<option value="theme-red">红色主题</option>
+						<option value="theme-dark-blue">深蓝主题</option>
+					</select>
+					<button class="rtl-btn" @click="isRtl = !isRtl">
+						{{ isRtl ? 'LTR' : 'RTL' }}
+					</button>
+				</div>
+			</header>
+			<div class="app-body">
+				<aside class="app-sidebar">
+					<nav>
+						<div class="nav-section">
+							<h3 class="nav-title">{{ t('app.groups.basic') }}</h3>
+							<router-link to="/component/back-top" class="nav-link">{{ t('app.links.backTop') }}</router-link>
+							<router-link to="/component/scrollbar" class="nav-link">{{ t('app.links.scrollbar') }}</router-link>
+							<router-link to="/component/skeleton" class="nav-link">{{ t('app.links.skeleton') }}</router-link>
+							<router-link to="/component/no-data" class="nav-link">{{ t('app.links.noData') }}</router-link>
+							<router-link to="/component/divider-line" class="nav-link">{{ t('app.links.dividerLine') }}</router-link>
+							<router-link to="/component/link" class="nav-link">{{ t('app.links.link') }}</router-link>
+						</div>
+						<div class="nav-section">
+							<h3 class="nav-title">{{ t('app.groups.layout') }}</h3>
+							<router-link to="/component/dialog" class="nav-link">{{ t('app.links.dialog') }}</router-link>
+							<router-link to="/component/drawer" class="nav-link">{{ t('app.links.drawer') }}</router-link>
+							<router-link to="/component/collapse" class="nav-link">{{ t('app.links.collapse') }}</router-link>
+							<router-link to="/component/tabs" class="nav-link">{{ t('app.links.tabs') }}</router-link>
+						</div>
+						<div class="nav-section">
+							<h3 class="nav-title">{{ t('app.groups.nav') }}</h3>
+							<router-link to="/component/segment" class="nav-link">{{ t('app.links.segment') }}</router-link>
+							<router-link to="/component/steps" class="nav-link">{{ t('app.links.steps') }}</router-link>
+							<router-link to="/component/timeline" class="nav-link">{{ t('app.links.timeline') }}</router-link>
+						</div>
+						<div class="nav-section">
+							<h3 class="nav-title">{{ t('app.groups.display') }}</h3>
+							<router-link to="/component/card" class="nav-link">{{ t('app.links.card') }}</router-link>
+							<router-link to="/component/empty-card" class="nav-link">{{ t('app.links.emptyCard') }}</router-link>
+							<router-link to="/component/versions" class="nav-link">{{ t('app.links.versions') }}</router-link>
+						</div>
+						<div class="nav-section">
+							<h3 class="nav-title">{{ t('app.groups.action') }}</h3>
+							<router-link to="/component/button-group" class="nav-link">{{ t('app.links.buttonGroup') }}</router-link>
+							<router-link to="/component/tile-filter" class="nav-link">{{ t('app.links.tileFilter') }}</router-link>
+							<router-link to="/component/table-add-btn" class="nav-link">{{ t('app.links.tableAddBtn') }}</router-link>
+							<router-link to="/component/table-tabs" class="nav-link">{{ t('app.links.tableTabs') }}</router-link>
+						</div>
+					</nav>
+				</aside>
+				<main class="app-main">
+					<div class="page-layout">
+						<div class="page-content">
+							<router-view />
+						</div>
+						<PageToc />
+					</div>
+				</main>
 			</div>
-			<div class="app-header__right">
-				<select v-model="currentLang" @change="changeLang" class="lang-select">
-					<option value="zh-cn">简体中文</option>
-					<option value="zh-tw">繁體中文</option>
-					<option value="en">English</option>
-				</select>
-				<select v-model="currentTheme" @change="changeTheme" class="theme-select">
-					<option value="">默认主题</option>
-					<option value="theme-blue">蓝色主题</option>
-					<option value="theme-red">红色主题</option>
-					<option value="theme-dark-blue">深蓝主题</option>
-				</select>
-				<button class="rtl-btn" @click="isRtl = !isRtl">
-					{{ isRtl ? 'LTR' : 'RTL' }}
-				</button>
-			</div>
-		</header>
-		<div class="app-body">
-			<aside class="app-sidebar">
-				<nav>
-					<div class="nav-section">
-						<h3 class="nav-title">基础组件</h3>
-						<router-link to="/component/back-top" class="nav-link">Back Top 回到顶部</router-link>
-						<router-link to="/component/scrollbar" class="nav-link">Scrollbar 滚动条</router-link>
-						<router-link to="/component/skeleton" class="nav-link">Skeleton 骨架屏</router-link>
-						<router-link to="/component/no-data" class="nav-link">No Data 无数据</router-link>
-						<router-link to="/component/divider-line" class="nav-link">Divider 分割线</router-link>
-						<router-link to="/component/link" class="nav-link">Link 链接</router-link>
-					</div>
-					<div class="nav-section">
-						<h3 class="nav-title">布局组件</h3>
-						<router-link to="/component/dialog" class="nav-link">Dialog 弹窗</router-link>
-						<router-link to="/component/drawer" class="nav-link">Drawer 抽屉</router-link>
-						<router-link to="/component/collapse" class="nav-link">Collapse 折叠面板</router-link>
-						<router-link to="/component/tabs" class="nav-link">Tabs 标签页</router-link>
-					</div>
-					<div class="nav-section">
-						<h3 class="nav-title">导航组件</h3>
-						<router-link to="/component/segment" class="nav-link">Segment 分段器</router-link>
-						<router-link to="/component/steps" class="nav-link">Steps 步骤条</router-link>
-						<router-link to="/component/timeline" class="nav-link">Timeline 时间轴</router-link>
-					</div>
-					<div class="nav-section">
-						<h3 class="nav-title">数据展示</h3>
-						<router-link to="/component/card" class="nav-link">Card 卡片</router-link>
-						<router-link to="/component/empty-card" class="nav-link">Empty Card 空状态</router-link>
-						<router-link to="/component/versions" class="nav-link">Versions 版本号</router-link>
-					</div>
-					<div class="nav-section">
-						<h3 class="nav-title">操作组件</h3>
-						<router-link to="/component/button-group" class="nav-link">Button Group 按钮组</router-link>
-						<router-link to="/component/tile-filter" class="nav-link">Tile Filter 筛选器</router-link>
-						<router-link to="/component/table-add-btn" class="nav-link">Table Add 表格新增</router-link>
-						<router-link to="/component/table-tabs" class="nav-link">Table Tabs 表格Tab</router-link>
-					</div>
-				</nav>
-			</aside>
-			<main class="app-main">
-				<router-view />
-			</main>
-		</div>
+		</el-config-provider>
 	</div>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import { setLocale } from '../../packages/locale'
+import { currentLang, setLang, t } from './locale'
+import epZhCN from 'element-plus/es/locale/lang/zh-cn'
+import epZhTW from 'element-plus/es/locale/lang/zh-tw'
+import epEn from 'element-plus/es/locale/lang/en'
+import PageToc from './components/PageToc.vue'
 
-const currentLang = ref('zh-cn')
 const currentTheme = ref('')
 const themeClass = ref('')
 const isRtl = ref(false)
 
+const epLocale = computed(() => {
+	switch (currentLang.value) {
+		case 'zh-tw':
+			return epZhTW
+		case 'en':
+			return epEn
+		default:
+			return epZhCN
+	}
+})
+
 function changeLang() {
-	setLocale(currentLang.value as 'zh-cn' | 'zh-tw' | 'en')
+	// 示例多语言
+	setLang(currentLang.value)
+	// 组件库多语言
+	setLocale(currentLang.value)
 }
 
 function changeTheme() {
@@ -222,9 +247,20 @@ body {
 .app-main {
 	flex: 1;
 	padding: 24px;
-	overflow-y: auto;
+}
+
+.page-layout {
+	display: flex;
+	align-items: flex-start;
+	gap: 24px;
+	max-width: 1180px;
+	margin: 0 auto;
+}
+
+.page-content {
+	flex: 1;
 	max-width: 960px;
-	background: var(--idea-bg-color-page);
+	min-width: 0;
 }
 
 // 页面内容样式

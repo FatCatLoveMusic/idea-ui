@@ -1,1 +1,0 @@
-<template><div class="demo-page"><h2>Link 链接</h2><p class="demo-desc">链接组件。</p><div class="demo-section"><h3>基础用法</h3><div class="demo-block"><IdeaLink href="https://www.baidu.com" target="_blank">打开百度</IdeaLink></div></div></div></template>

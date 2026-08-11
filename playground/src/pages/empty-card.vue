@@ -1,1 +1,0 @@
-<template><div class="demo-page"><h2>Empty Card 空状态</h2><p class="demo-desc">空数据展示卡片。</p><div class="demo-section"><h3>基础用法</h3><div class="demo-block"><IdeaEmptyCard /></div></div><div class="demo-section"><h3>自定义文字</h3><div class="demo-block"><IdeaEmptyCard text="暂无审批记录" /></div></div></div></template>

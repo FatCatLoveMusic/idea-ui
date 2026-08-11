@@ -1,13 +1,7 @@
-import type { LocaleMessages } from './index'
+import type { LanguagePack } from './index'
 
-const zhCN: LocaleMessages = {
-	el: {
-		pagination: {
-			total: '共 {total} 条',
-			page: '第',
-			pageClassifier: '页',
-		},
-	},
+const zhCN: LanguagePack = {
+	name: 'zh-cn',
 	idea: {
 		nodata: '暂无数据',
 		loading: '加载中...',

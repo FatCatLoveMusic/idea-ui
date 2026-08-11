@@ -1,8 +1,8 @@
 <template>
 	<div class="demo-page">
-		<h2>组件概览</h2>
+		<h2>{{ t('overview.title') }}</h2>
 		<p class="demo-desc">
-			idea-ui 是一套基于 Vue 3 的企业级 UI 组件库，提供了丰富的组件用于构建现代化的 Web 应用。
+			{{ t('overview.desc') }}
 		</p>
 
 		<div class="demo-section" v-for="group in groups" :key="group.title">
@@ -24,53 +24,79 @@
 </template>
 
 <script setup lang="ts">
-const groups = [
+import { computed } from 'vue'
+import { t } from '../locale'
+
+const compList: Record<string, { name: string; icon: string; desc: string }> = {
+	backTop: { name: t('overview.components.backTop.name'), icon: '⬆', desc: t('overview.components.backTop.desc') },
+	scrollbar: { name: t('overview.components.scrollbar.name'), icon: '📜', desc: t('overview.components.scrollbar.desc') },
+	skeleton: { name: t('overview.components.skeleton.name'), icon: '💀', desc: t('overview.components.skeleton.desc') },
+	noData: { name: t('overview.components.noData.name'), icon: '📭', desc: t('overview.components.noData.desc') },
+	dividerLine: { name: t('overview.components.dividerLine.name'), icon: '➖', desc: t('overview.components.dividerLine.desc') },
+	link: { name: t('overview.components.link.name'), icon: '🔗', desc: t('overview.components.link.desc') },
+	dialog: { name: t('overview.components.dialog.name'), icon: '💬', desc: t('overview.components.dialog.desc') },
+	drawer: { name: t('overview.components.drawer.name'), icon: '📂', desc: t('overview.components.drawer.desc') },
+	collapse: { name: t('overview.components.collapse.name'), icon: '📋', desc: t('overview.components.collapse.desc') },
+	tabs: { name: t('overview.components.tabs.name'), icon: '📑', desc: t('overview.components.tabs.desc') },
+	segment: { name: t('overview.components.segment.name'), icon: '🎛', desc: t('overview.components.segment.desc') },
+	steps: { name: t('overview.components.steps.name'), icon: '🪜', desc: t('overview.components.steps.desc') },
+	timeline: { name: t('overview.components.timeline.name'), icon: '📅', desc: t('overview.components.timeline.desc') },
+	card: { name: t('overview.components.card.name'), icon: '🃏', desc: t('overview.components.card.desc') },
+	emptyCard: { name: t('overview.components.emptyCard.name'), icon: '📭', desc: t('overview.components.emptyCard.desc') },
+	versions: { name: t('overview.components.versions.name'), icon: '🏷', desc: t('overview.components.versions.desc') },
+	buttonGroup: { name: t('overview.components.buttonGroup.name'), icon: '🔘', desc: t('overview.components.buttonGroup.desc') },
+	tileFilter: { name: t('overview.components.tileFilter.name'), icon: '🏷', desc: t('overview.components.tileFilter.desc') },
+	tableAddBtn: { name: t('overview.components.tableAddBtn.name'), icon: '➕', desc: t('overview.components.tableAddBtn.desc') },
+	tableTabs: { name: t('overview.components.tableTabs.name'), icon: '📊', desc: t('overview.components.tableTabs.desc') },
+}
+
+const groups = computed(() => [
 	{
-		title: '基础组件',
+		title: t('overview.groups.basic'),
 		components: [
-			{ path: '/component/back-top', name: 'Back Top', icon: '⬆', desc: '返回页面顶部的操作按钮' },
-			{ path: '/component/scrollbar', name: 'Scrollbar', icon: '📜', desc: '自定义样式的滚动条组件' },
-			{ path: '/component/skeleton', name: 'Skeleton', icon: '💀', desc: '骨架屏，用于数据加载时的占位展示' },
-			{ path: '/component/no-data', name: 'No Data', icon: '📭', desc: '数据为空时的占位提示' },
-			{ path: '/component/divider-line', name: 'Divider', icon: '➖', desc: '分割线，用于分隔内容区域' },
-			{ path: '/component/link', name: 'Link', icon: '🔗', desc: '链接组件，用于文字链接' },
+			{ path: '/component/back-top', ...compList.backTop },
+			{ path: '/component/scrollbar', ...compList.scrollbar },
+			{ path: '/component/skeleton', ...compList.skeleton },
+			{ path: '/component/no-data', ...compList.noData },
+			{ path: '/component/divider-line', ...compList.dividerLine },
+			{ path: '/component/link', ...compList.link },
 		],
 	},
 	{
-		title: '布局组件',
+		title: t('overview.groups.layout'),
 		components: [
-			{ path: '/component/dialog', name: 'Dialog', icon: '💬', desc: '模态弹窗，可拖拽的对话框组件' },
-			{ path: '/component/drawer', name: 'Drawer', icon: '📂', desc: '抽屉组件，从屏幕边缘滑出的面板' },
-			{ path: '/component/collapse', name: 'Collapse', icon: '📋', desc: '折叠面板，可展开/收起的内容区域' },
-			{ path: '/component/tabs', name: 'Tabs', icon: '📑', desc: '标签页切换组件' },
+			{ path: '/component/dialog', ...compList.dialog },
+			{ path: '/component/drawer', ...compList.drawer },
+			{ path: '/component/collapse', ...compList.collapse },
+			{ path: '/component/tabs', ...compList.tabs },
 		],
 	},
 	{
-		title: '导航组件',
+		title: t('overview.groups.nav'),
 		components: [
-			{ path: '/component/segment', name: 'Segment', icon: '🎛', desc: '分段控制器，用于切换不同视图' },
-			{ path: '/component/steps', name: 'Steps', icon: '🪜', desc: '步骤条，引导用户完成流程' },
-			{ path: '/component/timeline', name: 'Timeline', icon: '📅', desc: '时间轴，展示时间线信息' },
+			{ path: '/component/segment', ...compList.segment },
+			{ path: '/component/steps', ...compList.steps },
+			{ path: '/component/timeline', ...compList.timeline },
 		],
 	},
 	{
-		title: '数据展示',
+		title: t('overview.groups.display'),
 		components: [
-			{ path: '/component/card', name: 'Card', icon: '🃏', desc: '卡片容器，用于展示一组信息' },
-			{ path: '/component/empty-card', name: 'Empty Card', icon: '📭', desc: '空状态卡片，用于空数据展示' },
-			{ path: '/component/versions', name: 'Versions', icon: '🏷', desc: '版本号展示与切换组件' },
+			{ path: '/component/card', ...compList.card },
+			{ path: '/component/empty-card', ...compList.emptyCard },
+			{ path: '/component/versions', ...compList.versions },
 		],
 	},
 	{
-		title: '操作组件',
+		title: t('overview.groups.action'),
 		components: [
-			{ path: '/component/button-group', name: 'Button Group', icon: '🔘', desc: '按钮组，用于多选切换' },
-			{ path: '/component/tile-filter', name: 'Tile Filter', icon: '🏷', desc: '平铺筛选器，标签式筛选' },
-			{ path: '/component/table-add-btn', name: 'Table Add', icon: '➕', desc: '表格新增按钮' },
-			{ path: '/component/table-tabs', name: 'Table Tabs', icon: '📊', desc: '表格Tab切换，带计数' },
+			{ path: '/component/button-group', ...compList.buttonGroup },
+			{ path: '/component/tile-filter', ...compList.tileFilter },
+			{ path: '/component/table-add-btn', ...compList.tableAddBtn },
+			{ path: '/component/table-tabs', ...compList.tableTabs },
 		],
 	},
-]
+])
 </script>
 
 <style scoped lang="less">

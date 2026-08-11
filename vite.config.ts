@@ -20,9 +20,14 @@ export default defineConfig({
 	build: {
 		outDir: 'dist',
 		lib: {
-			entry: resolve(__dirname, 'packages/index.ts'),
+			entry: {
+				index: resolve(__dirname, 'packages/index.ts'),
+				'locale/zh-cn': resolve(__dirname, 'packages/locale/zh-cn.ts'),
+				'locale/zh-tw': resolve(__dirname, 'packages/locale/zh-tw.ts'),
+				'locale/en': resolve(__dirname, 'packages/locale/en.ts'),
+			},
 			name: 'IdeaUI',
-			fileName: (format) => `idea-ui.${format === 'es' ? 'es' : 'umd'}.js`,
+			fileName: (format, entryName) => `${entryName === 'index' ? 'idea-ui' : entryName}.${format === 'es' ? 'es' : 'umd'}.js`,
 		},
 		rollupOptions: {
 			external: ['vue', 'element-plus'],
@@ -31,7 +36,6 @@ export default defineConfig({
 					vue: 'Vue',
 					'element-plus': 'ElementPlus',
 				},
-				preserveModules: false,
 			},
 		},
 	},

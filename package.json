@@ -18,6 +18,12 @@
 			"import": "./dist/idea-ui.es.js",
 			"require": "./dist/idea-ui.umd.js"
 		},
+		"./locale/*": {
+			"types": "./dist/locale/*.d.ts",
+			"import": "./dist/locale/*.es.js",
+			"require": "./dist/locale/*.umd.js",
+			"default": "./dist/locale/*.es.js"
+		},
 		"./dist/*": {
 			"types": "./dist/*.d.ts",
 			"default": "./dist/*"

@@ -1,13 +1,7 @@
-import type { LocaleMessages } from './index'
+import type { LanguagePack } from './index'
 
-const en: LocaleMessages = {
-	el: {
-		pagination: {
-			total: 'Total {total}',
-			page: 'Page',
-			pageClassifier: '',
-		},
-	},
+const en: LanguagePack = {
+	name: 'en',
 	idea: {
 		nodata: 'No Data',
 		loading: 'Loading...',

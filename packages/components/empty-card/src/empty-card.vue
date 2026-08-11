@@ -11,12 +11,13 @@
 			</slot>
 		</div>
 		<div class="idea-empty-card__text">
-			<slot>{{ text }}</slot>
+			<slot>{{ displayText }}</slot>
 		</div>
 	</div>
 </template>
 
 <script setup lang="ts">
+import { computed } from 'vue'
 import { useLocale } from '@idea-ui/locale'
 
 const { t } = useLocale()
@@ -29,7 +30,7 @@ const props = withDefaults(defineProps<Props>(), {
 	text: '',
 })
 
-const displayText = props.text || t('idea.nodata')
+const displayText = computed(() => props.text || t('idea.nodata'))
 </script>
 
 <style scoped lang="less">

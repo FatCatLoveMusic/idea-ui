@@ -1,1 +1,0 @@
-<template><div class="demo-page"><h2>No Data 无数据</h2><p class="demo-desc">数据为空时的占位提示。</p><div class="demo-section"><h3>基础用法</h3><div class="demo-block" style="height: 300px;"><IdeaNoData /></div></div><div class="demo-section"><h3>自定义文字</h3><div class="demo-block" style="height: 200px;"><IdeaNoData text="暂无记录" /></div></div></div></template>

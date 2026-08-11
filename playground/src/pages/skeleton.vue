@@ -1,1 +1,0 @@
-<template><div class="demo-page"><h2>Skeleton 骨架屏</h2><p class="demo-desc">数据加载时的占位展示。</p><div class="demo-section"><h3>基础用法</h3><div class="demo-block"><IdeaSkeleton :rows="5" /></div></div></div></template>

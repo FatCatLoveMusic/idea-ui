@@ -1,11 +1,12 @@
 <template>
 	<div class="idea-table-add-btn" @click="handleClick">
 		<span class="idea-table-add-btn__icon">+</span>
-		<span>{{ text }}</span>
+		<span>{{ displayText }}</span>
 	</div>
 </template>
 
 <script setup lang="ts">
+import { computed } from 'vue'
 import { useLocale } from '@idea-ui/locale'
 
 const { t } = useLocale()
@@ -22,7 +23,7 @@ const emit = defineEmits<{
 	(e: 'click'): void
 }>()
 
-const displayText = props.text || t('idea.add')
+const displayText = computed(() => props.text || t('idea.add'))
 
 function handleClick() {
 	emit('click')
