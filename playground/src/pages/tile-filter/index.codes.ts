@@ -1,5 +1,5 @@
 export const basicCodeTs = `<template>
-  <IdeaTileFilter :filters="filters" v-model="active" />
+  <idea-tile-filter :filters="filters" v-model="active" />
 </template>
 
 <script setup lang="ts">
@@ -14,7 +14,7 @@ const filters = [
 </script>`
 
 export const basicCodeJs = `<template>
-  <IdeaTileFilter :filters="filters" v-model="active" />
+  <idea-tile-filter :filters="filters" v-model="active" />
 </template>
 
 <script setup>

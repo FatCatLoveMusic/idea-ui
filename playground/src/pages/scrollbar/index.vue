@@ -6,9 +6,9 @@
 		<div class="demo-section">
 			<h3>{{ t('common.sections.basic') }}</h3>
 			<DemoBlock :code-ts="basicCodeTs" :code-js="basicCodeJs">
-				<IdeaScrollbar class="scroll-demo" style="height: 300px;">
+				<idea-scrollbar class="scroll-demo" style="height: 300px;">
 					<p v-for="i in 50" :key="i" class="scroll-item">{{ t('scrollbar.demo.scrollLine', { index: String(i) }) }}</p>
-				</IdeaScrollbar>
+				</idea-scrollbar>
 			</DemoBlock>
 		</div>
 

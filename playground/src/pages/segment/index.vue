@@ -6,7 +6,7 @@
 		<div class="demo-section">
 			<h3>{{ t('common.sections.basic') }}</h3>
 			<DemoBlock :code-ts="basicCodeTs" :code-js="basicCodeJs">
-				<IdeaSegment :options="options" v-model="active" />
+				<idea-segment :options="options" v-model="active" />
 			</DemoBlock>
 		</div>
 

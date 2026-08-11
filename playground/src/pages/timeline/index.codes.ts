@@ -1,5 +1,5 @@
 export const basicCodeTs = `<template>
-  <IdeaTimeline :items="items" />
+  <idea-timeline :items="items" />
 </template>
 
 <script setup lang="ts">
@@ -11,7 +11,7 @@ const items = [
 </script>`
 
 export const basicCodeJs = `<template>
-  <IdeaTimeline :items="items" />
+  <idea-timeline :items="items" />
 </template>
 
 <script setup>

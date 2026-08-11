@@ -8,7 +8,7 @@
 			<DemoBlock :code-ts="basicCodeTs" :code-js="basicCodeJs">
 				<div ref="scrollContainer" class="scroll-demo" style="height: 300px; overflow-y: auto; position: relative;">
 					<p v-for="i in 20" :key="i" class="scroll-item">{{ t('backTop.demo.scrollLine', { index: i }) }}</p>
-					<IdeaBackTop :visibility-height="100" :target="getScrollContainer" />
+					<idea-back-top :visibility-height="100" :target="getScrollContainer" />
 				</div>
 			</DemoBlock>
 		</div>

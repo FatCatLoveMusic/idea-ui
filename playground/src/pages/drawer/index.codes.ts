@@ -1,8 +1,8 @@
 export const basicCodeTs = `<template>
   <el-button @click="visible = true">打开 Drawer</el-button>
-  <IdeaDrawer v-model="visible" title="抽屉标题">
+  <idea-drawer v-model="visible" title="抽屉标题">
     <p>这里是抽屉的内容区域</p>
-  </IdeaDrawer>
+  </idea-drawer>
 </template>
 
 <script setup lang="ts">
@@ -13,9 +13,9 @@ const visible = ref(false)
 
 export const basicCodeJs = `<template>
   <el-button @click="visible = true">打开 Drawer</el-button>
-  <IdeaDrawer v-model="visible" title="抽屉标题">
+  <idea-drawer v-model="visible" title="抽屉标题">
     <p>这里是抽屉的内容区域</p>
-  </IdeaDrawer>
+  </idea-drawer>
 </template>
 
 <script setup>
@@ -28,9 +28,9 @@ export const directionCodeTs = `<template>
   <el-button v-for="p in placements" :key="p.value" @click="open(p.value)">
     {{ p.label }}
   </el-button>
-  <IdeaDrawer v-model="visible" :placement="placement" title="抽屉标题">
+  <idea-drawer v-model="visible" :placement="placement" title="抽屉标题">
     <p>这里是抽屉的内容区域</p>
-  </IdeaDrawer>
+  </idea-drawer>
 </template>
 
 <script setup lang="ts">
@@ -57,9 +57,9 @@ export const directionCodeJs = `<template>
   <el-button v-for="p in placements" :key="p.value" @click="open(p.value)">
     {{ p.label }}
   </el-button>
-  <IdeaDrawer v-model="visible" :placement="placement" title="抽屉标题">
+  <idea-drawer v-model="visible" :placement="placement" title="抽屉标题">
     <p>这里是抽屉的内容区域</p>
-  </IdeaDrawer>
+  </idea-drawer>
 </template>
 
 <script setup>

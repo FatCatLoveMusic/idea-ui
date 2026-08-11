@@ -6,9 +6,9 @@
 		<div class="demo-section">
 			<h3>{{ t('common.sections.basic') }}</h3>
 			<DemoBlock :code-ts="basicCodeTs" :code-js="basicCodeJs">
-				<IdeaCollapse :items="items" v-model="activeNames">
+				<idea-collapse :items="items" v-model="activeNames">
 					<p>{{ t('collapse.demo.content') }}</p>
-				</IdeaCollapse>
+				</idea-collapse>
 			</DemoBlock>
 		</div>
 

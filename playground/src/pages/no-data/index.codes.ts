@@ -1,15 +1,15 @@
 export const basicCodeTs = `<template>
-  <IdeaNoData />
+  <idea-no-data />
 </template>`
 
 export const basicCodeJs = `<template>
-  <IdeaNoData />
+  <idea-no-data />
 </template>`
 
 export const customCodeTs = `<template>
-  <IdeaNoData text="暂无记录" />
+  <idea-no-data text="暂无记录" />
 </template>`
 
 export const customCodeJs = `<template>
-  <IdeaNoData text="暂无记录" />
+  <idea-no-data text="暂无记录" />
 </template>`

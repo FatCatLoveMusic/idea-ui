@@ -1,7 +1,7 @@
 export const basicCodeTs = `<template>
   <div ref="scrollContainer" style="height: 300px; overflow-y: auto;">
     <p v-for="i in 20" :key="i">滚动内容行 {{ i }}</p>
-    <IdeaBackTop :visibility-height="100" :target="getScrollContainer" />
+    <idea-back-top :visibility-height="100" :target="getScrollContainer" />
   </div>
 </template>
 
@@ -16,7 +16,7 @@ const getScrollContainer = () => scrollContainer.value
 export const basicCodeJs = `<template>
   <div ref="scrollContainer" style="height: 300px; overflow-y: auto;">
     <p v-for="i in 20" :key="i">滚动内容行 {{ i }}</p>
-    <IdeaBackTop :visibility-height="100" :target="getScrollContainer" />
+    <idea-back-top :visibility-height="100" :target="getScrollContainer" />
   </div>
 </template>
 

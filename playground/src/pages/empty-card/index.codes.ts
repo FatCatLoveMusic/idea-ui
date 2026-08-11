@@ -1,15 +1,15 @@
 export const basicCodeTs = `<template>
-  <IdeaEmptyCard />
+  <idea-empty-card />
 </template>`
 
 export const basicCodeJs = `<template>
-  <IdeaEmptyCard />
+  <idea-empty-card />
 </template>`
 
 export const customCodeTs = `<template>
-  <IdeaEmptyCard text="暂无审批记录" />
+  <idea-empty-card text="暂无审批记录" />
 </template>`
 
 export const customCodeJs = `<template>
-  <IdeaEmptyCard text="暂无审批记录" />
+  <idea-empty-card text="暂无审批记录" />
 </template>`

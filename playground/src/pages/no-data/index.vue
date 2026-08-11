@@ -6,14 +6,14 @@
 		<div class="demo-section">
 			<h3>{{ t('common.sections.basic') }}</h3>
 			<DemoBlock :code-ts="basicCodeTs" :code-js="basicCodeJs">
-				<IdeaNoData class="no-data-demo" />
+				<idea-no-data class="no-data-demo" />
 			</DemoBlock>
 		</div>
 
 		<div class="demo-section">
 			<h3>{{ t('common.sections.customText') }}</h3>
 			<DemoBlock :code-ts="customCodeTs" :code-js="customCodeJs">
-				<IdeaNoData class="no-data-demo" :text="t('noData.demo.customText')" />
+				<idea-no-data class="no-data-demo" :text="t('noData.demo.customText')" />
 			</DemoBlock>
 		</div>
 

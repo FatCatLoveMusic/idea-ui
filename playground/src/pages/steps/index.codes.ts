@@ -1,5 +1,5 @@
 export const basicCodeTs = `<template>
-  <IdeaSteps :steps="steps" :active="active" />
+  <idea-steps :steps="steps" :active="active" />
 </template>
 
 <script setup lang="ts">
@@ -12,7 +12,7 @@ const active = 0
 </script>`
 
 export const basicCodeJs = `<template>
-  <IdeaSteps :steps="steps" :active="active" />
+  <idea-steps :steps="steps" :active="active" />
 </template>
 
 <script setup>
@@ -25,7 +25,7 @@ const active = 0
 </script>`
 
 export const progressCodeTs = `<template>
-  <IdeaSteps :steps="steps" :active="active" />
+  <idea-steps :steps="steps" :active="active" />
 </template>
 
 <script setup lang="ts">
@@ -38,7 +38,7 @@ const active = 2
 </script>`
 
 export const progressCodeJs = `<template>
-  <IdeaSteps :steps="steps" :active="active" />
+  <idea-steps :steps="steps" :active="active" />
 </template>
 
 <script setup>

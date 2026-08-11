@@ -6,14 +6,14 @@
 		<div class="demo-section">
 			<h3>{{ t('common.sections.basic') }}</h3>
 			<DemoBlock :code-ts="basicCodeTs" :code-js="basicCodeJs">
-				<IdeaSteps :steps="steps" :active="0" />
+				<idea-steps :steps="steps" :active="0" />
 			</DemoBlock>
 		</div>
 
 		<div class="demo-section">
 			<h3>{{ t('common.sections.activeSteps') }}</h3>
 			<DemoBlock :code-ts="progressCodeTs" :code-js="progressCodeJs">
-				<IdeaSteps :steps="steps" :active="2" />
+				<idea-steps :steps="steps" :active="2" />
 			</DemoBlock>
 		</div>
 

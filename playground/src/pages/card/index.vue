@@ -6,12 +6,12 @@
 		<div class="demo-section">
 			<h3>{{ t('common.sections.basic') }}</h3>
 			<DemoBlock :code-ts="basicCodeTs" :code-js="basicCodeJs">
-				<IdeaCard :title="t('card.demo.cardTitle')">
+				<idea-card :title="t('card.demo.cardTitle')">
 					<p>{{ t('card.demo.content') }}</p>
 					<template #footer>
 						<span class="demo-card-footer">{{ t('card.demo.footer') }}</span>
 					</template>
-				</IdeaCard>
+				</idea-card>
 			</DemoBlock>
 		</div>
 

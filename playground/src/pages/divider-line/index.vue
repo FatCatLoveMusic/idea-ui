@@ -8,9 +8,9 @@
 			<DemoBlock :code-ts="basicCodeTs" :code-js="basicCodeJs">
 				<div class="divider-demo">
 					<p>{{ t('dividerLine.demo.area1') }}</p>
-					<IdeaDividerLine />
+					<idea-divider-line />
 					<p>{{ t('dividerLine.demo.area2') }}</p>
-					<IdeaDividerLine :text="t('dividerLine.demo.text')" />
+					<idea-divider-line :text="t('dividerLine.demo.text')" />
 					<p>{{ t('dividerLine.demo.area3') }}</p>
 				</div>
 			</DemoBlock>
@@ -21,9 +21,9 @@
 			<DemoBlock :code-ts="verticalCodeTs" :code-js="verticalCodeJs">
 				<div class="divider-demo">
 					<span>{{ t('dividerLine.demo.item1') }}</span>
-					<IdeaDividerLine direction="vertical" />
+					<idea-divider-line direction="vertical" />
 					<span>{{ t('dividerLine.demo.item2') }}</span>
-					<IdeaDividerLine direction="vertical" />
+					<idea-divider-line direction="vertical" />
 					<span>{{ t('dividerLine.demo.item3') }}</span>
 				</div>
 			</DemoBlock>

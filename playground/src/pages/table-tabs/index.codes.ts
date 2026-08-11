@@ -1,5 +1,5 @@
 export const basicCodeTs = `<template>
-  <IdeaTableTabs :tabs="tabs" v-model="active" />
+  <idea-table-tabs :tabs="tabs" v-model="active" />
 </template>
 
 <script setup lang="ts">
@@ -14,7 +14,7 @@ const tabs = [
 </script>`
 
 export const basicCodeJs = `<template>
-  <IdeaTableTabs :tabs="tabs" v-model="active" />
+  <idea-table-tabs :tabs="tabs" v-model="active" />
 </template>
 
 <script setup>

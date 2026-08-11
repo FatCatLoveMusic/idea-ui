@@ -1,7 +1,7 @@
 export const basicCodeTs = `<template>
-  <IdeaTabs :tabs="tabs" v-model="activeTab">
+  <idea-tabs :tabs="tabs" v-model="activeTab">
     <p>标签页内容区域</p>
-  </IdeaTabs>
+  </idea-tabs>
 </template>
 
 <script setup lang="ts">
@@ -16,9 +16,9 @@ const tabs = [
 </script>`
 
 export const basicCodeJs = `<template>
-  <IdeaTabs :tabs="tabs" v-model="activeTab">
+  <idea-tabs :tabs="tabs" v-model="activeTab">
     <p>标签页内容区域</p>
-  </IdeaTabs>
+  </idea-tabs>
 </template>
 
 <script setup>

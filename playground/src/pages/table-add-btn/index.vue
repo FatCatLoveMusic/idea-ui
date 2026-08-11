@@ -6,14 +6,14 @@
 		<div class="demo-section">
 			<h3>{{ t('common.sections.basic') }}</h3>
 			<DemoBlock :code-ts="basicCodeTs" :code-js="basicCodeJs">
-				<IdeaTableAddBtn @click="onAdd" />
+				<idea-table-add-btn @click="onAdd" />
 			</DemoBlock>
 		</div>
 
 		<div class="demo-section">
 			<h3>{{ t('common.sections.customText') }}</h3>
 			<DemoBlock :code-ts="customCodeTs" :code-js="customCodeJs">
-				<IdeaTableAddBtn :text="t('tableAddBtn.demo.customText')" @click="onAdd" />
+				<idea-table-add-btn :text="t('tableAddBtn.demo.customText')" @click="onAdd" />
 			</DemoBlock>
 		</div>
 

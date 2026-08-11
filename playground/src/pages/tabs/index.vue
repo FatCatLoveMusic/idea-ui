@@ -6,9 +6,9 @@
 		<div class="demo-section">
 			<h3>{{ t('common.sections.basic') }}</h3>
 			<DemoBlock :code-ts="basicCodeTs" :code-js="basicCodeJs">
-				<IdeaTabs :tabs="tabs" v-model="activeTab">
+				<idea-tabs :tabs="tabs" v-model="activeTab">
 					<p>{{ t('tabs.demo.current') }} {{ tabs.find((t) => t.name === activeTab)?.label }}</p>
-				</IdeaTabs>
+				</idea-tabs>
 			</DemoBlock>
 		</div>
 

@@ -7,9 +7,9 @@
 			<h3>{{ t('common.sections.basic') }}</h3>
 			<DemoBlock :code-ts="basicCodeTs" :code-js="basicCodeJs">
 				<el-button @click="visible = true">{{ t('drawer.demo.open') }}</el-button>
-				<IdeaDrawer v-model="visible" :title="t('drawer.demo.title')">
+				<idea-drawer v-model="visible" :title="t('drawer.demo.title')">
 					<p>{{ t('drawer.demo.content') }}</p>
-				</IdeaDrawer>
+				</idea-drawer>
 			</DemoBlock>
 		</div>
 
@@ -21,9 +21,9 @@
 						{{ p.label }}
 					</el-button>
 				</div>
-				<IdeaDrawer v-model="visible2" :placement="placement" :title="t('drawer.demo.title')">
+				<idea-drawer v-model="visible2" :placement="placement" :title="t('drawer.demo.title')">
 					<p>{{ t('drawer.demo.content') }}</p>
-				</IdeaDrawer>
+				</idea-drawer>
 			</DemoBlock>
 		</div>
 

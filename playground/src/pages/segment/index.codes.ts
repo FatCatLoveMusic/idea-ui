@@ -1,5 +1,5 @@
 export const basicCodeTs = `<template>
-  <IdeaSegment :options="options" v-model="active" />
+  <idea-segment :options="options" v-model="active" />
 </template>
 
 <script setup lang="ts">
@@ -14,7 +14,7 @@ const options = [
 </script>`
 
 export const basicCodeJs = `<template>
-  <IdeaSegment :options="options" v-model="active" />
+  <idea-segment :options="options" v-model="active" />
 </template>
 
 <script setup>

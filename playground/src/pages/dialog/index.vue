@@ -7,11 +7,11 @@
 			<h3>{{ t('common.sections.basic') }}</h3>
 			<DemoBlock :code-ts="basicCodeTs" :code-js="basicCodeJs">
 				<el-button @click="visible = true">{{ t('dialog.demo.open') }}</el-button>
-				<IdeaDialog v-model="visible" :title="t('dialog.demo.title')" @close="visible = false">
+				<idea-dialog v-model="visible" :title="t('dialog.demo.title')" @close="visible = false">
 					<p>{{ t('dialog.demo.content') }}</p>
 					<p>{{ t('dialog.demo.content') }}</p>
 					<p>{{ t('dialog.demo.content') }}</p>
-				</IdeaDialog>
+				</idea-dialog>
 			</DemoBlock>
 		</div>
 
@@ -19,13 +19,13 @@
 			<h3>{{ t('common.sections.customFooter') }}</h3>
 			<DemoBlock :code-ts="footerCodeTs" :code-js="footerCodeJs">
 				<el-button type="primary" @click="visible2 = true">{{ t('dialog.demo.openFooter') }}</el-button>
-				<IdeaDialog v-model="visible2" :title="t('dialog.demo.confirmTitle')">
+				<idea-dialog v-model="visible2" :title="t('dialog.demo.confirmTitle')">
 					<p>{{ t('dialog.demo.confirmText') }}</p>
 					<template #footer>
 						<el-button @click="visible2 = false">{{ t('dialog.demo.cancel') }}</el-button>
 						<el-button type="primary" @click="visible2 = false">{{ t('dialog.demo.confirm') }}</el-button>
 					</template>
-				</IdeaDialog>
+				</idea-dialog>
 			</DemoBlock>
 		</div>
 

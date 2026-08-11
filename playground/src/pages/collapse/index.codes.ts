@@ -1,7 +1,7 @@
 export const basicCodeTs = `<template>
-  <IdeaCollapse :items="items" v-model="activeNames">
+  <idea-collapse :items="items" v-model="activeNames">
     <p>这里是折叠面板的内容区域</p>
-  </IdeaCollapse>
+  </idea-collapse>
 </template>
 
 <script setup lang="ts">
@@ -16,9 +16,9 @@ const items = [
 </script>`
 
 export const basicCodeJs = `<template>
-  <IdeaCollapse :items="items" v-model="activeNames">
+  <idea-collapse :items="items" v-model="activeNames">
     <p>这里是折叠面板的内容区域</p>
-  </IdeaCollapse>
+  </idea-collapse>
 </template>
 
 <script setup>

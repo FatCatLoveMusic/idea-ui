@@ -1,5 +1,5 @@
 export const basicCodeTs = `<template>
-  <IdeaButtonGroup :buttons="buttons" v-model="active" />
+  <idea-button-group :buttons="buttons" v-model="active" />
 </template>
 
 <script setup lang="ts">
@@ -14,7 +14,7 @@ const buttons = [
 </script>`
 
 export const basicCodeJs = `<template>
-  <IdeaButtonGroup :buttons="buttons" v-model="active" />
+  <idea-button-group :buttons="buttons" v-model="active" />
 </template>
 
 <script setup>

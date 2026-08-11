@@ -1,5 +1,5 @@
 export const basicCodeTs = `<template>
-  <IdeaVersions currentVersion="v3.2.1" :versions="versions" />
+  <idea-versions currentVersion="v3.2.1" :versions="versions" />
 </template>
 
 <script setup lang="ts">
@@ -10,7 +10,7 @@ const versions = [
 </script>`
 
 export const basicCodeJs = `<template>
-  <IdeaVersions currentVersion="v3.2.1" :versions="versions" />
+  <idea-versions currentVersion="v3.2.1" :versions="versions" />
 </template>
 
 <script setup>
