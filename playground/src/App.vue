@@ -34,7 +34,8 @@
 							<router-link to="/component/no-data" class="nav-link">{{ t('app.links.noData') }}</router-link>
 							<router-link to="/component/divider-line" class="nav-link">{{ t('app.links.dividerLine') }}</router-link>
 							<router-link to="/component/link" class="nav-link">{{ t('app.links.link') }}</router-link>
-						</div>
+						<router-link to="/component/icons" class="nav-link">{{ t('app.links.icons') }}</router-link>
+					</div>
 						<div class="nav-section">
 							<h3 class="nav-title">{{ t('app.groups.layout') }}</h3>
 							<router-link to="/component/dialog" class="nav-link">{{ t('app.links.dialog') }}</router-link>

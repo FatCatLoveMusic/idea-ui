@@ -6,6 +6,7 @@ import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
 import '../../packages/theme-chalk/src/index.less'
 import '../../packages/theme-chalk/src/common/base.less'
+import '../../packages/theme-chalk/src/sapi-fonts/iconfont.css'
 
 import Overview from './pages/overview.vue'
 
@@ -115,6 +116,11 @@ const routes = [
 		path: '/component/link',
 		name: 'link',
 		component: () => import('./pages/link/index.vue'),
+	},
+	{
+		path: '/component/icons',
+		name: 'icons',
+		component: () => import('./pages/icons/index.vue'),
 	},
 ]
 

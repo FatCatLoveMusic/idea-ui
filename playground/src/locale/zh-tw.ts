@@ -30,6 +30,7 @@ const zhTW: PlaygroundMessages = {
 			tileFilter: 'Tile Filter 篩選器',
 			tableAddBtn: 'Table Add 表格新增',
 			tableTabs: 'Table Tabs 表格Tab',
+			icons: 'Icons 圖示',
 		},
 	},
 	overview: {
@@ -352,6 +353,15 @@ const zhTW: PlaygroundMessages = {
 			versions: '版本列表，包含 label、value、可選 time、active',
 		},
 		events: { select: '選擇版本時觸發' },
+	},
+	icons: {
+		title: 'Icons 圖示',
+		desc: '基於 iconfont 的向量圖示，通過 CSS 類名使用。',
+		usage: '使用方式',
+		usageTip: '在元素上添加對應的 class 即可顯示圖示：',
+		allIcons: '全部圖示',
+		searchPlaceholder: '搜尋圖示名稱或類名...',
+		copied: '已複製！',
 	},
 }
 

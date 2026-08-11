@@ -30,6 +30,7 @@ const zhCN: PlaygroundMessages = {
 			tileFilter: 'Tile Filter 筛选器',
 			tableAddBtn: 'Table Add 表格新增',
 			tableTabs: 'Table Tabs 表格Tab',
+			icons: 'Icons 图标',
 		},
 	},
 	overview: {
@@ -347,6 +348,15 @@ const zhCN: PlaygroundMessages = {
 			versions: '版本列表，包含 label、value、可选 time、active',
 		},
 		events: { select: '选择版本时触发' },
+	},
+	icons: {
+		title: 'Icons 图标',
+		desc: '基于 iconfont 的矢量图标，通过 CSS 类名使用。',
+		usage: '使用方式',
+		usageTip: '在元素上添加对应的 class 即可显示图标：',
+		allIcons: '全部图标',
+		searchPlaceholder: '搜索图标名称或类名...',
+		copied: '已复制！',
 	},
 }
 

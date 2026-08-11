@@ -30,6 +30,7 @@ const en: PlaygroundMessages = {
 			tileFilter: 'Tile Filter',
 			tableAddBtn: 'Table Add',
 			tableTabs: 'Table Tabs',
+			icons: 'Icons',
 		},
 	},
 	overview: {
@@ -352,6 +353,15 @@ const en: PlaygroundMessages = {
 			versions: 'Version list, including label, value, optional time, active',
 		},
 		events: { select: 'Triggered when a version is selected' },
+	},
+	icons: {
+		title: 'Icons',
+		desc: 'Vector icons based on iconfont, used via CSS class names.',
+		usage: 'Usage',
+		usageTip: 'Add the corresponding class on the element to display the icon:',
+		allIcons: 'All Icons',
+		searchPlaceholder: 'Search icon name or class...',
+		copied: 'Copied!',
 	},
 }
 
