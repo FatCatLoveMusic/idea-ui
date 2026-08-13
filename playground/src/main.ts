@@ -122,6 +122,11 @@ const routes = [
 		name: 'icons',
 		component: () => import('./pages/icons/index.vue'),
 	},
+	{
+		path: '/component/menu',
+		name: 'menu',
+		component: () => import('./pages/menu/index.vue'),
+	},
 ]
 
 const router = createRouter({

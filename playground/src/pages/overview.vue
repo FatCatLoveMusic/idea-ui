@@ -48,6 +48,7 @@ const compList: Record<string, { name: string; icon: string; desc: string }> = {
 	tileFilter: { name: t('overview.components.tileFilter.name'), icon: '🏷', desc: t('overview.components.tileFilter.desc') },
 	tableAddBtn: { name: t('overview.components.tableAddBtn.name'), icon: '➕', desc: t('overview.components.tableAddBtn.desc') },
 	tableTabs: { name: t('overview.components.tableTabs.name'), icon: '📊', desc: t('overview.components.tableTabs.desc') },
+	menu: { name: t('overview.components.menu.name'), icon: '📋', desc: t('overview.components.menu.desc') },
 }
 
 const groups = computed(() => [
@@ -94,6 +95,7 @@ const groups = computed(() => [
 			{ path: '/component/tile-filter', ...compList.tileFilter },
 			{ path: '/component/table-add-btn', ...compList.tableAddBtn },
 			{ path: '/component/table-tabs', ...compList.tableTabs },
+			{ path: '/component/menu', ...compList.menu },
 		],
 	},
 ])

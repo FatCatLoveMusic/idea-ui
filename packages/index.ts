@@ -28,6 +28,8 @@ import { Card } from './components/card'
 import { ButtonGroup } from './components/button-group'
 import { Link } from './components/link'
 import { TileFilter } from './components/tile-filter'
+import { Menu } from './components/menu'
+import { Breadcrumb } from './components/breadcrumb'
 
 // Load default locale messages
 loadMessages('zh-cn', zhCN)
@@ -56,6 +58,8 @@ const components = [
 	ButtonGroup,
 	Link,
 	TileFilter,
+	Menu,
+	Breadcrumb,
 ]
 
 const install = (app: App, options?: { locale?: Language | LanguagePack }) => {
@@ -104,6 +108,8 @@ export {
 	ButtonGroup,
 	Link,
 	TileFilter,
+	Menu,
+	Breadcrumb,
 }
 
 export { $idea }

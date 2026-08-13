@@ -1,5 +1,5 @@
 <template>
-	<div class="app-layout" :class="[themeClass, { 'is-rtl': isRtl }]" :dir="isRtl ? 'rtl' : 'ltr'">
+	<div class="app-layout" :class="{ 'is-rtl': pageConfig.isRtl }" :dir="pageConfig.isRtl ? 'rtl' : 'ltr'">
 		<el-config-provider :locale="epLocale">
 			<header class="app-header">
 				<div class="app-header__left">
@@ -7,20 +7,20 @@
 					<span class="app-version">v1.0.0</span>
 				</div>
 				<div class="app-header__right">
-					<select v-model="currentLang" @change="changeLang" class="lang-select">
+					<select v-model="pageConfig.lang" @change="changeLang" class="lang-select">
 						<option value="zh-cn">简体中文</option>
 						<option value="zh-tw">繁體中文</option>
 						<option value="en">English</option>
 					</select>
-					<select v-model="currentTheme" @change="changeTheme" class="theme-select">
+					<select v-model="pageConfig.theme" @change="changeTheme" class="theme-select">
 						<option value="">默认主题</option>
 						<option value="theme-blue">蓝色主题</option>
 						<option value="theme-red">红色主题</option>
 						<option value="theme-dark-blue">深蓝主题</option>
 					</select>
-					<button class="rtl-btn" @click="isRtl = !isRtl">
-						{{ isRtl ? 'LTR' : 'RTL' }}
-					</button>
+					<button class="rtl-btn" @click="pageConfig.isRtl = !pageConfig.isRtl">
+					{{ pageConfig.isRtl ? 'LTR' : 'RTL' }}
+				</button>
 				</div>
 			</header>
 			<div class="app-body">
@@ -48,6 +48,7 @@
 							<router-link to="/component/segment" class="nav-link">{{ t('app.links.segment') }}</router-link>
 							<router-link to="/component/steps" class="nav-link">{{ t('app.links.steps') }}</router-link>
 							<router-link to="/component/timeline" class="nav-link">{{ t('app.links.timeline') }}</router-link>
+							<router-link to="/component/menu" class="nav-link">{{ t('app.links.menu') }}</router-link>
 						</div>
 						<div class="nav-section">
 							<h3 class="nav-title">{{ t('app.groups.display') }}</h3>
@@ -78,17 +79,44 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from 'vue'
+import { reactive, computed, watch } from 'vue'
 import { setLocale } from '../../packages/locale'
-import { currentLang, setLang, t } from './locale'
+import { currentLang, setLang, t, type PlaygroundLanguage } from './locale'
 import epZhCN from 'element-plus/es/locale/lang/zh-cn'
 import epZhTW from 'element-plus/es/locale/lang/zh-tw'
 import epEn from 'element-plus/es/locale/lang/en'
 import PageToc from './components/PageToc.vue'
 
-const currentTheme = ref('')
-const themeClass = ref('')
-const isRtl = ref(false)
+interface PageConfig {
+	theme: string
+	lang: PlaygroundLanguage
+	isRtl: boolean
+}
+
+const PAGE_CONFIG_KEY = 'idea-ui-page-config'
+
+function loadPageConfig(): PageConfig {
+	const defaultConfig: PageConfig = { theme: '', lang: 'zh-cn', isRtl: false }
+	try {
+		const saved = localStorage.getItem(PAGE_CONFIG_KEY)
+		if (saved) {
+			return { ...defaultConfig, ...JSON.parse(saved) }
+		}
+		// 首次访问，将默认配置写入 localStorage
+		localStorage.setItem(PAGE_CONFIG_KEY, JSON.stringify(defaultConfig))
+	} catch {
+		// 解析失败时使用默认配置
+	}
+	return defaultConfig
+}
+
+// 页面配置（主题、语言、RTL）统一存储到 localStorage
+const pageConfig = reactive<PageConfig>(loadPageConfig())
+
+// 配置变更时自动持久化
+watch(pageConfig, () => {
+	localStorage.setItem(PAGE_CONFIG_KEY, JSON.stringify(pageConfig))
+})
 
 const epLocale = computed(() => {
 	switch (currentLang.value) {
@@ -103,13 +131,25 @@ const epLocale = computed(() => {
 
 function changeLang() {
 	// 示例多语言
-	setLang(currentLang.value)
+	setLang(pageConfig.lang)
 	// 组件库多语言
-	setLocale(currentLang.value)
+	setLocale(pageConfig.lang)
 }
 
+// 主题 class 需要挂在 body 上，popper 挂载在 body 下才能继承主题变量
+function applyTheme(theme: string) {
+	document.body.classList.remove('theme-blue', 'theme-red', 'theme-dark-blue')
+	if (theme) {
+		document.body.classList.add(theme)
+	}
+}
+
+// 初始化时应用已保存的配置
+setLang(pageConfig.lang)
+applyTheme(pageConfig.theme)
+
 function changeTheme() {
-	themeClass.value = currentTheme.value
+	applyTheme(pageConfig.theme)
 }
 </script>
 
