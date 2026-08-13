@@ -34,7 +34,7 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
 import DemoBlock from '../../components/DemoBlock.vue'
-import { basicCodeTs, basicCodeJs } from './index.codes'
+import { createBasicCodeTs, createBasicCodeJs } from './index.codes'
 import { t } from '../../locale'
 
 const active = ref('a')
@@ -43,6 +43,15 @@ const options = computed(() => [
 	{ label: t('segment.demo.optionB'), value: 'b' },
 	{ label: t('segment.demo.optionC'), value: 'c' },
 ])
+
+// ========== 示例代码（跟随当前语言 zh-cn / en / zh-tw） ==========
+const basicCodeLabels = computed(() => ({
+	optionA: t('segment.demo.optionA'),
+	optionB: t('segment.demo.optionB'),
+	optionC: t('segment.demo.optionC'),
+}))
+const basicCodeTs = computed(() => createBasicCodeTs(basicCodeLabels.value))
+const basicCodeJs = computed(() => createBasicCodeJs(basicCodeLabels.value))
 
 const apiTableData = computed(() => [
 	{ param: 'modelValue', type: 'string | number', default: '-', desc: t('segment.api.modelValue') },

@@ -169,12 +169,12 @@ import { t } from '../../locale'
 import DemoBlock from '../../components/DemoBlock.vue'
 import { findMenuPath } from '../../../../packages/components/menu'
 import {
-	sidebarCodeTs, sidebarCodeJs,
-	sidebarHeaderCodeTs, sidebarHeaderCodeJs,
-	topCodeTs, topCodeJs,
-	topSidebarCodeTs, topSidebarCodeJs,
-	doubleSidebarCodeTs, doubleSidebarCodeJs,
-	breadcrumbCodeTs, breadcrumbCodeJs,
+	createSidebarCodeTs, createSidebarCodeJs,
+	createSidebarHeaderCodeTs, createSidebarHeaderCodeJs,
+	createTopCodeTs, createTopCodeJs,
+	createTopSidebarCodeTs, createTopSidebarCodeJs,
+	createDoubleSidebarCodeTs, createDoubleSidebarCodeJs,
+	createBreadcrumbCodeTs, createBreadcrumbCodeJs,
 } from './index.codes'
 
 // ========== 示例菜单数据 ==========
@@ -297,6 +297,54 @@ const doubleSidebarMenus = computed(() => [
 	},
 	{ id: 'd4', label: t('menu.demo.about'), icon: 'icon-icon_xinxi' },
 ])
+
+// ========== 示例代码（跟随当前语言 zh-cn / en / zh-tw） ==========
+const sidebarCodeLabels = computed(() => ({
+	workbench: t('menu.demo.workbench'),
+	overview: t('menu.demo.overview'),
+	analytics: t('menu.demo.analytics'),
+	system: t('menu.demo.system'),
+	userMgmt: t('menu.demo.userMgmt'),
+	roleMgmt: t('menu.demo.roleMgmt'),
+	permission: t('menu.demo.permission'),
+	sysConfig: t('menu.demo.sysConfig'),
+	baseConfig: t('menu.demo.baseConfig'),
+	security: t('menu.demo.security'),
+	content: t('menu.demo.content'),
+	articles: t('menu.demo.articles'),
+	comments: t('menu.demo.comments'),
+}))
+const sidebarCodeTs = computed(() => createSidebarCodeTs(sidebarCodeLabels.value))
+const sidebarCodeJs = computed(() => createSidebarCodeJs(sidebarCodeLabels.value))
+
+const menuCodeLabels = computed(() => ({
+	workbench: t('menu.demo.workbench'),
+	overview: t('menu.demo.overview'),
+	analytics: t('menu.demo.analytics'),
+	system: t('menu.demo.system'),
+	userMgmt: t('menu.demo.userMgmt'),
+	roleMgmt: t('menu.demo.roleMgmt'),
+	permission: t('menu.demo.permission'),
+	sysConfig: t('menu.demo.sysConfig'),
+	baseConfig: t('menu.demo.baseConfig'),
+	security: t('menu.demo.security'),
+	content: t('menu.demo.content'),
+	articles: t('menu.demo.articles'),
+	comments: t('menu.demo.comments'),
+	about: t('menu.demo.about'),
+	more: t('menu.demo.more'),
+	statistics: t('menu.demo.statistics'),
+}))
+const sidebarHeaderCodeTs = computed(() => createSidebarHeaderCodeTs(menuCodeLabels.value))
+const sidebarHeaderCodeJs = computed(() => createSidebarHeaderCodeJs(menuCodeLabels.value))
+const topCodeTs = computed(() => createTopCodeTs(menuCodeLabels.value))
+const topCodeJs = computed(() => createTopCodeJs(menuCodeLabels.value))
+const topSidebarCodeTs = computed(() => createTopSidebarCodeTs(menuCodeLabels.value))
+const topSidebarCodeJs = computed(() => createTopSidebarCodeJs(menuCodeLabels.value))
+const doubleSidebarCodeTs = computed(() => createDoubleSidebarCodeTs(menuCodeLabels.value))
+const doubleSidebarCodeJs = computed(() => createDoubleSidebarCodeJs(menuCodeLabels.value))
+const breadcrumbCodeTs = computed(() => createBreadcrumbCodeTs(menuCodeLabels.value))
+const breadcrumbCodeJs = computed(() => createBreadcrumbCodeJs(menuCodeLabels.value))
 
 // ========== 激活状态 ==========
 const sidebarActive = ref('1-1')

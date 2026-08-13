@@ -36,8 +36,15 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import DemoBlock from '../../components/DemoBlock.vue'
-import { basicCodeTs, basicCodeJs } from './index.codes'
+import { createScrollbarCodeTs, createScrollbarCodeJs } from './index.codes'
 import { t } from '../../locale'
+
+const labels = computed(() => ({
+	row: t('scrollbar.demo.row'),
+}))
+
+const basicCodeTs = computed(() => createScrollbarCodeTs(labels.value))
+const basicCodeJs = computed(() => createScrollbarCodeJs(labels.value))
 
 const apiTableData = computed(() => [
 	{ param: 'classes', type: 'string', default: '-', desc: t('scrollbar.api.classes') },

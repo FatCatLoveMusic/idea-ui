@@ -1,29 +1,35 @@
-export const basicCodeTs = `<template>
+export interface BasicCodeLabels {
+	optionA: string
+	optionB: string
+	optionC: string
+}
+
+const basicCodeTemplate = `<template>
   <idea-segment :options="options" v-model="active" />
 </template>
+`
 
+const basicOptionsCode = (l: BasicCodeLabels) => `const options = [
+  { label: '${l.optionA}', value: 'a' },
+  { label: '${l.optionB}', value: 'b' },
+  { label: '${l.optionC}', value: 'c' },
+]
+`
+
+export function createBasicCodeTs(l: BasicCodeLabels): string {
+	return `${basicCodeTemplate}
 <script setup lang="ts">
 import { ref } from 'vue'
 
 const active = ref('a')
-const options = [
-  { label: '选项A', value: 'a' },
-  { label: '选项B', value: 'b' },
-  { label: '选项C', value: 'c' },
-]
-</script>`
+${basicOptionsCode(l)}<\/script>`
+}
 
-export const basicCodeJs = `<template>
-  <idea-segment :options="options" v-model="active" />
-</template>
-
+export function createBasicCodeJs(l: BasicCodeLabels): string {
+	return `${basicCodeTemplate}
 <script setup>
 import { ref } from 'vue'
 
 const active = ref('a')
-const options = [
-  { label: '选项A', value: 'a' },
-  { label: '选项B', value: 'b' },
-  { label: '选项C', value: 'c' },
-]
-</script>`
+${basicOptionsCode(l)}<\/script>`
+}

@@ -37,14 +37,25 @@
 import { ref, computed } from 'vue'
 import { t } from '../../locale'
 import DemoBlock from '../../components/DemoBlock.vue'
-import { basicCodeTs, basicCodeJs } from './index.codes'
+import { createCollapseCodeTs, createCollapseCodeJs } from './index.codes'
 
 const activeNames = ref(['1'])
-const items = [
-	{ name: '1', title: '一致 Consistency' },
-	{ name: '2', title: '反馈 Feedback' },
-	{ name: '3', title: '效率 Efficiency' },
-]
+
+const labels = computed(() => ({
+	content: t('collapse.demo.content'),
+	consistency: t('collapse.demo.consistency'),
+	feedback: t('collapse.demo.feedback'),
+	efficiency: t('collapse.demo.efficiency'),
+}))
+
+const basicCodeTs = computed(() => createCollapseCodeTs(labels.value))
+const basicCodeJs = computed(() => createCollapseCodeJs(labels.value))
+
+const items = computed(() => [
+	{ name: '1', title: labels.value.consistency },
+	{ name: '2', title: labels.value.feedback },
+	{ name: '3', title: labels.value.efficiency },
+])
 
 const apiTableData = computed(() => [
 	{ param: 'modelValue', type: 'array', default: '[]', desc: t('collapse.api.modelValue') },

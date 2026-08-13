@@ -26,13 +26,23 @@
 import { computed } from 'vue'
 import DemoBlock from '../../components/DemoBlock.vue'
 import { t } from '../../locale'
-import { basicCodeTs, basicCodeJs } from './index.codes'
+import { createBasicCodeTs, createBasicCodeJs } from './index.codes'
 
 const items = computed(() => [
 	{ title: t('timeline.demo.event1'), time: '2024-01-01', type: 'success' },
 	{ title: t('timeline.demo.event2'), time: '2024-02-01', type: 'primary' },
 	{ title: t('timeline.demo.event3'), time: '2024-03-01', description: t('timeline.demo.description') },
 ])
+
+// ========== 示例代码（跟随当前语言 zh-cn / en / zh-tw） ==========
+const basicCodeLabels = computed(() => ({
+	event1: t('timeline.demo.event1'),
+	event2: t('timeline.demo.event2'),
+	event3: t('timeline.demo.event3'),
+	description: t('timeline.demo.description'),
+}))
+const basicCodeTs = computed(() => createBasicCodeTs(basicCodeLabels.value))
+const basicCodeJs = computed(() => createBasicCodeJs(basicCodeLabels.value))
 
 const apiTableData = computed(() => [
 	{ param: 'items', type: 'array', default: '[]', desc: t('timeline.api.items') },

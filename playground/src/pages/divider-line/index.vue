@@ -45,7 +45,22 @@
 import { computed } from 'vue'
 import { t } from '../../locale'
 import DemoBlock from '../../components/DemoBlock.vue'
-import { basicCodeTs, basicCodeJs, verticalCodeTs, verticalCodeJs } from './index.codes'
+import { createBasicCodeTs, createBasicCodeJs, createVerticalCodeTs, createVerticalCodeJs } from './index.codes'
+
+const labels = computed(() => ({
+	area1: t('dividerLine.demo.area1'),
+	area2: t('dividerLine.demo.area2'),
+	area3: t('dividerLine.demo.area3'),
+	text: t('dividerLine.demo.text'),
+	item1: t('dividerLine.demo.item1'),
+	item2: t('dividerLine.demo.item2'),
+	item3: t('dividerLine.demo.item3'),
+}))
+
+const basicCodeTs = computed(() => createBasicCodeTs(labels.value))
+const basicCodeJs = computed(() => createBasicCodeJs(labels.value))
+const verticalCodeTs = computed(() => createVerticalCodeTs(labels.value))
+const verticalCodeJs = computed(() => createVerticalCodeJs(labels.value))
 
 const apiTableData = computed(() => [
 	{ param: 'text', type: 'string', default: '-', desc: t('dividerLine.api.text') },

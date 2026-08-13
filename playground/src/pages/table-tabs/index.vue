@@ -35,7 +35,7 @@
 import { ref, computed } from 'vue'
 import DemoBlock from '../../components/DemoBlock.vue'
 import { t } from '../../locale'
-import { basicCodeTs, basicCodeJs } from './index.codes'
+import { createBasicCodeTs, createBasicCodeJs } from './index.codes'
 
 const active = ref('all')
 const tabs = computed(() => [
@@ -43,6 +43,15 @@ const tabs = computed(() => [
 	{ label: t('tableTabs.demo.pending'), value: 'pending', count: 10 },
 	{ label: t('tableTabs.demo.done'), value: 'done', count: 90 },
 ])
+
+// ========== 示例代码（跟随当前语言 zh-cn / en / zh-tw） ==========
+const basicCodeLabels = computed(() => ({
+	all: t('tableTabs.demo.all'),
+	pending: t('tableTabs.demo.pending'),
+	done: t('tableTabs.demo.done'),
+}))
+const basicCodeTs = computed(() => createBasicCodeTs(basicCodeLabels.value))
+const basicCodeJs = computed(() => createBasicCodeJs(basicCodeLabels.value))
 
 const apiTableData = computed(() => [
 	{ param: 'modelValue', type: 'string | number', default: '-', desc: t('tableTabs.api.modelValue') },

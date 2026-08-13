@@ -39,7 +39,15 @@
 import { computed } from 'vue'
 import { t } from '../../locale'
 import DemoBlock from '../../components/DemoBlock.vue'
-import { basicCodeTs, basicCodeJs } from './index.codes'
+import { createBasicCodeTs, createBasicCodeJs } from './index.codes'
+
+const basicCodeLabels = computed(() => ({
+	cardTitle: t('card.demo.cardTitle'),
+	content: t('card.demo.content'),
+	footer: t('card.demo.footer'),
+}))
+const basicCodeTs = computed(() => createBasicCodeTs(basicCodeLabels.value))
+const basicCodeJs = computed(() => createBasicCodeJs(basicCodeLabels.value))
 
 const apiTableData = computed(() => [
 	{ param: 'title', type: 'string', default: '-', desc: t('card.api.title') },

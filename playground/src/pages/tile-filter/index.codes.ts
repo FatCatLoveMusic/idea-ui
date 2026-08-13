@@ -1,29 +1,35 @@
-export const basicCodeTs = `<template>
+export interface BasicCodeLabels {
+	all: string
+	pending: string
+	approved: string
+}
+
+const basicCodeTemplate = `<template>
   <idea-tile-filter :filters="filters" v-model="active" />
 </template>
+`
 
+const basicFiltersCode = (l: BasicCodeLabels) => `const filters = [
+  { label: '${l.all}', value: 'all', count: 20 },
+  { label: '${l.pending}', value: 'pending', count: 5 },
+  { label: '${l.approved}', value: 'approved', count: 12 },
+]
+`
+
+export function createBasicCodeTs(l: BasicCodeLabels): string {
+	return `${basicCodeTemplate}
 <script setup lang="ts">
 import { ref } from 'vue'
 
 const active = ref('all')
-const filters = [
-  { label: '全部', value: 'all', count: 20 },
-  { label: '待审核', value: 'pending', count: 5 },
-  { label: '已通过', value: 'approved', count: 12 },
-]
-</script>`
+${basicFiltersCode(l)}<\/script>`
+}
 
-export const basicCodeJs = `<template>
-  <idea-tile-filter :filters="filters" v-model="active" />
-</template>
-
+export function createBasicCodeJs(l: BasicCodeLabels): string {
+	return `${basicCodeTemplate}
 <script setup>
 import { ref } from 'vue'
 
 const active = ref('all')
-const filters = [
-  { label: '全部', value: 'all', count: 20 },
-  { label: '待审核', value: 'pending', count: 5 },
-  { label: '已通过', value: 'approved', count: 12 },
-]
-</script>`
+${basicFiltersCode(l)}<\/script>`
+}

@@ -1049,7 +1049,7 @@ watch(
 
 		&:hover {
 			background: var(--idea-menu-double-first-hover-bg, rgba(69, 138, 255, 0.1)) !important;
-			color: var(--idea-menu-double-first-hover-text, #458aff) !important;
+			color: var(--idea-color-primary) !important;
 		}
 
 		&.is-active {

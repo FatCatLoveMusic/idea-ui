@@ -1,39 +1,56 @@
-export const basicCodeTs = `<template>
+export interface BasicCodeLabels {
+	addAlert: string
+}
+
+export function createBasicCodeTs(l: BasicCodeLabels): string {
+	return `<template>
   <idea-table-add-btn @click="onAdd" />
 </template>
 
 <script setup lang="ts">
 function onAdd() {
-  alert('点击新增')
+  alert('${l.addAlert}')
 }
-</script>`
+<\/script>`
+}
 
-export const basicCodeJs = `<template>
+export function createBasicCodeJs(l: BasicCodeLabels): string {
+	return `<template>
   <idea-table-add-btn @click="onAdd" />
 </template>
 
 <script setup>
 function onAdd() {
-  alert('点击新增')
+  alert('${l.addAlert}')
 }
-</script>`
+<\/script>`
+}
 
-export const customCodeTs = `<template>
-  <idea-table-add-btn text="新增记录" @click="onAdd" />
+export interface CustomCodeLabels {
+	customText: string
+	addAlert: string
+}
+
+export function createCustomCodeTs(l: CustomCodeLabels): string {
+	return `<template>
+  <idea-table-add-btn text="${l.customText}" @click="onAdd" />
 </template>
 
 <script setup lang="ts">
 function onAdd() {
-  alert('点击新增')
+  alert('${l.addAlert}')
 }
-</script>`
+<\/script>`
+}
 
-export const customCodeJs = `<template>
-  <idea-table-add-btn text="新增记录" @click="onAdd" />
+export function createCustomCodeJs(l: CustomCodeLabels): string {
+	return `<template>
+  <idea-table-add-btn text="${l.customText}" @click="onAdd" />
 </template>
 
 <script setup>
 function onAdd() {
-  alert('点击新增')
+  alert('${l.addAlert}')
 }
-</script>`
+<\/script>`
+}

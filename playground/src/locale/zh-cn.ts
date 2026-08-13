@@ -139,7 +139,7 @@ const zhCN: PlaygroundMessages = {
 	collapse: {
 		title: 'Collapse 折叠面板',
 		desc: '可展开/收起的内容区域。',
-		demo: { content: '这里是折叠面板的内容区域' },
+		demo: { content: '这里是折叠面板的内容区域', consistency: '一致性', feedback: '反馈', efficiency: '效率' },
 		api: {
 			modelValue: '当前激活的面板 name 列表',
 			items: '面板数据，包含 name 和 title',
@@ -298,7 +298,7 @@ const zhCN: PlaygroundMessages = {
 	scrollbar: {
 		title: 'Scrollbar 滚动条',
 		desc: '自定义样式的滚动条组件。',
-		demo: { scrollLine: '滚动内容行 {index}' },
+		demo: { scrollLine: '滚动内容行 {index}', row: '滚动内容行' },
 		api: {
 			classes: '自定义类名',
 			styles: '自定义样式',
@@ -363,7 +363,7 @@ const zhCN: PlaygroundMessages = {
 	tabs: {
 		title: 'Tabs 标签页',
 		desc: '选项卡切换组件。',
-		demo: { tab1: '标签一', tab2: '标签二', tab3: '标签三', current: '当前选中的是：' },
+		demo: { tab1: '标签一', tab2: '标签二', tab3: '标签三', current: '当前选中的是：', content: '标签页内容区域' },
 		api: {
 			modelValue: '当前激活 Tab 的 name',
 			tabs: 'Tab 数据，包含 name、label、可选 disabled',

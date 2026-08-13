@@ -1,23 +1,30 @@
-export const basicCodeTs = `<template>
+export interface BasicCodeLabels {
+	event1: string
+	event2: string
+	event3: string
+	description: string
+}
+
+const basicCodeTemplate = `<template>
   <idea-timeline :items="items" />
 </template>
+`
 
+const timelineItemsCode = (l: BasicCodeLabels) => `const items = [
+  { title: '${l.event1}', time: '2024-01-01', type: 'success' },
+  { title: '${l.event2}', time: '2024-02-01', type: 'primary' },
+  { title: '${l.event3}', time: '2024-03-01', description: '${l.description}' },
+]
+`
+
+export function createBasicCodeTs(l: BasicCodeLabels): string {
+	return `${basicCodeTemplate}
 <script setup lang="ts">
-const items = [
-  { title: '事件一', time: '2024-01-01', type: 'success' },
-  { title: '事件二', time: '2024-02-01', type: 'primary' },
-  { title: '事件三', time: '2024-03-01', description: '详细描述信息' },
-]
-</script>`
+${timelineItemsCode(l)}<\/script>`
+}
 
-export const basicCodeJs = `<template>
-  <idea-timeline :items="items" />
-</template>
-
+export function createBasicCodeJs(l: BasicCodeLabels): string {
+	return `${basicCodeTemplate}
 <script setup>
-const items = [
-  { title: '事件一', time: '2024-01-01', type: 'success' },
-  { title: '事件二', time: '2024-02-01', type: 'primary' },
-  { title: '事件三', time: '2024-03-01', description: '详细描述信息' },
-]
-</script>`
+${timelineItemsCode(l)}<\/script>`
+}

@@ -30,8 +30,14 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import DemoBlock from '../../components/DemoBlock.vue'
-import { basicCodeTs, basicCodeJs } from './index.codes'
+import { createBasicCodeTs, createBasicCodeJs } from './index.codes'
 import { t } from '../../locale'
+
+const basicCodeLabels = computed(() => ({
+	openBaidu: t('link.demo.openBaidu'),
+}))
+const basicCodeTs = computed(() => createBasicCodeTs(basicCodeLabels.value))
+const basicCodeJs = computed(() => createBasicCodeJs(basicCodeLabels.value))
 
 const apiTableData = computed(() => [
 	{ param: 'href', type: 'string', default: '-', desc: t('link.api.href') },

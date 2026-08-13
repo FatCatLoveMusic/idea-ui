@@ -1,7 +1,18 @@
-export const basicCodeTs = `<template>
-  <el-button @click="visible = true">打开 Drawer</el-button>
-  <idea-drawer v-model="visible" title="抽屉标题">
-    <p>这里是抽屉的内容区域</p>
+export interface DrawerCodeLabels {
+	open: string
+	title: string
+	content: string
+	right: string
+	left: string
+	top: string
+	bottom: string
+}
+
+export function createBasicCodeTs(l: DrawerCodeLabels): string {
+	return `<template>
+  <el-button @click="visible = true">${l.open}</el-button>
+  <idea-drawer v-model="visible" title="${l.title}">
+    <p>${l.content}</p>
   </idea-drawer>
 </template>
 
@@ -9,12 +20,14 @@ export const basicCodeTs = `<template>
 import { ref } from 'vue'
 
 const visible = ref(false)
-</script>`
+<\/script>`
+}
 
-export const basicCodeJs = `<template>
-  <el-button @click="visible = true">打开 Drawer</el-button>
-  <idea-drawer v-model="visible" title="抽屉标题">
-    <p>这里是抽屉的内容区域</p>
+export function createBasicCodeJs(l: DrawerCodeLabels): string {
+	return `<template>
+  <el-button @click="visible = true">${l.open}</el-button>
+  <idea-drawer v-model="visible" title="${l.title}">
+    <p>${l.content}</p>
   </idea-drawer>
 </template>
 
@@ -22,14 +35,16 @@ export const basicCodeJs = `<template>
 import { ref } from 'vue'
 
 const visible = ref(false)
-</script>`
+<\/script>`
+}
 
-export const directionCodeTs = `<template>
+export function createDirectionCodeTs(l: DrawerCodeLabels): string {
+	return `<template>
   <el-button v-for="p in placements" :key="p.value" @click="open(p.value)">
     {{ p.label }}
   </el-button>
-  <idea-drawer v-model="visible" :placement="placement" title="抽屉标题">
-    <p>这里是抽屉的内容区域</p>
+  <idea-drawer v-model="visible" :placement="placement" title="${l.title}">
+    <p>${l.content}</p>
   </idea-drawer>
 </template>
 
@@ -41,24 +56,26 @@ type Placement = 'left' | 'right' | 'top' | 'bottom'
 const visible = ref(false)
 const placement = ref<Placement>('right')
 const placements: { label: string; value: Placement }[] = [
-  { label: '右侧', value: 'right' },
-  { label: '左侧', value: 'left' },
-  { label: '顶部', value: 'top' },
-  { label: '底部', value: 'bottom' },
+  { label: '${l.right}', value: 'right' },
+  { label: '${l.left}', value: 'left' },
+  { label: '${l.top}', value: 'top' },
+  { label: '${l.bottom}', value: 'bottom' },
 ]
 
 function open(value: Placement) {
   placement.value = value
   visible.value = true
 }
-</script>`
+<\/script>`
+}
 
-export const directionCodeJs = `<template>
+export function createDirectionCodeJs(l: DrawerCodeLabels): string {
+	return `<template>
   <el-button v-for="p in placements" :key="p.value" @click="open(p.value)">
     {{ p.label }}
   </el-button>
-  <idea-drawer v-model="visible" :placement="placement" title="抽屉标题">
-    <p>这里是抽屉的内容区域</p>
+  <idea-drawer v-model="visible" :placement="placement" title="${l.title}">
+    <p>${l.content}</p>
   </idea-drawer>
 </template>
 
@@ -68,14 +85,15 @@ import { ref } from 'vue'
 const visible = ref(false)
 const placement = ref('right')
 const placements = [
-  { label: '右侧', value: 'right' },
-  { label: '左侧', value: 'left' },
-  { label: '顶部', value: 'top' },
-  { label: '底部', value: 'bottom' },
+  { label: '${l.right}', value: 'right' },
+  { label: '${l.left}', value: 'left' },
+  { label: '${l.top}', value: 'top' },
+  { label: '${l.bottom}', value: 'bottom' },
 ]
 
 function open(value) {
   placement.value = value
   visible.value = true
 }
-</script>`
+<\/script>`
+}

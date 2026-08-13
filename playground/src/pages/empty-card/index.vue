@@ -40,8 +40,18 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import DemoBlock from '../../components/DemoBlock.vue'
-import { basicCodeTs, basicCodeJs, customCodeTs, customCodeJs } from './index.codes'
+import { createBasicCodeTs, createBasicCodeJs, createCustomCodeTs, createCustomCodeJs } from './index.codes'
 import { t } from '../../locale'
+
+const basicCodeLabels = computed(() => ({}))
+const basicCodeTs = computed(() => createBasicCodeTs(basicCodeLabels.value))
+const basicCodeJs = computed(() => createBasicCodeJs(basicCodeLabels.value))
+
+const customCodeLabels = computed(() => ({
+	customText: t('emptyCard.demo.customText'),
+}))
+const customCodeTs = computed(() => createCustomCodeTs(customCodeLabels.value))
+const customCodeJs = computed(() => createCustomCodeJs(customCodeLabels.value))
 
 const apiTableData = computed(() => [
 	{ param: 'text', type: 'string', default: '暂无数据', desc: t('emptyCard.api.text') },

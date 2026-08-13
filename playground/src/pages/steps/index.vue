@@ -32,7 +32,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import DemoBlock from '../../components/DemoBlock.vue'
-import { basicCodeTs, basicCodeJs, progressCodeTs, progressCodeJs } from './index.codes'
+import { createBasicCodeTs, createBasicCodeJs, createProgressCodeTs, createProgressCodeJs } from './index.codes'
 import { t } from '../../locale'
 
 const steps = computed(() => [
@@ -40,6 +40,18 @@ const steps = computed(() => [
 	{ title: t('steps.demo.step2'), description: t('steps.demo.description') },
 	{ title: t('steps.demo.step3') },
 ])
+
+// ========== 示例代码（跟随当前语言 zh-cn / en / zh-tw） ==========
+const stepsCodeLabels = computed(() => ({
+	step1: t('steps.demo.step1'),
+	step2: t('steps.demo.step2'),
+	step3: t('steps.demo.step3'),
+	description: t('steps.demo.description'),
+}))
+const basicCodeTs = computed(() => createBasicCodeTs(stepsCodeLabels.value))
+const basicCodeJs = computed(() => createBasicCodeJs(stepsCodeLabels.value))
+const progressCodeTs = computed(() => createProgressCodeTs(stepsCodeLabels.value))
+const progressCodeJs = computed(() => createProgressCodeJs(stepsCodeLabels.value))
 
 const apiTableData = computed(() => [
 	{ param: 'active', type: 'number', default: '0', desc: t('steps.api.active') },

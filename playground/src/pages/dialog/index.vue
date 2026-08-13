@@ -54,10 +54,29 @@
 import { ref, computed } from 'vue'
 import { t } from '../../locale'
 import DemoBlock from '../../components/DemoBlock.vue'
-import { basicCodeTs, basicCodeJs, footerCodeTs, footerCodeJs } from './index.codes'
+import {
+	createBasicCodeTs, createBasicCodeJs,
+	createFooterCodeTs, createFooterCodeJs,
+} from './index.codes'
 
 const visible = ref(false)
 const visible2 = ref(false)
+
+// ========== 示例代码（跟随当前语言 zh-cn / en / zh-tw） ==========
+const dialogCodeLabels = computed(() => ({
+	open: t('dialog.demo.open'),
+	openFooter: t('dialog.demo.openFooter'),
+	title: t('dialog.demo.title'),
+	content: t('dialog.demo.content'),
+	confirmTitle: t('dialog.demo.confirmTitle'),
+	confirmText: t('dialog.demo.confirmText'),
+	cancel: t('dialog.demo.cancel'),
+	confirm: t('dialog.demo.confirm'),
+}))
+const basicCodeTs = computed(() => createBasicCodeTs(dialogCodeLabels.value))
+const basicCodeJs = computed(() => createBasicCodeJs(dialogCodeLabels.value))
+const footerCodeTs = computed(() => createFooterCodeTs(dialogCodeLabels.value))
+const footerCodeJs = computed(() => createFooterCodeJs(dialogCodeLabels.value))
 
 const apiTableData = computed(() => [
 	{ param: 'modelValue', type: 'boolean', default: 'false', desc: t('dialog.api.modelValue') },

@@ -42,7 +42,20 @@
 import { computed } from 'vue'
 import DemoBlock from '../../components/DemoBlock.vue'
 import { t } from '../../locale'
-import { basicCodeTs, basicCodeJs, customCodeTs, customCodeJs } from './index.codes'
+import { createBasicCodeTs, createBasicCodeJs, createCustomCodeTs, createCustomCodeJs } from './index.codes'
+
+const basicCodeLabels = computed(() => ({
+	addAlert: t('tableAddBtn.demo.addAlert'),
+}))
+const basicCodeTs = computed(() => createBasicCodeTs(basicCodeLabels.value))
+const basicCodeJs = computed(() => createBasicCodeJs(basicCodeLabels.value))
+
+const customCodeLabels = computed(() => ({
+	customText: t('tableAddBtn.demo.customText'),
+	addAlert: t('tableAddBtn.demo.addAlert'),
+}))
+const customCodeTs = computed(() => createCustomCodeTs(customCodeLabels.value))
+const customCodeJs = computed(() => createCustomCodeJs(customCodeLabels.value))
 
 function onAdd() {
 	alert(t('tableAddBtn.demo.addAlert'))

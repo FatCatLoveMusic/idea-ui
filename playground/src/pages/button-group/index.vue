@@ -35,7 +35,7 @@
 import { ref, computed } from 'vue'
 import { t } from '../../locale'
 import DemoBlock from '../../components/DemoBlock.vue'
-import { basicCodeTs, basicCodeJs } from './index.codes'
+import { createBasicCodeTs, createBasicCodeJs } from './index.codes'
 
 const active = ref('day')
 const buttons = computed(() => [
@@ -43,6 +43,15 @@ const buttons = computed(() => [
 	{ label: t('buttonGroup.demo.week'), value: 'week' },
 	{ label: t('buttonGroup.demo.month'), value: 'month' },
 ])
+
+// ========== 示例代码（跟随当前语言 zh-cn / en / zh-tw） ==========
+const basicCodeLabels = computed(() => ({
+	day: t('buttonGroup.demo.day'),
+	week: t('buttonGroup.demo.week'),
+	month: t('buttonGroup.demo.month'),
+}))
+const basicCodeTs = computed(() => createBasicCodeTs(basicCodeLabels.value))
+const basicCodeJs = computed(() => createBasicCodeJs(basicCodeLabels.value))
 
 const apiTableData = computed(() => [
 	{ param: 'modelValue', type: 'string | number', default: '-', desc: t('buttonGroup.api.modelValue') },

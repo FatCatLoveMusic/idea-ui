@@ -52,12 +52,31 @@
 import { ref, computed } from 'vue'
 import { t } from '../../locale'
 import DemoBlock from '../../components/DemoBlock.vue'
-import { basicCodeTs, basicCodeJs, directionCodeTs, directionCodeJs } from './index.codes'
+import {
+	createBasicCodeTs, createBasicCodeJs,
+	createDirectionCodeTs, createDirectionCodeJs,
+} from './index.codes'
 
 const visible = ref(false)
 const visible2 = ref(false)
 type Placement = 'left' | 'right' | 'top' | 'bottom'
 const placement = ref<Placement>('right')
+
+// ========== 示例代码（跟随当前语言 zh-cn / en / zh-tw） ==========
+const drawerCodeLabels = computed(() => ({
+	open: t('drawer.demo.open'),
+	title: t('drawer.demo.title'),
+	content: t('drawer.demo.content'),
+	right: t('drawer.demo.right'),
+	left: t('drawer.demo.left'),
+	top: t('drawer.demo.top'),
+	bottom: t('drawer.demo.bottom'),
+}))
+const basicCodeTs = computed(() => createBasicCodeTs(drawerCodeLabels.value))
+const basicCodeJs = computed(() => createBasicCodeJs(drawerCodeLabels.value))
+const directionCodeTs = computed(() => createDirectionCodeTs(drawerCodeLabels.value))
+const directionCodeJs = computed(() => createDirectionCodeJs(drawerCodeLabels.value))
+
 const placements = computed<{ label: string; value: Placement }[]>(() => [
 	{ label: t('drawer.demo.right'), value: 'right' },
 	{ label: t('drawer.demo.left'), value: 'left' },

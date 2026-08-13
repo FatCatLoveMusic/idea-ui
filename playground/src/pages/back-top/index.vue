@@ -29,11 +29,18 @@
 import { ref, computed } from 'vue'
 import { t } from '../../locale'
 import DemoBlock from '../../components/DemoBlock.vue'
-import { basicCodeTs, basicCodeJs } from './index.codes'
+import { createBackTopCodeTs, createBackTopCodeJs } from './index.codes'
 
 const scrollContainer = ref<HTMLElement | null>(null)
 
 const getScrollContainer = () => scrollContainer.value
+
+const labels = computed(() => ({
+	row: t('backTop.demo.row'),
+}))
+
+const basicCodeTs = computed(() => createBackTopCodeTs(labels.value))
+const basicCodeJs = computed(() => createBackTopCodeJs(labels.value))
 
 const apiTableData = computed(() => [
 	{ param: 'visibility-height', type: 'number', default: '400', desc: t('backTop.api.visibilityHeight') },

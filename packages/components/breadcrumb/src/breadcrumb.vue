@@ -4,7 +4,7 @@
 			<span
 				class="idea-breadcrumb__item"
 				:class="{
-					'is-link': !!item.path,
+					'is-link': !!item.path && index < items.length - 1,
 					'is-current': index === items.length - 1,
 				}"
 				@click="handleClick(item, index)"
@@ -37,7 +37,7 @@ const emit = defineEmits<{
 }>()
 
 function handleClick(item: BreadcrumbItem, index: number) {
-	if (item.path) {
+	if (item.path && index < items.length - 1) {
 		emit('click', item, index)
 	}
 }
@@ -50,7 +50,7 @@ function handleClick(item: BreadcrumbItem, index: number) {
 	flex-wrap: wrap;
 	font-size: 14px;
 	line-height: 1;
-	color: var(--idea-color-text-regular, #606266);
+	color: #b2b2b2;
 
 	&__item {
 		cursor: default;
@@ -61,19 +61,19 @@ function handleClick(item: BreadcrumbItem, index: number) {
 			transition: color 0.2s;
 
 			&:hover {
-				color: var(--idea-color-primary, #ED6F22);
+				color: #333333;
 			}
 		}
 
 		&.is-current {
-			color: var(--idea-color-text-primary, #303133);
+			color: #333333;
 			font-weight: 500;
 		}
 	}
 
 	&__separator {
 		margin: 0 8px;
-		color: var(--idea-color-text-placeholder, #C0C4CC);
+		color: var(--idea-color-text-placeholder);
 		user-select: none;
 	}
 }

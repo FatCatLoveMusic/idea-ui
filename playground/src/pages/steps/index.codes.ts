@@ -1,51 +1,46 @@
-export const basicCodeTs = `<template>
+export interface StepsCodeLabels {
+	step1: string
+	step2: string
+	step3: string
+	description: string
+}
+
+const basicCodeTemplate = `<template>
   <idea-steps :steps="steps" :active="active" />
 </template>
+`
 
+const stepsCode = (l: StepsCodeLabels) => `const steps = [
+  { title: '${l.step1}', description: '${l.description}' },
+  { title: '${l.step2}', description: '${l.description}' },
+  { title: '${l.step3}' },
+]
+`
+
+export function createBasicCodeTs(l: StepsCodeLabels): string {
+	return `${basicCodeTemplate}
 <script setup lang="ts">
-const steps = [
-  { title: '步骤一', description: '描述信息' },
-  { title: '步骤二', description: '描述信息' },
-  { title: '步骤三' },
-]
-const active = 0
-</script>`
+${stepsCode(l)}const active = 0
+<\/script>`
+}
 
-export const basicCodeJs = `<template>
-  <idea-steps :steps="steps" :active="active" />
-</template>
-
+export function createBasicCodeJs(l: StepsCodeLabels): string {
+	return `${basicCodeTemplate}
 <script setup>
-const steps = [
-  { title: '步骤一', description: '描述信息' },
-  { title: '步骤二', description: '描述信息' },
-  { title: '步骤三' },
-]
-const active = 0
-</script>`
+${stepsCode(l)}const active = 0
+<\/script>`
+}
 
-export const progressCodeTs = `<template>
-  <idea-steps :steps="steps" :active="active" />
-</template>
-
+export function createProgressCodeTs(l: StepsCodeLabels): string {
+	return `${basicCodeTemplate}
 <script setup lang="ts">
-const steps = [
-  { title: '步骤一', description: '描述信息' },
-  { title: '步骤二', description: '描述信息' },
-  { title: '步骤三' },
-]
-const active = 2
-</script>`
+${stepsCode(l)}const active = 2
+<\/script>`
+}
 
-export const progressCodeJs = `<template>
-  <idea-steps :steps="steps" :active="active" />
-</template>
-
+export function createProgressCodeJs(l: StepsCodeLabels): string {
+	return `${basicCodeTemplate}
 <script setup>
-const steps = [
-  { title: '步骤一', description: '描述信息' },
-  { title: '步骤二', description: '描述信息' },
-  { title: '步骤三' },
-]
-const active = 2
-</script>`
+${stepsCode(l)}const active = 2
+<\/script>`
+}

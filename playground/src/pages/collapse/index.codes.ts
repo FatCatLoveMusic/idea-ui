@@ -1,33 +1,37 @@
-export const basicCodeTs = `<template>
+// ==================== Basic ====================
+// 示例代码跟随当前语言（zh-cn / en / zh-tw）生成，与页面示例保持一致
+export interface CollapseCodeLabels {
+	content: string
+	consistency: string
+	feedback: string
+	efficiency: string
+}
+
+const collapseCodeTemplate = (l: CollapseCodeLabels) => `<template>
   <idea-collapse :items="items" v-model="activeNames">
-    <p>这里是折叠面板的内容区域</p>
+    <p>${l.content}</p>
   </idea-collapse>
 </template>
+`
 
+const collapseScriptCode = (l: CollapseCodeLabels) => `import { ref } from 'vue'
+
+const activeNames = ref(['1'])
+const items = [
+  { name: '1', title: '${l.consistency}' },
+  { name: '2', title: '${l.feedback}' },
+  { name: '3', title: '${l.efficiency}' },
+]
+`
+
+export function createCollapseCodeTs(l: CollapseCodeLabels): string {
+	return `${collapseCodeTemplate(l)}
 <script setup lang="ts">
-import { ref } from 'vue'
+${collapseScriptCode(l)}<\/script>`
+}
 
-const activeNames = ref(['1'])
-const items = [
-  { name: '1', title: '一致 Consistency' },
-  { name: '2', title: '反馈 Feedback' },
-  { name: '3', title: '效率 Efficiency' },
-]
-</script>`
-
-export const basicCodeJs = `<template>
-  <idea-collapse :items="items" v-model="activeNames">
-    <p>这里是折叠面板的内容区域</p>
-  </idea-collapse>
-</template>
-
+export function createCollapseCodeJs(l: CollapseCodeLabels): string {
+	return `${collapseCodeTemplate(l)}
 <script setup>
-import { ref } from 'vue'
-
-const activeNames = ref(['1'])
-const items = [
-  { name: '1', title: '一致 Consistency' },
-  { name: '2', title: '反馈 Feedback' },
-  { name: '3', title: '效率 Efficiency' },
-]
-</script>`
+${collapseScriptCode(l)}<\/script>`
+}

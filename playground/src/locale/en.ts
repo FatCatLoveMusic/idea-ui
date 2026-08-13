@@ -139,7 +139,7 @@ const en: PlaygroundMessages = {
 	collapse: {
 		title: 'Collapse',
 		desc: 'Expandable/collapsible content area.',
-		demo: { content: 'This is the content area of the collapse panel' },
+		demo: { content: 'This is the content area of the collapse panel', consistency: 'Consistency', feedback: 'Feedback', efficiency: 'Efficiency' },
 		api: {
 			modelValue: 'List of currently active panel names',
 			items: 'Panel data, including name and title',
@@ -298,7 +298,7 @@ const en: PlaygroundMessages = {
 	scrollbar: {
 		title: 'Scrollbar',
 		desc: 'Scrollbar component with custom styles.',
-		demo: { scrollLine: 'Scroll content row {index}' },
+		demo: { scrollLine: 'Scroll content row {index}', row: 'Scroll content row' },
 		api: {
 			classes: 'Custom class name',
 			styles: 'Custom styles',
@@ -368,6 +368,7 @@ const en: PlaygroundMessages = {
 			tab2: 'Tab 2',
 			tab3: 'Tab 3',
 			current: 'Currently selected: ',
+			content: 'Tab content area',
 		},
 		api: {
 			modelValue: 'Name of the currently active tab',

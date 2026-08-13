@@ -37,7 +37,7 @@
 import { ref, computed } from 'vue'
 import DemoBlock from '../../components/DemoBlock.vue'
 import { t } from '../../locale'
-import { basicCodeTs, basicCodeJs } from './index.codes'
+import { createBasicCodeTs, createBasicCodeJs } from './index.codes'
 
 const activeTab = ref('tab1')
 const tabs = computed(() => [
@@ -45,6 +45,16 @@ const tabs = computed(() => [
 	{ name: 'tab2', label: t('tabs.demo.tab2') },
 	{ name: 'tab3', label: t('tabs.demo.tab3') },
 ])
+
+// ========== 示例代码（跟随当前语言 zh-cn / en / zh-tw） ==========
+const basicCodeLabels = computed(() => ({
+	tab1: t('tabs.demo.tab1'),
+	tab2: t('tabs.demo.tab2'),
+	tab3: t('tabs.demo.tab3'),
+	content: t('tabs.demo.content'),
+}))
+const basicCodeTs = computed(() => createBasicCodeTs(basicCodeLabels.value))
+const basicCodeJs = computed(() => createBasicCodeJs(basicCodeLabels.value))
 
 const apiTableData = computed(() => [
 	{ param: 'modelValue', type: 'string', default: '-', desc: t('tabs.api.modelValue') },

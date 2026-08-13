@@ -139,7 +139,7 @@ const zhTW: PlaygroundMessages = {
 	collapse: {
 		title: 'Collapse 摺疊面板',
 		desc: '可展開/收起的內容區域。',
-		demo: { content: '這裡是摺疊面板的內容區域' },
+		demo: { content: '這裡是摺疊面板的內容區域', consistency: '一致性', feedback: '反饋', efficiency: '效率' },
 		api: {
 			modelValue: '目前啟動的面板 name 列表',
 			items: '面板資料，包含 name 和 title',
@@ -298,7 +298,7 @@ const zhTW: PlaygroundMessages = {
 	scrollbar: {
 		title: 'Scrollbar 滾動條',
 		desc: '自訂樣式的滾動條元件。',
-		demo: { scrollLine: '滾動內容行 {index}' },
+		demo: { scrollLine: '滾動內容行 {index}', row: '滾動內容行' },
 		api: {
 			classes: '自訂類名',
 			styles: '自訂樣式',
@@ -368,6 +368,7 @@ const zhTW: PlaygroundMessages = {
 			tab2: '標籤二',
 			tab3: '標籤三',
 			current: '目前選中的是：',
+			content: '標籤頁內容區域',
 		},
 		api: {
 			modelValue: '目前啟動 Tab 的 name',

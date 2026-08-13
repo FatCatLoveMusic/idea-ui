@@ -1,15 +1,29 @@
-export const basicCodeTs = `<template>
+export interface BasicCodeLabels {}
+
+export function createBasicCodeTs(_l: BasicCodeLabels): string {
+	return `<template>
   <idea-empty-card />
 </template>`
+}
 
-export const basicCodeJs = `<template>
+export function createBasicCodeJs(_l: BasicCodeLabels): string {
+	return `<template>
   <idea-empty-card />
 </template>`
+}
 
-export const customCodeTs = `<template>
-  <idea-empty-card text="暂无审批记录" />
-</template>`
+export interface CustomCodeLabels {
+	customText: string
+}
 
-export const customCodeJs = `<template>
-  <idea-empty-card text="暂无审批记录" />
+export function createCustomCodeTs(l: CustomCodeLabels): string {
+	return `<template>
+  <idea-empty-card text="${l.customText}" />
 </template>`
+}
+
+export function createCustomCodeJs(l: CustomCodeLabels): string {
+	return `<template>
+  <idea-empty-card text="${l.customText}" />
+</template>`
+}

@@ -1,77 +1,112 @@
 // ==================== Sidebar ====================
-export const sidebarCodeTs = `<template>
+// 示例代码跟随当前语言（zh-cn / en / zh-tw）生成，与页面示例保持一致
+export interface SidebarCodeLabels {
+	workbench: string
+	overview: string
+	analytics: string
+	system: string
+	userMgmt: string
+	roleMgmt: string
+	permission: string
+	sysConfig: string
+	baseConfig: string
+	security: string
+	content: string
+	articles: string
+	comments: string
+}
+
+export interface MenuDemoLabels {
+	workbench: string
+	overview: string
+	analytics: string
+	system: string
+	userMgmt: string
+	roleMgmt: string
+	permission: string
+	sysConfig: string
+	baseConfig: string
+	security: string
+	content: string
+	articles: string
+	comments: string
+	about: string
+	more: string
+	statistics: string
+}
+
+const sidebarLogo =
+	'https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=A+simple+modern+logo+for+a+tech+company%2C+minimalist+design%2C+abstract+geometric+shape%2C+orange+and+white+color+scheme%2C+square+icon&image_size=square_hd'
+
+const sidebarCodeTemplate = `<template>
   <idea-menu
     layout="sidebar"
     v-model="active"
     :menus="menus"
     collapsible
-    logo="/logo.png"
+    logo="${sidebarLogo}"
   >
     <template #footer>
-      <div>Footer Area</div>
+      <div style="padding: 8px; text-align: center; font-size: 12px; color: #999">Footer Area</div>
     </template>
   </idea-menu>
 </template>
+`
 
-<script setup lang="ts">
-import { ref } from 'vue'
-
-const active = ref('1-1')
-const menus = [
+const sidebarMenusCode = (l: SidebarCodeLabels) => `const menus = [
   {
-    id: '1', label: 'Workbench', icon: 'el-icon-monitor',
+    id: '1', label: '${l.workbench}', icon: 'icon-computer', path: '/workbench',
     children: [
-      { id: '1-1', label: 'Overview' },
-      { id: '1-2', label: 'Analytics' },
+      { id: '1-1', label: '${l.overview}', icon: 'icon-icon_shuju', path: '/workbench/overview' },
+      { id: '1-2', label: '${l.analytics}', icon: 'icon-baobiaofenxi', path: '/workbench/analytics' },
     ],
   },
   {
-    id: '2', label: 'System', icon: 'el-icon-setting',
+    id: '2', label: '${l.system}', icon: 'icon-shezhi', path: '/system',
     children: [
-      { id: '2-1', label: 'User Mgmt' },
-      { id: '2-2', label: 'Role Mgmt' },
+      { id: '2-1', label: '${l.userMgmt}', icon: 'icon-yonghuguanli', path: '/system/user' },
+      { id: '2-2', label: '${l.roleMgmt}', icon: 'icon-userselection', path: '/system/role' },
+      { id: '2-3', label: '${l.permission}', icon: 'icon-icon_lock', path: '/system/permission' },
       {
-        id: '2-3', label: 'Config',
+        id: '2-4', label: '${l.sysConfig}', icon: 'icon-icon_peizhi', path: '/system/config',
         children: [
-          { id: '2-3-1', label: 'Base Config' },
+          { id: '2-4-1', label: '${l.baseConfig}', path: '/system/config/base' },
+          { id: '2-4-2', label: '${l.security}', path: '/system/config/security' },
         ],
       },
     ],
   },
+  {
+    id: '3', label: '${l.content}', icon: 'icon-wendang', path: '/content',
+    children: [
+      { id: '3-1', label: '${l.articles}', icon: 'icon-edit', path: '/content/articles' },
+      { id: '3-2', label: '${l.comments}', icon: 'icon-xiaoxi', path: '/content/comments' },
+    ],
+  },
 ]
-<\/script>`
+`
 
-export const sidebarCodeJs = `<template>
-  <idea-menu
-    layout="sidebar"
-    v-model="active"
-    :menus="menus"
-    collapsible
-    logo="/logo.png"
-  >
-    <template #footer>
-      <div>Footer Area</div>
-    </template>
-  </idea-menu>
-</template>
+export function createSidebarCodeTs(l: SidebarCodeLabels): string {
+	return `${sidebarCodeTemplate}
+<script setup lang="ts">
+import { ref } from 'vue'
 
+const active = ref('1-1')
+${sidebarMenusCode(l)}<\/script>`
+}
+
+export function createSidebarCodeJs(l: SidebarCodeLabels): string {
+	return `${sidebarCodeTemplate}
 <script setup>
 import { ref } from 'vue'
 
 const active = ref('1-1')
-const menus = [
-  {
-    id: '1', label: 'Workbench', icon: 'el-icon-monitor',
-    children: [
-      { id: '1-1', label: 'Overview' },
-      { id: '1-2', label: 'Analytics' },
-    ],
-  },
-]
-<\/script>`
+${sidebarMenusCode(l)}<\/script>`
+}
 
 // ==================== Sidebar Header ====================
-export const sidebarHeaderCodeTs = `<template>
+export function createSidebarHeaderCodeTs(_l: MenuDemoLabels): string {
+	return `<template>
   <idea-menu
     layout="sidebar-header"
     v-model="active"
@@ -93,8 +128,10 @@ import { ref } from 'vue'
 const active = ref('1-1')
 const menus = [/* ... */]
 <\/script>`
+}
 
-export const sidebarHeaderCodeJs = `<template>
+export function createSidebarHeaderCodeJs(_l: MenuDemoLabels): string {
+	return `<template>
   <idea-menu layout="sidebar-header" v-model="active" :menus="menus" collapsible>
     <template #logo><span>Logo</span></template>
   </idea-menu>
@@ -105,9 +142,11 @@ import { ref } from 'vue'
 const active = ref('1-1')
 const menus = [/* ... */]
 <\/script>`
+}
 
 // ==================== Top ====================
-export const topCodeTs = `<template>
+export function createTopCodeTs(l: MenuDemoLabels): string {
+	return `<template>
   <idea-menu
     layout="top"
     v-model="active"
@@ -125,29 +164,31 @@ import { ref } from 'vue'
 const active = ref('t1-1')
 const menus = [
   {
-    id: 't1', label: 'Workbench',
+    id: 't1', label: '${l.workbench}',
     children: [
-      { id: 't1-1', label: 'Overview' },
-      { id: 't1-2', label: 'Analytics' },
+      { id: 't1-1', label: '${l.overview}' },
+      { id: 't1-2', label: '${l.analytics}' },
     ],
   },
   {
-    id: 't2', label: 'System',
+    id: 't2', label: '${l.system}',
     children: [
-      { id: 't2-1', label: 'User Mgmt' },
+      { id: 't2-1', label: '${l.userMgmt}' },
       {
-        id: 't2-2', label: 'More',
+        id: 't2-2', label: '${l.more}',
         children: [
-          { id: 't2-2-1', label: 'Base Config' },
+          { id: 't2-2-1', label: '${l.baseConfig}' },
         ],
       },
     ],
   },
-  { id: 't3', label: 'About' },
+  { id: 't3', label: '${l.about}' },
 ]
 <\/script>`
+}
 
-export const topCodeJs = `<template>
+export function createTopCodeJs(_l: MenuDemoLabels): string {
+	return `<template>
   <idea-menu layout="top" v-model="active" :menus="menus">
     <template #logo><span>MyApp</span></template>
   </idea-menu>
@@ -158,9 +199,11 @@ import { ref } from 'vue'
 const active = ref('t1-1')
 const menus = [/* ... */]
 <\/script>`
+}
 
 // ==================== Top Sidebar ====================
-export const topSidebarCodeTs = `<template>
+export function createTopSidebarCodeTs(l: MenuDemoLabels): string {
+	return `<template>
   <idea-menu
     layout="top-sidebar"
     v-model="active"
@@ -178,23 +221,25 @@ import { ref } from 'vue'
 const active = ref('ts1-1')
 const menus = [
   {
-    id: 'ts1', label: 'Workbench',
+    id: 'ts1', label: '${l.workbench}',
     children: [
-      { id: 'ts1-1', label: 'Overview' },
-      { id: 'ts1-2', label: 'Analytics' },
+      { id: 'ts1-1', label: '${l.overview}' },
+      { id: 'ts1-2', label: '${l.analytics}' },
     ],
   },
   {
-    id: 'ts2', label: 'System',
+    id: 'ts2', label: '${l.system}',
     children: [
-      { id: 'ts2-1', label: 'User Mgmt' },
-      { id: 'ts2-2', label: 'Role Mgmt' },
+      { id: 'ts2-1', label: '${l.userMgmt}' },
+      { id: 'ts2-2', label: '${l.roleMgmt}' },
     ],
   },
 ]
 <\/script>`
+}
 
-export const topSidebarCodeJs = `<template>
+export function createTopSidebarCodeJs(_l: MenuDemoLabels): string {
+	return `<template>
   <idea-menu layout="top-sidebar" v-model="active" :menus="menus">
     <template #logo><span>Platform</span></template>
   </idea-menu>
@@ -205,9 +250,11 @@ import { ref } from 'vue'
 const active = ref('ts1-1')
 const menus = [/* ... */]
 <\/script>`
+}
 
 // ==================== Double Sidebar ====================
-export const doubleSidebarCodeTs = `<template>
+export function createDoubleSidebarCodeTs(l: MenuDemoLabels): string {
+	return `<template>
   <idea-menu
     layout="double-sidebar"
     v-model="active"
@@ -229,23 +276,25 @@ import { ref } from 'vue'
 const active = ref('d1-1')
 const menus = [
   {
-    id: 'd1', label: 'Workbench', icon: 'el-icon-monitor',
+    id: 'd1', label: '${l.workbench}', icon: 'el-icon-monitor',
     children: [
-      { id: 'd1-1', label: 'Overview' },
-      { id: 'd1-2', label: 'Analytics' },
+      { id: 'd1-1', label: '${l.overview}' },
+      { id: 'd1-2', label: '${l.analytics}' },
     ],
   },
   {
-    id: 'd2', label: 'System', icon: 'el-icon-setting',
+    id: 'd2', label: '${l.system}', icon: 'el-icon-setting',
     children: [
-      { id: 'd2-1', label: 'User Mgmt' },
-      { id: 'd2-2', label: 'Role Mgmt' },
+      { id: 'd2-1', label: '${l.userMgmt}' },
+      { id: 'd2-2', label: '${l.roleMgmt}' },
     ],
   },
 ]
 <\/script>`
+}
 
-export const doubleSidebarCodeJs = `<template>
+export function createDoubleSidebarCodeJs(_l: MenuDemoLabels): string {
+	return `<template>
   <idea-menu layout="double-sidebar" v-model="active" :menus="menus" :width="180">
     <template #bottom><div>Settings</div></template>
   </idea-menu>
@@ -256,9 +305,11 @@ import { ref } from 'vue'
 const active = ref('d1-1')
 const menus = [/* ... */]
 <\/script>`
+}
 
 // ==================== Breadcrumb ====================
-export const breadcrumbCodeTs = `<template>
+export function createBreadcrumbCodeTs(l: MenuDemoLabels): string {
+	return `<template>
   <div class="layout">
     <idea-menu layout="sidebar" v-model="active" :menus="menus" collapsible />
     <div class="main">
@@ -276,13 +327,13 @@ const active = ref('2-4-1')
 
 const menus = [
   {
-    id: '2', label: 'System', path: '/system',
+    id: '2', label: '${l.system}', path: '/system',
     children: [
       {
-        id: '2-4', label: 'Config', path: '/system/config',
+        id: '2-4', label: '${l.sysConfig}', path: '/system/config',
         children: [
-          { id: '2-4-1', label: 'Base Config', path: '/system/config/base' },
-          { id: '2-4-2', label: 'Security', path: '/system/config/security' },
+          { id: '2-4-1', label: '${l.baseConfig}', path: '/system/config/base' },
+          { id: '2-4-2', label: '${l.security}', path: '/system/config/security' },
         ],
       },
     ],
@@ -301,8 +352,10 @@ function onBreadcrumbClick(item: { label: string; path?: string }, index: number
   active.value = path[index].id
 }
 <\/script>`
+}
 
-export const breadcrumbCodeJs = `<template>
+export function createBreadcrumbCodeJs(l: MenuDemoLabels): string {
+	return `<template>
   <div class="layout">
     <idea-menu layout="sidebar" v-model="active" :menus="menus" collapsible />
     <div class="main">
@@ -320,13 +373,13 @@ const active = ref('2-4-1')
 
 const menus = [
   {
-    id: '2', label: 'System', path: '/system',
+    id: '2', label: '${l.system}', path: '/system',
     children: [
       {
-        id: '2-4', label: 'Config', path: '/system/config',
+        id: '2-4', label: '${l.sysConfig}', path: '/system/config',
         children: [
-          { id: '2-4-1', label: 'Base Config', path: '/system/config/base' },
-          { id: '2-4-2', label: 'Security', path: '/system/config/security' },
+          { id: '2-4-1', label: '${l.baseConfig}', path: '/system/config/base' },
+          { id: '2-4-2', label: '${l.security}', path: '/system/config/security' },
         ],
       },
     ],
@@ -342,3 +395,4 @@ function onBreadcrumbClick(item, index) {
   active.value = path[index].id
 }
 <\/script>`
+}

@@ -1,29 +1,35 @@
-export const basicCodeTs = `<template>
+export interface BasicCodeLabels {
+	day: string
+	week: string
+	month: string
+}
+
+const basicCodeTemplate = `<template>
   <idea-button-group :buttons="buttons" v-model="active" />
 </template>
+`
 
+const basicButtonsCode = (l: BasicCodeLabels) => `const buttons = [
+  { label: '${l.day}', value: 'day' },
+  { label: '${l.week}', value: 'week' },
+  { label: '${l.month}', value: 'month' },
+]
+`
+
+export function createBasicCodeTs(l: BasicCodeLabels): string {
+	return `${basicCodeTemplate}
 <script setup lang="ts">
 import { ref } from 'vue'
 
 const active = ref('day')
-const buttons = [
-  { label: '日', value: 'day' },
-  { label: '周', value: 'week' },
-  { label: '月', value: 'month' },
-]
-</script>`
+${basicButtonsCode(l)}<\/script>`
+}
 
-export const basicCodeJs = `<template>
-  <idea-button-group :buttons="buttons" v-model="active" />
-</template>
-
+export function createBasicCodeJs(l: BasicCodeLabels): string {
+	return `${basicCodeTemplate}
 <script setup>
 import { ref } from 'vue'
 
 const active = ref('day')
-const buttons = [
-  { label: '日', value: 'day' },
-  { label: '周', value: 'week' },
-  { label: '月', value: 'month' },
-]
-</script>`
+${basicButtonsCode(l)}<\/script>`
+}

@@ -1,15 +1,29 @@
-export const basicCodeTs = `<template>
+export interface BasicCodeLabels {}
+
+export function createBasicCodeTs(_l: BasicCodeLabels): string {
+	return `<template>
   <idea-no-data />
 </template>`
+}
 
-export const basicCodeJs = `<template>
+export function createBasicCodeJs(_l: BasicCodeLabels): string {
+	return `<template>
   <idea-no-data />
 </template>`
+}
 
-export const customCodeTs = `<template>
-  <idea-no-data text="暂无记录" />
-</template>`
+export interface CustomCodeLabels {
+	customText: string
+}
 
-export const customCodeJs = `<template>
-  <idea-no-data text="暂无记录" />
+export function createCustomCodeTs(l: CustomCodeLabels): string {
+	return `<template>
+  <idea-no-data text="${l.customText}" />
 </template>`
+}
+
+export function createCustomCodeJs(l: CustomCodeLabels): string {
+	return `<template>
+  <idea-no-data text="${l.customText}" />
+</template>`
+}

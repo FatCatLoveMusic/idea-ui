@@ -1,9 +1,21 @@
-export const basicCodeTs = `<template>
-  <el-button @click="visible = true">打开 Dialog</el-button>
-  <idea-dialog v-model="visible" title="提示">
-    <p>这是一段内容</p>
-    <p>这是一段内容</p>
-    <p>这是一段内容</p>
+export interface DialogCodeLabels {
+	open: string
+	openFooter: string
+	title: string
+	content: string
+	confirmTitle: string
+	confirmText: string
+	cancel: string
+	confirm: string
+}
+
+export function createBasicCodeTs(l: DialogCodeLabels): string {
+	return `<template>
+  <el-button @click="visible = true">${l.open}</el-button>
+  <idea-dialog v-model="visible" title="${l.title}">
+    <p>${l.content}</p>
+    <p>${l.content}</p>
+    <p>${l.content}</p>
   </idea-dialog>
 </template>
 
@@ -11,14 +23,16 @@ export const basicCodeTs = `<template>
 import { ref } from 'vue'
 
 const visible = ref(false)
-</script>`
+<\/script>`
+}
 
-export const basicCodeJs = `<template>
-  <el-button @click="visible = true">打开 Dialog</el-button>
-  <idea-dialog v-model="visible" title="提示">
-    <p>这是一段内容</p>
-    <p>这是一段内容</p>
-    <p>这是一段内容</p>
+export function createBasicCodeJs(l: DialogCodeLabels): string {
+	return `<template>
+  <el-button @click="visible = true">${l.open}</el-button>
+  <idea-dialog v-model="visible" title="${l.title}">
+    <p>${l.content}</p>
+    <p>${l.content}</p>
+    <p>${l.content}</p>
   </idea-dialog>
 </template>
 
@@ -26,15 +40,17 @@ export const basicCodeJs = `<template>
 import { ref } from 'vue'
 
 const visible = ref(false)
-</script>`
+<\/script>`
+}
 
-export const footerCodeTs = `<template>
-  <el-button type="primary" @click="visible = true">打开带底部 Dialog</el-button>
-  <idea-dialog v-model="visible" title="确认操作">
-    <p>确定要执行此操作吗？</p>
+export function createFooterCodeTs(l: DialogCodeLabels): string {
+	return `<template>
+  <el-button type="primary" @click="visible = true">${l.openFooter}</el-button>
+  <idea-dialog v-model="visible" title="${l.confirmTitle}">
+    <p>${l.confirmText}</p>
     <template #footer>
-      <el-button @click="visible = false">取消</el-button>
-      <el-button type="primary" @click="visible = false">确定</el-button>
+      <el-button @click="visible = false">${l.cancel}</el-button>
+      <el-button type="primary" @click="visible = false">${l.confirm}</el-button>
     </template>
   </idea-dialog>
 </template>
@@ -43,15 +59,17 @@ export const footerCodeTs = `<template>
 import { ref } from 'vue'
 
 const visible = ref(false)
-</script>`
+<\/script>`
+}
 
-export const footerCodeJs = `<template>
-  <el-button type="primary" @click="visible = true">打开带底部 Dialog</el-button>
-  <idea-dialog v-model="visible" title="确认操作">
-    <p>确定要执行此操作吗？</p>
+export function createFooterCodeJs(l: DialogCodeLabels): string {
+	return `<template>
+  <el-button type="primary" @click="visible = true">${l.openFooter}</el-button>
+  <idea-dialog v-model="visible" title="${l.confirmTitle}">
+    <p>${l.confirmText}</p>
     <template #footer>
-      <el-button @click="visible = false">取消</el-button>
-      <el-button type="primary" @click="visible = false">确定</el-button>
+      <el-button @click="visible = false">${l.cancel}</el-button>
+      <el-button type="primary" @click="visible = false">${l.confirm}</el-button>
     </template>
   </idea-dialog>
 </template>
@@ -60,4 +78,5 @@ export const footerCodeJs = `<template>
 import { ref } from 'vue'
 
 const visible = ref(false)
-</script>`
+<\/script>`
+}

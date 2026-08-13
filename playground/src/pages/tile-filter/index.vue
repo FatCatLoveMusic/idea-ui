@@ -35,7 +35,7 @@
 import { ref, computed } from 'vue'
 import DemoBlock from '../../components/DemoBlock.vue'
 import { t } from '../../locale'
-import { basicCodeTs, basicCodeJs } from './index.codes'
+import { createBasicCodeTs, createBasicCodeJs } from './index.codes'
 
 const active = ref('all')
 const filters = computed(() => [
@@ -43,6 +43,15 @@ const filters = computed(() => [
 	{ label: t('tileFilter.demo.pending'), value: 'pending', count: 5 },
 	{ label: t('tileFilter.demo.approved'), value: 'approved', count: 12 },
 ])
+
+// ========== 示例代码（跟随当前语言 zh-cn / en / zh-tw） ==========
+const basicCodeLabels = computed(() => ({
+	all: t('tileFilter.demo.all'),
+	pending: t('tileFilter.demo.pending'),
+	approved: t('tileFilter.demo.approved'),
+}))
+const basicCodeTs = computed(() => createBasicCodeTs(basicCodeLabels.value))
+const basicCodeJs = computed(() => createBasicCodeJs(basicCodeLabels.value))
 
 const apiTableData = computed(() => [
 	{ param: 'modelValue', type: 'string | number', default: '-', desc: t('tileFilter.api.modelValue') },
