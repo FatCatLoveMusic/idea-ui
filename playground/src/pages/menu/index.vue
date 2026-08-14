@@ -7,23 +7,40 @@
 		<div class="demo-section">
 			<h3>{{ t('menu.demo.sidebar') }}</h3>
 			<DemoBlock :code-ts="sidebarCodeTs" :code-js="sidebarCodeJs">
-				<div class="demo-menu-container" style="height: 360px">
+				<div class="demo-menu-container" style="height: 420px">
 					<idea-menu
 						layout="sidebar"
 						v-model="sidebarActive"
 						:menus="sidebarMenus"
 						collapsible
-						logo="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=A+simple+modern+logo+for+a+tech+company%2C+minimalist+design%2C+abstract+geometric+shape%2C+orange+and+white+color+scheme%2C+square+icon&image_size=square_hd"
 					>
-						<template #footer>
-							<div style="padding: 8px; text-align: center; font-size: 12px; color: #999">Footer Area</div>
+						<template #logo>
+							<span style="font-weight: bold; font-size: 16px">Logo</span>
 						</template>
+						<template #header>
+							<div style="font-size: 13px; color: #909399">Header Slot</div>
+						</template>
+						<template #header-extra>
+							<span style="font-size: 12px; color: #909399">Header Extra</span>
+						</template>
+						<template #extra>
+							<span style="font-size: 12px; color: #909399">Extra</span>
+						</template>
+						<template #footer>
+							<div style="padding: 8px; text-align: center; font-size: 12px; color: #999">Footer</div>
+						</template>
+						<template #collapse-btn="{ collapsed }">
+							<span style="font-size: 12px">{{ collapsed ? '◀' : '▶' }}</span>
+						</template>
+						<div style="padding: 24px; font-size: 14px; color: var(--idea-color-text-regular, #606266)">
+							Content Area (default slot)
+						</div>
 					</idea-menu>
 				</div>
 			</DemoBlock>
 		</div>
 
-		<!-- 面包屑 -->
+		<!-- 菜单+面包屑 -->
 		<div class="demo-section">
 			<h3>{{ t('menu.demo.breadcrumb') }}</h3>
 			<DemoBlock :code-ts="breadcrumbCodeTs" :code-js="breadcrumbCodeJs">
@@ -36,7 +53,7 @@
 						style="flex-shrink: 0"
 					/>
 					<div style="flex: 1; display: flex; flex-direction: column; min-width: 0">
-						<div style="padding: 14px 16px; border-bottom: 1px solid var(--idea-color-border-lighter, #EBEEF5)">
+						<div style="padding: 13px 16px; border-bottom: 1px solid var(--idea-color-border-lighter, #EBEEF5)">
 							<idea-breadcrumb :items="breadcrumbItems" separator="/" @click="handleBreadcrumbClick" />
 						</div>
 						<!-- 模拟 <router-view> 内容区 -->
@@ -52,7 +69,7 @@
 		<div class="demo-section">
 			<h3>{{ t('menu.demo.sidebarHeader') }}</h3>
 			<DemoBlock :code-ts="sidebarHeaderCodeTs" :code-js="sidebarHeaderCodeJs">
-				<div class="demo-menu-container" style="height: 360px">
+				<div class="demo-menu-container" style="height: 420px">
 					<idea-menu
 						layout="sidebar-header"
 						v-model="sidebarHeaderActive"
@@ -62,12 +79,27 @@
 						<template #logo>
 							<span style="font-weight: bold; font-size: 16px">Logo</span>
 						</template>
+						<template #header>
+							<div style="font-size: 13px; color: #909399">Header Slot</div>
+						</template>
 						<template #header-extra>
-							<div style="margin-left: auto; display: flex; gap: 12px; align-items: center">
+							<div style="display: flex; gap: 12px; align-items: center">
 								<el-avatar :size="28" />
 								<span style="font-size: 14px">Admin</span>
 							</div>
 						</template>
+						<template #extra>
+							<span style="font-size: 12px; color: #909399">Extra</span>
+						</template>
+						<template #footer>
+							<div style="padding: 8px; text-align: center; font-size: 12px; color: #999">Footer</div>
+						</template>
+						<template #collapse-btn="{ collapsed }">
+							<span style="font-size: 12px">{{ collapsed ? '◀' : '▶' }}</span>
+						</template>
+						<div style="padding: 24px; font-size: 14px; color: var(--idea-color-text-regular, #606266)">
+							Content Area (default slot)
+						</div>
 					</idea-menu>
 				</div>
 			</DemoBlock>
@@ -77,7 +109,7 @@
 		<div class="demo-section">
 			<h3>{{ t('menu.demo.top') }}</h3>
 			<DemoBlock :code-ts="topCodeTs" :code-js="topCodeJs">
-				<div class="demo-menu-container" style="height: 320px">
+				<div class="demo-menu-container" style="height: 380px">
 					<idea-menu
 						layout="top"
 						v-model="topActive"
@@ -86,6 +118,24 @@
 						<template #logo>
 							<span style="font-weight: bold; font-size: 16px">MyApp</span>
 						</template>
+						<template #header>
+							<div style="font-size: 13px; color: #909399">Header Slot</div>
+						</template>
+						<template #header-extra>
+							<span style="font-size: 12px; color: #909399">Header Extra</span>
+						</template>
+						<template #extra>
+							<span style="font-size: 12px; color: #909399">Extra</span>
+						</template>
+						<template #footer>
+							<div style="padding: 8px; text-align: center; font-size: 12px; color: #999">Footer</div>
+						</template>
+						<template #collapse-btn="{ collapsed }">
+							<span style="font-size: 12px">{{ collapsed ? '◀' : '▶' }}</span>
+						</template>
+						<div style="padding: 24px; font-size: 14px; color: var(--idea-color-text-regular, #606266)">
+							Content Area (default slot)
+						</div>
 					</idea-menu>
 				</div>
 			</DemoBlock>
@@ -95,7 +145,7 @@
 		<div class="demo-section">
 			<h3>{{ t('menu.demo.topSidebar') }}</h3>
 			<DemoBlock :code-ts="topSidebarCodeTs" :code-js="topSidebarCodeJs">
-				<div class="demo-menu-container" style="height: 360px">
+				<div class="demo-menu-container" style="height: 420px">
 					<idea-menu
 						layout="top-sidebar"
 						v-model="topSidebarActive"
@@ -104,6 +154,24 @@
 						<template #logo>
 							<span style="font-weight: bold; font-size: 16px">Platform</span>
 						</template>
+						<template #header>
+							<div style="font-size: 13px; color: #909399">Header Slot</div>
+						</template>
+						<template #header-extra>
+							<span style="font-size: 12px; color: #909399">Header Extra</span>
+						</template>
+						<template #extra>
+							<span style="font-size: 12px; color: #909399">Extra</span>
+						</template>
+						<template #footer>
+							<div style="padding: 8px; text-align: center; font-size: 12px; color: #999">Footer</div>
+						</template>
+						<template #collapse-btn="{ collapsed }">
+							<span style="font-size: 12px">{{ collapsed ? '◀' : '▶' }}</span>
+						</template>
+						<div style="padding: 24px; font-size: 14px; color: var(--idea-color-text-regular, #606266)">
+							Content Area (default slot)
+						</div>
 					</idea-menu>
 				</div>
 			</DemoBlock>
@@ -113,19 +181,34 @@
 		<div class="demo-section">
 			<h3>{{ t('menu.demo.doubleSidebar') }}</h3>
 			<DemoBlock :code-ts="doubleSidebarCodeTs" :code-js="doubleSidebarCodeJs">
-				<div class="demo-menu-container" style="height: 360px">
+				<div class="demo-menu-container" style="height: 420px">
 					<idea-menu
 						layout="double-sidebar"
 						v-model="doubleSidebarActive"
 						:menus="doubleSidebarMenus"
 						:width="180"
 					>
-						<template #bottom>
-							<div class="idea-menu__first-item" style="cursor: pointer; color: #d2d4d7">
-								<i class="icon-shezhi"></i>
-								<span>Settings</span>
-							</div>
+						<template #logo>
+							<span style="font-weight: bold; font-size: 14px; color: #fff">Logo</span>
 						</template>
+						<template #header>
+							<div style="font-size: 13px; color: #909399">Header Slot</div>
+						</template>
+						<template #header-extra>
+							<span style="font-size: 12px; color: #909399">Header Extra</span>
+						</template>
+						<template #extra>
+							<span style="font-size: 12px; color: #909399">Extra</span>
+						</template>
+						<template #footer>
+							<div style="padding: 4px 0; text-align: center; font-size: 12px; color: #999">Footer</div>
+						</template>
+						<template #collapse-btn="{ collapsed }">
+							<span style="font-size: 12px">{{ collapsed ? '◀' : '▶' }}</span>
+						</template>
+						<div style="padding: 24px; font-size: 14px; color: var(--idea-color-text-regular, #606266)">
+							Content Area (default slot)
+						</div>
 					</idea-menu>
 				</div>
 			</DemoBlock>
@@ -392,11 +475,11 @@ const apiEventData = computed(() => [
 
 const apiSlotData = computed(() => [
 	{ name: 'logo', desc: t('menu.slots.logo') },
-	{ name: 'footer', desc: t('menu.slots.footer') },
 	{ name: 'header', desc: t('menu.slots.header') },
 	{ name: 'header-extra', desc: t('menu.slots.headerExtra') },
 	{ name: 'extra', desc: t('menu.slots.extra') },
-	{ name: 'bottom', desc: t('menu.slots.bottom') },
+	{ name: 'footer', desc: t('menu.slots.footer') },
+	{ name: 'collapse-btn', desc: t('menu.slots.collapseBtn') },
 	{ name: 'default', desc: t('menu.slots.default') },
 ])
 </script>

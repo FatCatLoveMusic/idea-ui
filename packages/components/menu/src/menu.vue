@@ -6,10 +6,21 @@
 		:class="{ 'is-collapsed': isCollapsed }"
 		:style="{ width: sidebarMenuWidth + 'px' }"
 	>
-		<div class="idea-menu__logo" v-if="$slots.logo || logo">
-			<slot name="logo">
-				<img :src="logo" alt="logo" />
-			</slot>
+		<!-- #header 自定义顶部区域 -->
+		<div class="idea-menu__header" v-if="$slots.header">
+			<slot name="header" />
+		</div>
+		<!-- logo / header-extra / extra 区域 -->
+		<div class="idea-menu__logo-bar" v-if="$slots.logo || logo || $slots['header-extra'] || $slots.extra">
+			<div class="idea-menu__logo" v-if="$slots.logo || logo">
+				<slot name="logo">
+					<img :src="logo" alt="logo" />
+				</slot>
+			</div>
+			<div class="idea-menu__logo-bar-right" v-if="$slots['header-extra'] || $slots.extra">
+				<slot name="header-extra" />
+				<slot name="extra" />
+			</div>
 		</div>
 		<div class="idea-menu__wrap">
 			<el-menu
@@ -24,13 +35,20 @@
 					:item="item"
 					:collapsed="isCollapsed"
 					:is-root="true"
+					:active-id="modelValue"
 					@select="handleSelect"
 				/>
 			</el-menu>
 		</div>
+		<!-- #default 内容区域 -->
+		<div class="idea-menu__content" v-if="$slots.default">
+			<slot />
+		</div>
+		<!-- #footer 底部区域 -->
 		<div class="idea-menu__footer" v-if="$slots.footer">
 			<slot name="footer" />
 		</div>
+		<!-- #collapse-btn 折叠按钮 -->
 		<div v-if="collapsible" class="idea-menu__collapse-btn" @click="toggleCollapse">
 			<slot name="collapse-btn" :collapsed="isCollapsed">
 				<i class="icon-zhedie idea-menu__collapse-icon" :class="{ 'is-collapsed': isCollapsed }"></i>
@@ -44,17 +62,21 @@
 		class="idea-menu idea-menu--sidebar-header"
 		:class="{ 'is-collapsed': isCollapsed }"
 	>
-		<div class="idea-menu__header" v-if="$slots.header || $slots.logo || logo">
-			<slot name="header">
-				<div class="idea-menu__header-inner">
-					<div class="idea-menu__logo" v-if="$slots.logo || logo">
-						<slot name="logo">
-							<img :src="logo" alt="logo" />
-						</slot>
-					</div>
-					<slot name="header-extra" />
-				</div>
-			</slot>
+		<!-- #header 自定义顶部区域 -->
+		<div class="idea-menu__header" v-if="$slots.header">
+			<slot name="header" />
+		</div>
+		<!-- logo / header-extra / extra 区域 -->
+		<div class="idea-menu__logo-bar" v-if="$slots.logo || logo || $slots['header-extra'] || $slots.extra">
+			<div class="idea-menu__logo" v-if="$slots.logo || logo">
+				<slot name="logo">
+					<img :src="logo" alt="logo" />
+				</slot>
+			</div>
+			<div class="idea-menu__logo-bar-right" v-if="$slots['header-extra'] || $slots.extra">
+				<slot name="header-extra" />
+				<slot name="extra" />
+			</div>
 		</div>
 		<div class="idea-menu__body">
 			<div
@@ -74,12 +96,20 @@
 							:item="item"
 							:collapsed="isCollapsed"
 							:is-root="true"
+							:active-id="modelValue"
 							@select="handleSelect"
 						/>
 					</el-menu>
 				</div>
+				<!-- #footer 侧边栏底部区域 -->
+				<div class="idea-menu__footer" v-if="$slots.footer">
+					<slot name="footer" />
+				</div>
+				<!-- #collapse-btn 折叠按钮 -->
 				<div v-if="collapsible" class="idea-menu__collapse-bar" @click="toggleCollapse">
-					<span class="idea-menu__collapse-icon">{{ isCollapsed ? '▶' : '◀' }}</span>
+					<slot name="collapse-btn" :collapsed="isCollapsed">
+						<span class="idea-menu__collapse-icon">{{ isCollapsed ? '▶' : '◀' }}</span>
+					</slot>
 				</div>
 			</div>
 			<div class="idea-menu__content">
@@ -93,6 +123,10 @@
 		v-else-if="layout === 'top'"
 		class="idea-menu idea-menu--top"
 	>
+		<!-- #header 自定义顶部区域 -->
+		<div class="idea-menu__header" v-if="$slots.header">
+			<slot name="header" />
+		</div>
 		<div class="idea-menu__top-bar">
 			<div class="idea-menu__logo" v-if="$slots.logo || logo">
 				<slot name="logo">
@@ -126,12 +160,25 @@
 					</transition>
 				</li>
 			</ul>
-			<div class="idea-menu__top-extra" v-if="$slots.extra">
+			<!-- #header-extra / #extra / #collapse-btn 右侧区域 -->
+			<div class="idea-menu__top-extra" v-if="$slots.extra || $slots['header-extra'] || $slots['collapse-btn']">
+				<slot name="header-extra" />
 				<slot name="extra" />
+				<div
+					v-if="$slots['collapse-btn']"
+					class="idea-menu__collapse-btn idea-menu__collapse-btn--inline"
+					@click="toggleCollapse"
+				>
+					<slot name="collapse-btn" :collapsed="isCollapsed" />
+				</div>
 			</div>
 		</div>
 		<div class="idea-menu__content" v-if="$slots.default">
 			<slot />
+		</div>
+		<!-- #footer 底部区域 -->
+		<div class="idea-menu__footer" v-if="$slots.footer">
+			<slot name="footer" />
 		</div>
 	</div>
 
@@ -140,6 +187,10 @@
 		v-else-if="layout === 'top-sidebar'"
 		class="idea-menu idea-menu--top-sidebar"
 	>
+		<!-- #header 自定义顶部区域 -->
+		<div class="idea-menu__header" v-if="$slots.header">
+			<slot name="header" />
+		</div>
 		<div class="idea-menu__top-bar">
 			<div class="idea-menu__logo" v-if="$slots.logo || logo">
 				<slot name="logo">
@@ -157,7 +208,9 @@
 					<span>{{ item.label }}</span>
 				</li>
 			</ul>
-			<div class="idea-menu__top-extra" v-if="$slots.extra">
+			<!-- #header-extra / #extra 右侧区域 -->
+			<div class="idea-menu__top-extra" v-if="$slots.extra || $slots['header-extra']">
+				<slot name="header-extra" />
 				<slot name="extra" />
 			</div>
 		</div>
@@ -181,9 +234,20 @@
 							:item="item"
 							:collapsed="false"
 							:is-root="true"
+							:active-id="modelValue"
 							@select="handleSelect"
 						/>
 					</el-menu>
+				</div>
+				<!-- #footer 侧边栏底部区域 -->
+				<div class="idea-menu__footer" v-if="$slots.footer">
+					<slot name="footer" />
+				</div>
+				<!-- #collapse-btn 折叠按钮 -->
+				<div v-if="collapsible" class="idea-menu__collapse-bar" @click="toggleCollapse">
+					<slot name="collapse-btn" :collapsed="isCollapsed">
+						<span class="idea-menu__collapse-icon">{{ isCollapsed ? '▶' : '◀' }}</span>
+					</slot>
 				</div>
 			</div>
 			<div class="idea-menu__content">
@@ -197,53 +261,73 @@
 		v-else-if="layout === 'double-sidebar'"
 		class="idea-menu idea-menu--double-sidebar"
 	>
-		<div class="idea-menu__first-col">
-			<div class="idea-menu__logo" v-if="$slots.logo || logo" @click="handleHomeClick">
-				<slot name="logo">
-					<img :src="logo" alt="logo" />
-				</slot>
+		<!-- #header 自定义顶部区域 + #header-extra / #extra -->
+		<div class="idea-menu__header" v-if="$slots.header || $slots['header-extra'] || $slots.extra">
+			<div class="idea-menu__header-slot" v-if="$slots.header">
+				<slot name="header" />
 			</div>
-			<div class="idea-menu__first-wrap">
-				<el-menu :default-active="String(doubleFirstActiveId)" class="idea-menu__el-menu">
-					<el-menu-item
-						v-for="item in menus"
-						:key="item.id"
-						:index="String(item.id)"
-						class="idea-menu__first-item"
-						@click="handleDoubleFirstClick(item)"
-					>
-						<i v-if="item.icon" :class="item.icon"></i>
-						<span>{{ item.label }}</span>
-					</el-menu-item>
-				</el-menu>
-			</div>
-			<div class="idea-menu__first-bottom" v-if="$slots.bottom || $slots.footer">
-				<slot name="bottom" />
-				<slot name="footer" />
+			<div class="idea-menu__logo-bar-right" v-if="$slots['header-extra'] || $slots.extra">
+				<slot name="header-extra" />
+				<slot name="extra" />
 			</div>
 		</div>
-		<div
-			class="idea-menu__second-col"
-			:style="{ width: doubleSecondOpen && doubleSecondMenus.length ? secondColWidth + 'px' : '0px' }"
-		>
-			<div class="idea-menu__wrap" v-if="doubleSecondOpen && doubleSecondMenus.length">
-				<el-menu :default-active="String(modelValue)" class="idea-menu__el-menu">
-					<sidebar-menu-item
-						v-for="item in doubleSecondMenus"
-						:key="item.id"
-						:item="item"
-						:collapsed="false"
-						:is-root="true"
-						@select="handleSelect"
-					/>
-				</el-menu>
+		<div class="idea-menu__body">
+			<div class="idea-menu__first-col">
+				<div class="idea-menu__logo" v-if="$slots.logo || logo" @click="handleHomeClick">
+					<slot name="logo">
+						<img :src="logo" alt="logo" />
+					</slot>
+				</div>
+				<div class="idea-menu__first-wrap">
+					<el-menu :default-active="String(doubleFirstActiveId)" class="idea-menu__el-menu">
+						<el-menu-item
+							v-for="item in menus"
+							:key="item.id"
+							:index="String(item.id)"
+							class="idea-menu__first-item"
+							@click="handleDoubleFirstClick(item)"
+						>
+							<i v-if="item.icon" :class="item.icon"></i>
+							<span>{{ item.label }}</span>
+						</el-menu-item>
+					</el-menu>
+				</div>
+				<!-- #footer 第一列底部区域 -->
+				<div class="idea-menu__first-bottom" v-if="$slots.footer">
+					<slot name="footer" />
+				</div>
 			</div>
 			<div
-				v-if="doubleSecondMenus.length"
-				class="idea-menu__collapse-toolbar"
-				@click="toggleDoubleSecond"
+				class="idea-menu__second-col"
+				:style="{ width: doubleSecondOpen && doubleSecondMenus.length ? secondColWidth + 'px' : '0px' }"
 			>
-				<span>{{ doubleSecondOpen ? '◀' : '▶' }}</span>
+				<div class="idea-menu__wrap" v-if="doubleSecondOpen && doubleSecondMenus.length">
+					<el-menu :default-active="String(modelValue)" class="idea-menu__el-menu">
+						<sidebar-menu-item
+							v-for="item in doubleSecondMenus"
+							:key="item.id"
+							:item="item"
+							:collapsed="false"
+							:is-root="true"
+							:active-id="modelValue"
+							@select="handleSelect"
+						/>
+					</el-menu>
+				</div>
+				<!-- #collapse-btn 折叠按钮 -->
+				<div
+					v-if="doubleSecondMenus.length"
+					class="idea-menu__collapse-toolbar"
+					@click="toggleDoubleSecond"
+				>
+					<slot name="collapse-btn" :collapsed="doubleSecondOpen">
+						<span>{{ doubleSecondOpen ? '◀' : '▶' }}</span>
+					</slot>
+				</div>
+			</div>
+			<!-- #default 内容区域 -->
+			<div class="idea-menu__content" v-if="$slots.default">
+				<slot />
 			</div>
 		</div>
 	</div>
@@ -270,13 +354,30 @@ const SidebarMenuItem = defineComponent({
 		item: { type: Object as PropType<MenuItem>, required: true },
 		collapsed: { type: Boolean, default: false },
 		isRoot: { type: Boolean, default: false },
+		activeId: { type: [String, Number] as PropType<string | number>, default: '' },
 	},
 	emits: ['select'],
 	setup(props, { emit }) {
 		const hasChildren = (item: MenuItem) => !!(item.children && item.children.length)
 
+		// 子菜单标题文案：菜单自身带 path 时，点击文案跳转到其页面（stopPropagation 保留展开箭头）
+		const renderTitleLabel = (item: MenuItem) =>
+			h(
+				'span',
+				{
+					class: ['idea-menu__sub-title', { 'is-active': String(item.id) === String(props.activeId) }],
+					onClick: item.path
+						? (e: MouseEvent) => {
+								e.stopPropagation()
+								if (!item.disabled) emit('select', item)
+							}
+						: undefined,
+				},
+				item.label
+			)
+
 		return () => {
-			const { item, collapsed, isRoot } = props
+			const { item, collapsed, isRoot, activeId } = props
 			const itemId = String(item.id)
 
 			if (hasChildren(item)) {
@@ -288,7 +389,7 @@ const SidebarMenuItem = defineComponent({
 						{
 							title: () => [
 								isRoot && item.icon ? h('i', { class: ['idea-menu__icon', item.icon] }) : null,
-								h('span', item.label),
+								renderTitleLabel(item),
 							],
 							default: () =>
 								h(
@@ -303,6 +404,7 @@ const SidebarMenuItem = defineComponent({
 												item: child,
 												collapsed,
 												isRoot: false,
+												activeId,
 												onSelect: (menu: MenuItem) => emit('select', menu),
 											})
 										),
@@ -318,7 +420,7 @@ const SidebarMenuItem = defineComponent({
 						{
 							title: () => [
 								isRoot && item.icon ? h('i', { class: ['idea-menu__icon', item.icon], style: 'margin-right: 5px' }) : null,
-								h('span', item.label),
+								renderTitleLabel(item),
 							],
 							default: () =>
 								item.children!.map((child) =>
@@ -327,6 +429,7 @@ const SidebarMenuItem = defineComponent({
 										item: child,
 										collapsed,
 										isRoot: false,
+										activeId,
 										onSelect: (menu: MenuItem) => emit('select', menu),
 									})
 								),
@@ -673,6 +776,53 @@ watch(
 	}
 }
 
+// ==================== 通用：自定义顶部 header 区域（#header 插槽） ====================
+.idea-menu__header {
+	display: flex;
+	align-items: center;
+	height: 48px;
+	padding: 0 16px;
+	flex-shrink: 0;
+	box-sizing: border-box;
+	background: @menu-bg;
+	border-bottom: 1px solid @menu-border;
+
+	.idea-menu__header-slot {
+		display: flex;
+		align-items: center;
+		min-width: 0;
+	}
+}
+
+// ==================== 通用：logo 栏（logo / header-extra / extra） ====================
+.idea-menu__logo-bar {
+	display: flex;
+	align-items: center;
+	flex-shrink: 0;
+	box-sizing: border-box;
+}
+
+.idea-menu__logo-bar-right {
+	margin-left: auto;
+	display: flex;
+	align-items: center;
+	gap: 12px;
+}
+
+// ==================== 通用：顶部栏内联折叠按钮（#collapse-btn 插槽） ====================
+.idea-menu__collapse-btn--inline {
+	display: inline-flex;
+	align-items: center;
+	cursor: pointer;
+	color: @menu-text;
+	font-size: 14px;
+	transition: color 0.2s;
+
+	&:hover {
+		color: @menu-text-active;
+	}
+}
+
 // ==================== 菜单图标 ====================
 .idea-menu .idea-menu__icon {
 	display: inline-block;
@@ -681,6 +831,15 @@ watch(
 	font-size: 18px;
 	line-height: 18px;
 	text-align: center;
+}
+
+// ==================== 子菜单标题（自身带 path，可选中跳转） ====================
+.idea-menu__sub-title {
+	display: inline-block;
+
+	&.is-active {
+		color: @menu-text-active;
+	}
 }
 
 // ==================== sidebar 布局 ====================
@@ -693,13 +852,24 @@ watch(
 	transition: width 0.3s;
 	overflow: hidden;
 
-	.idea-menu__logo {
+	.idea-menu__logo-bar {
+		height: 56px;
+		padding: 0 16px;
 		border-bottom: 1px solid @menu-border;
+	}
+
+	.idea-menu__content {
+		flex: 1;
+		min-height: 0;
+		overflow: auto;
+		padding: 8px;
+		border-top: 1px solid @menu-border;
 	}
 
 	.idea-menu__footer {
 		padding: 8px;
 		border-top: 1px solid @menu-border;
+		border-bottom: none;
 	}
 
 	.idea-menu__collapse-btn {
@@ -735,20 +905,16 @@ watch(
 	flex-direction: column;
 	height: 100%;
 
-	.idea-menu__header {
+	.idea-menu__logo-bar {
 		height: 56px;
-		display: flex;
-		align-items: center;
+		padding: 0 16px;
 		background: @menu-bg;
 		border-bottom: 1px solid @menu-border;
-		flex-shrink: 0;
 	}
 
-	.idea-menu__header-inner {
-		display: flex;
-		align-items: center;
-		width: 100%;
-		padding: 0 16px;
+	.idea-menu__footer {
+		padding: 8px;
+		border-top: 1px solid @menu-border;
 	}
 
 	.idea-menu__body {
@@ -799,6 +965,20 @@ watch(
 .idea-menu--top {
 	display: flex;
 	flex-direction: column;
+
+	.idea-menu__header {
+		width: 100%;
+	}
+
+	.idea-menu__footer {
+		display: flex;
+		align-items: center;
+		gap: 12px;
+		padding: 8px 16px;
+		flex-shrink: 0;
+		border-top: 1px solid @menu-border;
+		background: @menu-bg;
+	}
 
 	.idea-menu__top-bar {
 		display: flex;
@@ -907,6 +1087,10 @@ watch(
 	flex-direction: column;
 	height: 100%;
 
+	.idea-menu__header {
+		width: 100%;
+	}
+
 	.idea-menu__top-bar {
 		display: flex;
 		align-items: center;
@@ -969,6 +1153,7 @@ watch(
 	}
 
 	.idea-menu__sidebar {
+		position: relative;
 		display: flex;
 		flex-direction: column;
 		background: @menu-bg;
@@ -976,6 +1161,32 @@ watch(
 		overflow: hidden;
 		flex-shrink: 0;
 		transition: width 0.3s;
+	}
+
+	.idea-menu__footer {
+		padding: 8px;
+		border-top: 1px solid @menu-border;
+	}
+
+	.idea-menu__collapse-bar {
+		height: 100%;
+		width: 20px;
+		position: absolute;
+		right: 0;
+		top: 0;
+		z-index: 1;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		cursor: pointer;
+		background: @menu-bg;
+		color: @menu-text;
+		font-size: 12px;
+
+		&:hover {
+			background: @menu-hover-bg;
+			color: @menu-text-active;
+		}
 	}
 
 	.idea-menu__sidebar-title {
@@ -998,7 +1209,26 @@ watch(
 // ==================== double-sidebar 布局 ====================
 .idea-menu--double-sidebar {
 	display: flex;
+	flex-direction: column;
 	height: 100%;
+
+	.idea-menu__header {
+		width: 100%;
+	}
+
+	.idea-menu__body {
+		display: flex;
+		flex: 1;
+		min-height: 0;
+	}
+
+	.idea-menu__content {
+		flex: 1;
+		min-width: 0;
+		overflow: auto;
+		padding: 16px;
+		background: @menu-bg;
+	}
 
 	.idea-menu__first-col {
 		width: 64px;

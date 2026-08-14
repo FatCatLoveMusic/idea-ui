@@ -13,7 +13,7 @@
 						<option value="en">English</option>
 					</select>
 					<select v-model="pageConfig.theme" @change="changeTheme" class="theme-select">
-						<option value="">默认主题</option>
+						<option value="theme-default">默认主题</option>
 						<option value="theme-blue">蓝色主题</option>
 						<option value="theme-red">红色主题</option>
 						<option value="theme-dark-blue">深蓝主题</option>
@@ -96,21 +96,22 @@ interface PageConfig {
 const PAGE_CONFIG_KEY = 'idea-ui-page-config'
 
 function loadPageConfig(): PageConfig {
-	const defaultConfig: PageConfig = { theme: '', lang: 'zh-cn', isRtl: false }
+	const defaultConfig: PageConfig = { theme: 'theme-default', lang: 'zh-cn', isRtl: false }
+	let config = defaultConfig
 	try {
 		const saved = localStorage.getItem(PAGE_CONFIG_KEY)
 		if (saved) {
-			return { ...defaultConfig, ...JSON.parse(saved) }
+			config = { ...defaultConfig, ...JSON.parse(saved) }
 		}
-		// 首次访问，将默认配置写入 localStorage
-		localStorage.setItem(PAGE_CONFIG_KEY, JSON.stringify(defaultConfig))
 	} catch {
 		// 解析失败时使用默认配置
 	}
-	return defaultConfig
+	// 回写合并后的完整配置，补齐插件只写入 theme / isRtl 而未持久化的字段（如 lang）
+	localStorage.setItem(PAGE_CONFIG_KEY, JSON.stringify(config))
+	return config
 }
 
-// 页面配置（主题、语言、RTL）统一存储到 localStorage
+// 页面配置（主题、语言、RTL）统一存储到 localStorage，localStorage 优先于 main.ts 注册的默认值
 const pageConfig = reactive<PageConfig>(loadPageConfig())
 
 // 配置变更时自动持久化
@@ -138,13 +139,13 @@ function changeLang() {
 
 // 主题 class 需要挂在 body 上，popper 挂载在 body 下才能继承主题变量
 function applyTheme(theme: string) {
-	document.body.classList.remove('theme-blue', 'theme-red', 'theme-dark-blue')
+	document.body.classList.remove('theme-default', 'theme-blue', 'theme-red', 'theme-dark-blue')
 	if (theme) {
 		document.body.classList.add(theme)
 	}
 }
 
-// 初始化时应用已保存的配置
+// 初始化时应用已保存的配置（localStorage 优先，缺省回退到插件注册的默认值）
 setLang(pageConfig.lang)
 applyTheme(pageConfig.theme)
 

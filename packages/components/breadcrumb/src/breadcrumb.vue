@@ -21,7 +21,7 @@
 <script setup lang="ts">
 import type { BreadcrumbItem } from './types'
 
-withDefaults(
+const props = withDefaults(
 	defineProps<{
 		items?: BreadcrumbItem[]
 		separator?: string
@@ -37,7 +37,7 @@ const emit = defineEmits<{
 }>()
 
 function handleClick(item: BreadcrumbItem, index: number) {
-	if (item.path && index < items.length - 1) {
+	if (item.path && index < props.items.length - 1) {
 		emit('click', item, index)
 	}
 }
@@ -48,7 +48,7 @@ function handleClick(item: BreadcrumbItem, index: number) {
 	display: flex;
 	align-items: center;
 	flex-wrap: wrap;
-	font-size: 14px;
+	font-size: 13px;
 	line-height: 1;
 	color: #b2b2b2;
 

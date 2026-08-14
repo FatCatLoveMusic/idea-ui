@@ -1,25 +1,5 @@
 // 主题色变量 - 默认 (light/orange)
 :root {
-	--idea-color-primary: #ED6F22;
-	--idea-color-primary-light-1: #f07b3c;
-	--idea-color-primary-light-2: #f2874f;
-	--idea-color-primary-light-3: #f49f6d;
-	--idea-color-primary-light-4: #f6b78d;
-	--idea-color-primary-light-5: #f9cfae;
-	--idea-color-primary-light-6: #fbe7d0;
-	--idea-color-primary-light-7: #fdf3e8;
-	--idea-color-primary-light-8: #fef9f3;
-	--idea-color-primary-light-9: #fffcf8;
-	--idea-color-primary-dark-1: #d6641f;
-	--idea-color-primary-dark-2: #be591b;
-	--idea-color-primary-dark-3: #a74e18;
-	--idea-color-primary-dark-4: #8f4314;
-	--idea-color-primary-dark-5: #773811;
-	--idea-color-primary-dark-6: #5f2d0e;
-	--idea-color-primary-dark-7: #47220a;
-	--idea-color-primary-dark-8: #301607;
-	--idea-color-primary-dark-9: #180b03;
-
 	--idea-color-success: #46c620;
 	--idea-color-warning: #ff8330;
 	--idea-color-danger: #ff5651;
@@ -99,7 +79,7 @@
 // Element Plus 兼容变量
 // 必须与 --idea-* 声明在同一个元素上（:root 及各主题类），
 // 这样 var() 才会按当前主题解析，Element Plus 组件才能随主题联动。
-:root,
+.theme-default,
 .theme-blue,
 .theme-red,
 .theme-dark-blue {
@@ -215,6 +195,29 @@
 // :not() 排除带类型的按钮（primary/success 等需要白色文字），避免覆盖其样式。
 .el-button:not(.el-button--primary):not(.el-button--success):not(.el-button--warning):not(.el-button--danger):not(.el-button--info) {
 	--el-button-text-color: var(--idea-color-primary);
+}
+
+// 默认主题色变量 - light (orange)
+.theme-default {
+	--idea-color-primary: #ED6F22;
+	--idea-color-primary-light-1: #f07b3c;
+	--idea-color-primary-light-2: #f2874f;
+	--idea-color-primary-light-3: #f49f6d;
+	--idea-color-primary-light-4: #f6b78d;
+	--idea-color-primary-light-5: #f9cfae;
+	--idea-color-primary-light-6: #fbe7d0;
+	--idea-color-primary-light-7: #fdf3e8;
+	--idea-color-primary-light-8: #fef9f3;
+	--idea-color-primary-light-9: #fffcf8;
+	--idea-color-primary-dark-1: #d6641f;
+	--idea-color-primary-dark-2: #be591b;
+	--idea-color-primary-dark-3: #a74e18;
+	--idea-color-primary-dark-4: #8f4314;
+	--idea-color-primary-dark-5: #773811;
+	--idea-color-primary-dark-6: #5f2d0e;
+	--idea-color-primary-dark-7: #47220a;
+	--idea-color-primary-dark-8: #301607;
+	--idea-color-primary-dark-9: #180b03;
 }
 
 // 蓝色主题

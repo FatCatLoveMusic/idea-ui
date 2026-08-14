@@ -35,8 +35,27 @@ export interface MenuDemoLabels {
 	statistics: string
 }
 
-const sidebarLogo =
-	'https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=A+simple+modern+logo+for+a+tech+company%2C+minimalist+design%2C+abstract+geometric+shape%2C+orange+and+white+color+scheme%2C+square+icon&image_size=square_hd'
+// ==================== 通用插槽示例（所有布局均支持这些插槽） ====================
+const slotsExample = `    <template #logo>
+      <span style="font-weight: bold; font-size: 16px">Logo</span>
+    </template>
+    <template #header>
+      <div style="font-size: 13px; color: #909399">Header Slot</div>
+    </template>
+    <template #header-extra>
+      <span style="font-size: 12px; color: #909399">Header Extra</span>
+    </template>
+    <template #extra>
+      <span style="font-size: 12px; color: #909399">Extra</span>
+    </template>
+    <template #footer>
+      <div style="padding: 8px; text-align: center; font-size: 12px; color: #999">Footer</div>
+    </template>
+    <template #collapse-btn="{ collapsed }">
+      <span style="font-size: 12px">{{ collapsed ? '◀' : '▶' }}</span>
+    </template>
+    <div style="padding: 24px; font-size: 14px; color: #606266">Content Area</div>
+`
 
 const sidebarCodeTemplate = `<template>
   <idea-menu
@@ -44,12 +63,8 @@ const sidebarCodeTemplate = `<template>
     v-model="active"
     :menus="menus"
     collapsible
-    logo="${sidebarLogo}"
   >
-    <template #footer>
-      <div style="padding: 8px; text-align: center; font-size: 12px; color: #999">Footer Area</div>
-    </template>
-  </idea-menu>
+${slotsExample}  </idea-menu>
 </template>
 `
 
@@ -113,14 +128,7 @@ export function createSidebarHeaderCodeTs(_l: MenuDemoLabels): string {
     :menus="menus"
     collapsible
   >
-    <template #logo>
-      <span style="font-weight: bold">Logo</span>
-    </template>
-    <template #header-extra>
-      <el-avatar :size="28" />
-      <span>Admin</span>
-    </template>
-  </idea-menu>
+${slotsExample}  </idea-menu>
 </template>
 
 <script setup lang="ts">
@@ -133,8 +141,7 @@ const menus = [/* ... */]
 export function createSidebarHeaderCodeJs(_l: MenuDemoLabels): string {
 	return `<template>
   <idea-menu layout="sidebar-header" v-model="active" :menus="menus" collapsible>
-    <template #logo><span>Logo</span></template>
-  </idea-menu>
+${slotsExample}  </idea-menu>
 </template>
 
 <script setup>
@@ -152,10 +159,7 @@ export function createTopCodeTs(l: MenuDemoLabels): string {
     v-model="active"
     :menus="menus"
   >
-    <template #logo>
-      <span style="font-weight: bold">MyApp</span>
-    </template>
-  </idea-menu>
+${slotsExample}  </idea-menu>
 </template>
 
 <script setup lang="ts">
@@ -190,8 +194,7 @@ const menus = [
 export function createTopCodeJs(_l: MenuDemoLabels): string {
 	return `<template>
   <idea-menu layout="top" v-model="active" :menus="menus">
-    <template #logo><span>MyApp</span></template>
-  </idea-menu>
+${slotsExample}  </idea-menu>
 </template>
 
 <script setup>
@@ -209,10 +212,7 @@ export function createTopSidebarCodeTs(l: MenuDemoLabels): string {
     v-model="active"
     :menus="menus"
   >
-    <template #logo>
-      <span style="font-weight: bold">Platform</span>
-    </template>
-  </idea-menu>
+${slotsExample}  </idea-menu>
 </template>
 
 <script setup lang="ts">
@@ -241,8 +241,7 @@ const menus = [
 export function createTopSidebarCodeJs(_l: MenuDemoLabels): string {
 	return `<template>
   <idea-menu layout="top-sidebar" v-model="active" :menus="menus">
-    <template #logo><span>Platform</span></template>
-  </idea-menu>
+${slotsExample}  </idea-menu>
 </template>
 
 <script setup>
@@ -261,13 +260,7 @@ export function createDoubleSidebarCodeTs(l: MenuDemoLabels): string {
     :menus="menus"
     :width="180"
   >
-    <template #bottom>
-      <div style="padding: 8px; text-align: center; cursor: pointer">
-        <i class="el-icon-setting"></i>
-        <span style="font-size: 12px">Settings</span>
-      </div>
-    </template>
-  </idea-menu>
+${slotsExample}  </idea-menu>
 </template>
 
 <script setup lang="ts">
@@ -276,14 +269,14 @@ import { ref } from 'vue'
 const active = ref('d1-1')
 const menus = [
   {
-    id: 'd1', label: '${l.workbench}', icon: 'el-icon-monitor',
+    id: 'd1', label: '${l.workbench}', icon: 'icon-computer',
     children: [
       { id: 'd1-1', label: '${l.overview}' },
       { id: 'd1-2', label: '${l.analytics}' },
     ],
   },
   {
-    id: 'd2', label: '${l.system}', icon: 'el-icon-setting',
+    id: 'd2', label: '${l.system}', icon: 'icon-shezhi',
     children: [
       { id: 'd2-1', label: '${l.userMgmt}' },
       { id: 'd2-2', label: '${l.roleMgmt}' },
@@ -296,8 +289,7 @@ const menus = [
 export function createDoubleSidebarCodeJs(_l: MenuDemoLabels): string {
 	return `<template>
   <idea-menu layout="double-sidebar" v-model="active" :menus="menus" :width="180">
-    <template #bottom><div>Settings</div></template>
-  </idea-menu>
+${slotsExample}  </idea-menu>
 </template>
 
 <script setup>
@@ -313,8 +305,10 @@ export function createBreadcrumbCodeTs(l: MenuDemoLabels): string {
   <div class="layout">
     <idea-menu layout="sidebar" v-model="active" :menus="menus" collapsible />
     <div class="main">
-      <idea-breadcrumb :items="breadcrumbs" separator="/" @click="onBreadcrumbClick" />
-      <router-view />
+      <div class="header">
+        <idea-breadcrumb :items="breadcrumbs" separator="/" @click="onBreadcrumbClick" />
+      </div>
+      <div class="content">当前页面：{{ currentLabel }}</div>
     </div>
   </div>
 </template>
@@ -324,22 +318,7 @@ import { ref, computed } from 'vue'
 import { findMenuPath } from 'idea-ui'
 
 const active = ref('2-4-1')
-
-const menus = [
-  {
-    id: '2', label: '${l.system}', path: '/system',
-    children: [
-      {
-        id: '2-4', label: '${l.sysConfig}', path: '/system/config',
-        children: [
-          { id: '2-4-1', label: '${l.baseConfig}', path: '/system/config/base' },
-          { id: '2-4-2', label: '${l.security}', path: '/system/config/security' },
-        ],
-      },
-    ],
-  },
-]
-
+${sidebarMenusCode(l)}
 const breadcrumbs = computed(() =>
   findMenuPath(menus, active.value).map((item) => ({
     label: item.label,
@@ -347,11 +326,39 @@ const breadcrumbs = computed(() =>
   }))
 )
 
+const currentLabel = computed(() => breadcrumbs.value[breadcrumbs.value.length - 1]?.label ?? '')
+
 function onBreadcrumbClick(item: { label: string; path?: string }, index: number) {
   const path = findMenuPath(menus, active.value)
   active.value = path[index].id
 }
-<\/script>`
+<\/script>
+
+<style scoped>
+.layout {
+  display: flex;
+  height: 360px;
+  border: 1px solid #EBEEF5;
+  border-radius: 4px;
+  overflow: hidden;
+}
+.main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+.header {
+  padding: 13px 16px;
+  border-bottom: 1px solid #EBEEF5;
+}
+.content {
+  flex: 1;
+  padding: 24px;
+  font-size: 14px;
+  color: #606266;
+}
+</style>`
 }
 
 export function createBreadcrumbCodeJs(l: MenuDemoLabels): string {
@@ -359,8 +366,10 @@ export function createBreadcrumbCodeJs(l: MenuDemoLabels): string {
   <div class="layout">
     <idea-menu layout="sidebar" v-model="active" :menus="menus" collapsible />
     <div class="main">
-      <idea-breadcrumb :items="breadcrumbs" separator="/" @click="onBreadcrumbClick" />
-      <router-view />
+      <div class="header">
+        <idea-breadcrumb :items="breadcrumbs" separator="/" @click="onBreadcrumbClick" />
+      </div>
+      <div class="content">当前页面：{{ currentLabel }}</div>
     </div>
   </div>
 </template>
@@ -370,29 +379,42 @@ import { ref, computed } from 'vue'
 import { findMenuPath } from 'idea-ui'
 
 const active = ref('2-4-1')
-
-const menus = [
-  {
-    id: '2', label: '${l.system}', path: '/system',
-    children: [
-      {
-        id: '2-4', label: '${l.sysConfig}', path: '/system/config',
-        children: [
-          { id: '2-4-1', label: '${l.baseConfig}', path: '/system/config/base' },
-          { id: '2-4-2', label: '${l.security}', path: '/system/config/security' },
-        ],
-      },
-    ],
-  },
-]
-
+${sidebarMenusCode(l)}
 const breadcrumbs = computed(() =>
   findMenuPath(menus, active.value).map((item) => ({ label: item.label, path: item.path }))
 )
+
+const currentLabel = computed(() => breadcrumbs.value[breadcrumbs.value.length - 1]?.label ?? '')
 
 function onBreadcrumbClick(item, index) {
   const path = findMenuPath(menus, active.value)
   active.value = path[index].id
 }
-<\/script>`
+<\/script>
+
+<style scoped>
+.layout {
+  display: flex;
+  height: 360px;
+  border: 1px solid #EBEEF5;
+  border-radius: 4px;
+  overflow: hidden;
+}
+.main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+.header {
+  padding: 13px 16px;
+  border-bottom: 1px solid #EBEEF5;
+}
+.content {
+  flex: 1;
+  padding: 24px;
+  font-size: 14px;
+  color: #606266;
+}
+</style>`
 }

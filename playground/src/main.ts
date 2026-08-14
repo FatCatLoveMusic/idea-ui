@@ -135,7 +135,13 @@ const router = createRouter({
 })
 
 const app = createApp(App)
-app.use(IdeaUI, { locale: 'zh-cn' })
+app.use(IdeaUI, {
+	locale: 'zh-cn',
+	// 主题色：theme-default / theme-blue / theme-red / theme-dark-blue（可省略 theme- 前缀）
+	theme: 'theme-blue',
+	// 是否开启 RTL 布局
+	rtl: false,
+})
 app.use(ElementPlus)
 app.use(router)
 app.mount('#app')

@@ -62,9 +62,66 @@ const components = [
 	Breadcrumb,
 ]
 
-const install = (app: App, options?: { locale?: Language | LanguagePack }) => {
+export type Theme = 'theme-default' | 'theme-blue' | 'theme-red' | 'theme-dark-blue'
+
+export interface IdeaUIOptions {
+	locale?: Language | LanguagePack
+	/** 主题，如 'theme-blue'，也支持省略前缀写成 'blue' */
+	theme?: Theme | string
+	/** 是否开启 RTL 布局 */
+	rtl?: boolean
+}
+
+const THEME_CLASSES: Theme[] = ['theme-default', 'theme-blue', 'theme-red', 'theme-dark-blue']
+
+// 页面配置的 localStorage key（主题/RTL 优先读取本地配置，缺失时才回退到注册选项）
+const CONFIG_KEY = 'idea-ui-page-config'
+
+// 主题 class 挂在 body 上（popper 等挂载在 body 下的元素才能继承主题变量），dir 挂在 <html> 上全站生效
+function applyThemeAndRtl(options?: IdeaUIOptions) {
+	if (typeof document === 'undefined') return
+
+	// 读取本地配置：localStorage 优先于注册选项，缺失的属性回退到 options
+	let saved: Record<string, unknown> = {}
+	if (typeof window !== 'undefined' && window.localStorage) {
+		try {
+			saved = JSON.parse(window.localStorage.getItem(CONFIG_KEY) || '{}')
+		} catch {
+			// 忽略解析失败
+		}
+	}
+
+	const theme = (saved.theme as string) || options?.theme
+	const rtl = typeof saved.isRtl === 'boolean' ? (saved.isRtl as boolean) : options?.rtl
+
+	let themeClass: Theme | undefined
+	if (theme) {
+		themeClass = (theme.startsWith('theme-') ? theme : `theme-${theme}`) as Theme
+		THEME_CLASSES.forEach((cls) => document.body.classList.toggle(cls, cls === themeClass))
+	}
+
+	if (typeof rtl === 'boolean') {
+		document.documentElement.setAttribute('dir', rtl ? 'rtl' : 'ltr')
+	}
+
+	// 将解析后的配置回写，保证 main.ts 的默认值也能持久化
+	if (typeof window !== 'undefined' && window.localStorage) {
+		try {
+			if (themeClass) saved.theme = themeClass
+			if (typeof rtl === 'boolean') saved.isRtl = rtl
+			window.localStorage.setItem(CONFIG_KEY, JSON.stringify(saved))
+		} catch {
+			// localStorage 不可用时忽略
+		}
+	}
+}
+
+const install = (app: App, options?: IdeaUIOptions) => {
 	// Install locale plugin（locale 可以是语言标识字符串或语言包对象，与 element-plus 用法一致）
 	app.use(localePlugin, { locale: options?.locale || 'zh-cn' })
+
+	// Apply theme & RTL
+	applyThemeAndRtl(options)
 
 	// Register all components using their install method
 	components.forEach((component) => {
