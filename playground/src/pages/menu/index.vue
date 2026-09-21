@@ -15,22 +15,13 @@
 						collapsible
 					>
 						<template #logo>
-							<span style="font-weight: bold; font-size: 16px">Logo</span>
-						</template>
-						<template #header>
-							<div style="font-size: 13px; color: #909399">Header Slot</div>
+							<span style="font-weight: bold; font-size: 16px;">Logo</span>
 						</template>
 						<template #header-extra>
 							<span style="font-size: 12px; color: #909399">Header Extra</span>
 						</template>
-						<template #extra>
-							<span style="font-size: 12px; color: #909399">Extra</span>
-						</template>
 						<template #footer>
 							<div style="padding: 8px; text-align: center; font-size: 12px; color: #999">Footer</div>
-						</template>
-						<template #collapse-btn="{ collapsed }">
-							<span style="font-size: 12px">{{ collapsed ? '◀' : '▶' }}</span>
 						</template>
 						<div style="padding: 24px; font-size: 14px; color: var(--idea-color-text-regular, #606266)">
 							Content Area (default slot)
@@ -88,9 +79,6 @@
 								<span style="font-size: 14px">Admin</span>
 							</div>
 						</template>
-						<template #extra>
-							<span style="font-size: 12px; color: #909399">Extra</span>
-						</template>
 						<template #footer>
 							<div style="padding: 8px; text-align: center; font-size: 12px; color: #999">Footer</div>
 						</template>
@@ -118,14 +106,8 @@
 						<template #logo>
 							<span style="font-weight: bold; font-size: 16px">MyApp</span>
 						</template>
-						<template #header>
-							<div style="font-size: 13px; color: #909399">Header Slot</div>
-						</template>
 						<template #header-extra>
 							<span style="font-size: 12px; color: #909399">Header Extra</span>
-						</template>
-						<template #extra>
-							<span style="font-size: 12px; color: #909399">Extra</span>
 						</template>
 						<template #footer>
 							<div style="padding: 8px; text-align: center; font-size: 12px; color: #999">Footer</div>
@@ -154,14 +136,8 @@
 						<template #logo>
 							<span style="font-weight: bold; font-size: 16px">Platform</span>
 						</template>
-						<template #header>
-							<div style="font-size: 13px; color: #909399">Header Slot</div>
-						</template>
 						<template #header-extra>
 							<span style="font-size: 12px; color: #909399">Header Extra</span>
-						</template>
-						<template #extra>
-							<span style="font-size: 12px; color: #909399">Extra</span>
 						</template>
 						<template #footer>
 							<div style="padding: 8px; text-align: center; font-size: 12px; color: #999">Footer</div>
@@ -196,9 +172,6 @@
 						</template>
 						<template #header-extra>
 							<span style="font-size: 12px; color: #909399">Header Extra</span>
-						</template>
-						<template #extra>
-							<span style="font-size: 12px; color: #909399">Extra</span>
 						</template>
 						<template #footer>
 							<div style="padding: 4px 0; text-align: center; font-size: 12px; color: #999">Footer</div>
@@ -477,7 +450,6 @@ const apiSlotData = computed(() => [
 	{ name: 'logo', desc: t('menu.slots.logo') },
 	{ name: 'header', desc: t('menu.slots.header') },
 	{ name: 'header-extra', desc: t('menu.slots.headerExtra') },
-	{ name: 'extra', desc: t('menu.slots.extra') },
 	{ name: 'footer', desc: t('menu.slots.footer') },
 	{ name: 'collapse-btn', desc: t('menu.slots.collapseBtn') },
 	{ name: 'default', desc: t('menu.slots.default') },

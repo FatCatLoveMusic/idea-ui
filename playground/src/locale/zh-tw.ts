@@ -281,9 +281,8 @@ const zhTW: PlaygroundMessages = {
 		},
 		slots: {
 			logo: 'Logo 區域',
-			header: '頭部區域',
+			header: '頭部區域（僅 sidebar-header / double-sidebar 佈局支援）',
 			headerExtra: '頭部右側額外區域',
-			extra: '導覽列額外區域（自訂右側）',
 			footer: '底部區域',
 			collapseBtn: '摺疊按鈕自訂內容（作用域參數：collapsed）',
 			default: '預設插槽（內容區域）',

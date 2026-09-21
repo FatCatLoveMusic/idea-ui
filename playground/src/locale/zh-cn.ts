@@ -281,9 +281,8 @@ const zhCN: PlaygroundMessages = {
 		},
 		slots: {
 			logo: 'Logo 区域',
-			header: '头部区域',
+			header: '头部区域（仅 sidebar-header / double-sidebar 布局支持）',
 			headerExtra: '头部右侧额外区域',
-			extra: '导航栏额外区域（自定义右侧）',
 			footer: '底部区域',
 			collapseBtn: '折叠按钮自定义内容（作用域参数：collapsed）',
 			default: '默认插槽（内容区域）',

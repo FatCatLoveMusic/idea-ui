@@ -281,9 +281,8 @@ const en: PlaygroundMessages = {
 		},
 		slots: {
 			logo: 'Logo area',
-			header: 'Header area',
+			header: 'Header area (only supported in sidebar-header / double-sidebar layouts)',
 			headerExtra: 'Extra area on the right of header',
-			extra: 'Navbar extra area (custom right side)',
 			footer: 'Footer area',
 			collapseBtn: 'Custom collapse button content (scoped: collapsed)',
 			default: 'Default slot (content area)',

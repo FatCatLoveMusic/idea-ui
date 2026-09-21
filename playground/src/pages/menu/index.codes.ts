@@ -35,18 +35,13 @@ export interface MenuDemoLabels {
 	statistics: string
 }
 
-// ==================== 通用插槽示例（所有布局均支持这些插槽） ====================
+// ==================== 通用插槽示例 ====================
+// #header 插槽仅 sidebar-header / double-sidebar 布局支持
 const slotsExample = `    <template #logo>
-      <span style="font-weight: bold; font-size: 16px">Logo</span>
-    </template>
-    <template #header>
-      <div style="font-size: 13px; color: #909399">Header Slot</div>
+      <span style="font-weight: bold; font-size: 16px;">Logo</span>
     </template>
     <template #header-extra>
       <span style="font-size: 12px; color: #909399">Header Extra</span>
-    </template>
-    <template #extra>
-      <span style="font-size: 12px; color: #909399">Extra</span>
     </template>
     <template #footer>
       <div style="padding: 8px; text-align: center; font-size: 12px; color: #999">Footer</div>
@@ -56,6 +51,15 @@ const slotsExample = `    <template #logo>
     </template>
     <div style="padding: 24px; font-size: 14px; color: #606266">Content Area</div>
 `
+
+// #header 插槽示例（仅 sidebar-header / double-sidebar 布局支持）
+const slotsExampleWithHeader = slotsExample.replace(
+	`    <template #header-extra>`,
+	`    <template #header>
+      <div style="font-size: 13px; color: #909399">Header Slot</div>
+    </template>
+    <template #header-extra>`
+)
 
 const sidebarCodeTemplate = `<template>
   <idea-menu
@@ -128,7 +132,7 @@ export function createSidebarHeaderCodeTs(_l: MenuDemoLabels): string {
     :menus="menus"
     collapsible
   >
-${slotsExample}  </idea-menu>
+${slotsExampleWithHeader}  </idea-menu>
 </template>
 
 <script setup lang="ts">
@@ -141,7 +145,7 @@ const menus = [/* ... */]
 export function createSidebarHeaderCodeJs(_l: MenuDemoLabels): string {
 	return `<template>
   <idea-menu layout="sidebar-header" v-model="active" :menus="menus" collapsible>
-${slotsExample}  </idea-menu>
+${slotsExampleWithHeader}  </idea-menu>
 </template>
 
 <script setup>
@@ -260,7 +264,7 @@ export function createDoubleSidebarCodeTs(l: MenuDemoLabels): string {
     :menus="menus"
     :width="180"
   >
-${slotsExample}  </idea-menu>
+${slotsExampleWithHeader}  </idea-menu>
 </template>
 
 <script setup lang="ts">
@@ -289,7 +293,7 @@ const menus = [
 export function createDoubleSidebarCodeJs(_l: MenuDemoLabels): string {
 	return `<template>
   <idea-menu layout="double-sidebar" v-model="active" :menus="menus" :width="180">
-${slotsExample}  </idea-menu>
+${slotsExampleWithHeader}  </idea-menu>
 </template>
 
 <script setup>

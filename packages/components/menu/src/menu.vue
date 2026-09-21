@@ -4,55 +4,53 @@
 		v-if="layout === 'sidebar'"
 		class="idea-menu idea-menu--sidebar"
 		:class="{ 'is-collapsed': isCollapsed }"
-		:style="{ width: sidebarMenuWidth + 'px' }"
 	>
-		<!-- #header 自定义顶部区域 -->
-		<div class="idea-menu__header" v-if="$slots.header">
-			<slot name="header" />
-		</div>
-		<!-- logo / header-extra / extra 区域 -->
-		<div class="idea-menu__logo-bar" v-if="$slots.logo || logo || $slots['header-extra'] || $slots.extra">
-			<div class="idea-menu__logo" v-if="$slots.logo || logo">
-				<slot name="logo">
-					<img :src="logo" alt="logo" />
-				</slot>
+		<div class="idea-menu__body">
+			<div class="idea-menu__sidebar" :style="{ width: sidebarMenuWidth + 'px' }">
+				<!-- logo / header-extra 区域 -->
+				<div class="idea-menu__logo-bar direction-column" v-if="$slots.logo || logo || $slots['header-extra']">
+					<div class="idea-menu__logo" v-if="$slots.logo || logo">
+						<slot name="logo">
+							<img :src="logo" alt="logo" />
+						</slot>
+					</div>
+					<div class="idea-menu__logo-bar-bottom" v-if="$slots['header-extra']">
+						<slot name="header-extra" />
+					</div>
+				</div>
+				<div class="idea-menu__wrap">
+					<el-menu
+						:default-active="String(modelValue)"
+						:collapse="isCollapsed"
+						:collapse-transition="false"
+						class="idea-menu__el-menu"
+					>
+						<sidebar-menu-item
+							v-for="item in menus"
+							:key="item.id"
+							:item="item"
+							:collapsed="isCollapsed"
+							:is-root="true"
+							:active-id="modelValue"
+							@select="handleSelect"
+						/>
+					</el-menu>
+				</div>
+				<!-- #footer 底部区域 -->
+				<div class="idea-menu__footer" v-if="$slots.footer">
+					<slot name="footer" />
+				</div>
+				<!-- #collapse-btn 折叠按钮 -->
+				<div v-if="collapsible" class="idea-menu__collapse-btn" @click="toggleCollapse">
+					<slot name="collapse-btn" :collapsed="isCollapsed">
+						<i class="icon-zhedie idea-menu__collapse-icon" :class="{ 'is-collapsed': isCollapsed }"></i>
+					</slot>
+				</div>
 			</div>
-			<div class="idea-menu__logo-bar-right" v-if="$slots['header-extra'] || $slots.extra">
-				<slot name="header-extra" />
-				<slot name="extra" />
+			<!-- #default 内容区域 -->
+			<div class="idea-menu__content" v-if="$slots.default">
+				<slot />
 			</div>
-		</div>
-		<div class="idea-menu__wrap">
-			<el-menu
-				:default-active="String(modelValue)"
-				:collapse="isCollapsed"
-				:collapse-transition="false"
-				class="idea-menu__el-menu"
-			>
-				<sidebar-menu-item
-					v-for="item in menus"
-					:key="item.id"
-					:item="item"
-					:collapsed="isCollapsed"
-					:is-root="true"
-					:active-id="modelValue"
-					@select="handleSelect"
-				/>
-			</el-menu>
-		</div>
-		<!-- #default 内容区域 -->
-		<div class="idea-menu__content" v-if="$slots.default">
-			<slot />
-		</div>
-		<!-- #footer 底部区域 -->
-		<div class="idea-menu__footer" v-if="$slots.footer">
-			<slot name="footer" />
-		</div>
-		<!-- #collapse-btn 折叠按钮 -->
-		<div v-if="collapsible" class="idea-menu__collapse-btn" @click="toggleCollapse">
-			<slot name="collapse-btn" :collapsed="isCollapsed">
-				<i class="icon-zhedie idea-menu__collapse-icon" :class="{ 'is-collapsed': isCollapsed }"></i>
-			</slot>
 		</div>
 	</div>
 
@@ -66,16 +64,15 @@
 		<div class="idea-menu__header" v-if="$slots.header">
 			<slot name="header" />
 		</div>
-		<!-- logo / header-extra / extra 区域 -->
-		<div class="idea-menu__logo-bar" v-if="$slots.logo || logo || $slots['header-extra'] || $slots.extra">
+		<!-- logo / header-extra 区域 -->
+		<div class="idea-menu__logo-bar" v-if="$slots.logo || logo || $slots['header-extra']">
 			<div class="idea-menu__logo" v-if="$slots.logo || logo">
 				<slot name="logo">
 					<img :src="logo" alt="logo" />
 				</slot>
 			</div>
-			<div class="idea-menu__logo-bar-right" v-if="$slots['header-extra'] || $slots.extra">
+			<div class="idea-menu__logo-bar-right" v-if="$slots['header-extra']">
 				<slot name="header-extra" />
-				<slot name="extra" />
 			</div>
 		</div>
 		<div class="idea-menu__body">
@@ -123,10 +120,6 @@
 		v-else-if="layout === 'top'"
 		class="idea-menu idea-menu--top"
 	>
-		<!-- #header 自定义顶部区域 -->
-		<div class="idea-menu__header" v-if="$slots.header">
-			<slot name="header" />
-		</div>
 		<div class="idea-menu__top-bar">
 			<div class="idea-menu__logo" v-if="$slots.logo || logo">
 				<slot name="logo">
@@ -160,10 +153,9 @@
 					</transition>
 				</li>
 			</ul>
-			<!-- #header-extra / #extra / #collapse-btn 右侧区域 -->
-			<div class="idea-menu__top-extra" v-if="$slots.extra || $slots['header-extra'] || $slots['collapse-btn']">
+			<!-- #header-extra / #collapse-btn 右侧区域 -->
+			<div class="idea-menu__top-extra" v-if="$slots['header-extra'] || $slots['collapse-btn']">
 				<slot name="header-extra" />
-				<slot name="extra" />
 				<div
 					v-if="$slots['collapse-btn']"
 					class="idea-menu__collapse-btn idea-menu__collapse-btn--inline"
@@ -187,10 +179,6 @@
 		v-else-if="layout === 'top-sidebar'"
 		class="idea-menu idea-menu--top-sidebar"
 	>
-		<!-- #header 自定义顶部区域 -->
-		<div class="idea-menu__header" v-if="$slots.header">
-			<slot name="header" />
-		</div>
 		<div class="idea-menu__top-bar">
 			<div class="idea-menu__logo" v-if="$slots.logo || logo">
 				<slot name="logo">
@@ -208,10 +196,9 @@
 					<span>{{ item.label }}</span>
 				</li>
 			</ul>
-			<!-- #header-extra / #extra 右侧区域 -->
-			<div class="idea-menu__top-extra" v-if="$slots.extra || $slots['header-extra']">
+			<!-- #header-extra 右侧区域 -->
+			<div class="idea-menu__top-extra" v-if="$slots['header-extra']">
 				<slot name="header-extra" />
-				<slot name="extra" />
 			</div>
 		</div>
 		<div class="idea-menu__body">
@@ -261,14 +248,13 @@
 		v-else-if="layout === 'double-sidebar'"
 		class="idea-menu idea-menu--double-sidebar"
 	>
-		<!-- #header 自定义顶部区域 + #header-extra / #extra -->
-		<div class="idea-menu__header" v-if="$slots.header || $slots['header-extra'] || $slots.extra">
+		<!-- #header 自定义顶部区域 + #header-extra -->
+		<div class="idea-menu__header" v-if="$slots.header || $slots['header-extra']">
 			<div class="idea-menu__header-slot" v-if="$slots.header">
 				<slot name="header" />
 			</div>
-			<div class="idea-menu__logo-bar-right" v-if="$slots['header-extra'] || $slots.extra">
+			<div class="idea-menu__logo-bar-right" v-if="$slots['header-extra']">
 				<slot name="header-extra" />
-				<slot name="extra" />
 			</div>
 		</div>
 		<div class="idea-menu__body">
@@ -333,19 +319,11 @@
 	</div>
 </template>
 
-<script lang="ts">
-import { defineComponent, h } from 'vue'
+<script setup lang="ts">
+import { defineComponent, h, ref, computed, watch } from 'vue'
 import type { PropType } from 'vue'
 import { ElSubMenu, ElMenuItem, ElMenuItemGroup } from 'element-plus'
-
-export interface MenuItem {
-	id: string | number
-	label: string
-	icon?: string
-	path?: string
-	disabled?: boolean
-	children?: MenuItem[]
-}
+import type { MenuItem } from './utils'
 
 // 递归侧边栏菜单项
 const SidebarMenuItem = defineComponent({
@@ -520,26 +498,6 @@ const TopSubMenu = defineComponent({
 		}
 	},
 })
-
-export default {
-	components: {
-		SidebarMenuItem,
-		TopSubMenu,
-	},
-}
-</script>
-
-<script setup lang="ts">
-import { ref, computed, watch } from 'vue'
-
-interface MenuItem {
-	id: string | number
-	label: string
-	icon?: string
-	path?: string
-	disabled?: boolean
-	children?: MenuItem[]
-}
 
 const props = withDefaults(defineProps<{
 	layout?: 'sidebar' | 'sidebar-header' | 'top' | 'top-sidebar' | 'double-sidebar'
@@ -794,7 +752,7 @@ watch(
 	}
 }
 
-// ==================== 通用：logo 栏（logo / header-extra / extra） ====================
+// ==================== 通用：logo 栏（logo / header-extra） ====================
 .idea-menu__logo-bar {
 	display: flex;
 	align-items: center;
@@ -802,8 +760,18 @@ watch(
 	box-sizing: border-box;
 }
 
+.idea-menu__logo-bar.direction-column {
+	flex-direction: column;
+}
+
 .idea-menu__logo-bar-right {
 	margin-left: auto;
+	display: flex;
+	align-items: center;
+	gap: 12px;
+}
+
+.idea-menu__logo-bar-bottom {
 	display: flex;
 	align-items: center;
 	gap: 12px;
@@ -845,25 +813,30 @@ watch(
 // ==================== sidebar 布局 ====================
 .idea-menu--sidebar {
 	display: flex;
-	flex-direction: column;
 	height: 100%;
-	background: @menu-bg;
-	border-right: 1px solid @menu-border;
-	transition: width 0.3s;
 	overflow: hidden;
 
-	.idea-menu__logo-bar {
-		height: 56px;
-		padding: 0 16px;
-		border-bottom: 1px solid @menu-border;
+	.idea-menu__body {
+		display: flex;
+		flex: 1;
+		min-width: 0;
+		overflow: hidden;
 	}
 
-	.idea-menu__content {
-		flex: 1;
-		min-height: 0;
-		overflow: auto;
-		padding: 8px;
-		border-top: 1px solid @menu-border;
+	.idea-menu__sidebar {
+		position: relative;
+		display: flex;
+		flex-direction: column;
+		flex-shrink: 0;
+		background: @menu-bg;
+		border-right: 1px solid @menu-border;
+		transition: width 0.3s;
+		overflow: hidden;
+	}
+
+	.idea-menu__logo-bar {
+		padding: 0 16px;
+		border-bottom: 1px solid @menu-border;
 	}
 
 	.idea-menu__footer {
@@ -896,6 +869,12 @@ watch(
 		&.is-collapsed {
 			transform: scaleX(-1);
 		}
+	}
+
+	.idea-menu__content {
+		flex: 1;
+		min-width: 0;
+		overflow: auto;
 	}
 }
 
@@ -965,10 +944,6 @@ watch(
 .idea-menu--top {
 	display: flex;
 	flex-direction: column;
-
-	.idea-menu__header {
-		width: 100%;
-	}
 
 	.idea-menu__footer {
 		display: flex;
@@ -1086,10 +1061,6 @@ watch(
 	display: flex;
 	flex-direction: column;
 	height: 100%;
-
-	.idea-menu__header {
-		width: 100%;
-	}
 
 	.idea-menu__top-bar {
 		display: flex;
@@ -1324,6 +1295,184 @@ watch(
 		cursor: pointer;
 		font-size: 12px;
 		border-radius: 0 4px 4px 0;
+	}
+}
+
+// ==================== RTL 支持 ====================
+[dir="rtl"] {
+	// ---- Element Plus el-menu / el-sub-menu RTL 覆盖 ----
+	.idea-menu {
+		// el-menu 容器边框互换
+		.el-menu {
+			border-right: none;
+			border-left: solid 1px var(--el-menu-border-color, #e4e7ed);
+		}
+
+		// el-menu-tooltip__trigger 位置互换
+		.el-menu-tooltip__trigger {
+			left: auto;
+			right: 0;
+		}
+
+		// vertical 非折叠模式：嵌套菜单项 / sub-menu title 的层级缩进 padding-left -> padding-right
+		.el-menu--vertical:not(.el-menu--collapse):not(.el-menu--popup-container) {
+			.el-menu-item,
+			.el-sub-menu__title,
+			.el-menu-item-group__title {
+				padding-left: 0;
+				padding-right: calc(var(--el-menu-base-level-padding, 20px) + var(--el-menu-level, 1) * var(--el-menu-level-padding, 20px));
+			}
+		}
+
+		// 菜单项/子菜单图标 margin 左右互换
+		.el-menu-item [class^='el-icon'],
+		.el-sub-menu__title [class^='el-icon'] {
+			margin-right: 0;
+			margin-left: 5px;
+		}
+		// 自定义 idea-menu__icon（覆盖 inline style）
+		.idea-menu__icon {
+			margin-right: 0 !important;
+			margin-left: 5px !important;
+		}
+
+		// sub-menu 展开收起箭头从右侧移到左侧
+		.el-sub-menu__icon-arrow {
+			right: auto;
+			left: var(--el-menu-base-level-padding, 20px);
+		}
+
+		// 非折叠状态 sub-menu title：箭头占用空间从 padding-right 移到 padding-left
+		.el-menu:not(.el-menu--collapse) .el-sub-menu__title {
+			padding-right: var(--el-menu-base-level-padding, 20px);
+			padding-left: calc(var(--el-menu-base-level-padding, 20px) + var(--el-menu-icon-width, 24px));
+		}
+		// vertical 非折叠下，sub-menu title 要同时满足「层级缩进在右」和「箭头空间在左」，覆盖上面的通用规则
+		.el-menu--vertical:not(.el-menu--collapse):not(.el-menu--popup-container) .el-sub-menu__title {
+			padding-right: calc(var(--el-menu-base-level-padding, 20px) + var(--el-menu-level, 1) * var(--el-menu-level-padding, 20px));
+			padding-left: calc(var(--el-menu-base-level-padding, 20px) + var(--el-menu-icon-width, 24px));
+		}
+		// 隐藏箭头时 title padding 互换
+		.el-sub-menu__hide-arrow .el-sub-menu__title {
+			padding-right: 0;
+			padding-left: var(--el-menu-base-level-padding, 20px);
+		}
+
+		// 内联嵌套 sub-menu title：缩进从左侧移到右侧，箭头空间移到左侧
+		.el-menu--inline .el-sub-menu__title {
+			padding-left: calc(var(--el-menu-base-level-padding, 20px) + var(--el-menu-icon-width, 24px));
+			padding-right: calc(var(--el-menu-base-level-padding, 20px) + var(--el-menu-level, 1) * var(--el-menu-level-padding, 20px));
+		}
+		// 内联嵌套菜单项：缩进从左侧移到右侧
+		.el-menu--inline .el-menu-item {
+			padding-left: 0;
+			padding-right: calc(var(--el-menu-base-level-padding, 20px) + var(--el-menu-level, 1) * var(--el-menu-level-padding, 20px));
+		}
+		// 内联嵌套 group title：缩进从左侧移到右侧
+		.el-menu--inline .el-menu-item-group__title {
+			padding-left: 0;
+			padding-right: calc(var(--el-menu-base-level-padding, 20px) + var(--el-menu-level, 1) * var(--el-menu-level-padding, 20px));
+		}
+		// 折叠态弹层 group title padding 互换
+		.el-menu-item-group__title {
+			padding: 7px var(--el-menu-base-level-padding, 20px) 7px 0;
+		}
+	}
+
+	// ---- sidebar 布局 ----
+	.idea-menu--sidebar {
+		.idea-menu__sidebar {
+			border-right: none;
+			border-left: 1px solid @menu-border;
+		}
+		// icon-zhedie 折叠图标：RTL 下默认翻转，折叠时恢复
+		.idea-menu__collapse-icon {
+			transform: scaleX(-1);
+			&.is-collapsed {
+				transform: none;
+			}
+		}
+	}
+
+	// ---- sidebar-header 布局 ----
+	.idea-menu--sidebar-header {
+		.idea-menu__sidebar {
+			border-right: none;
+			border-left: 1px solid @menu-border;
+		}
+		.idea-menu__collapse-bar {
+			right: auto;
+			left: 0;
+		}
+		// 文本箭头 ▶/◀ 翻转
+		.idea-menu__collapse-icon {
+			display: inline-block;
+			transform: scaleX(-1);
+		}
+	}
+
+	// ---- top 布局 ----
+	.idea-menu--top {
+		.idea-menu__logo {
+			margin-right: 0;
+			margin-left: 24px;
+		}
+		.idea-menu__top-extra {
+			margin-left: 0;
+			margin-right: auto;
+		}
+		.idea-menu__top-sub {
+			left: auto;
+			right: 0;
+		}
+		.idea-menu__top-sub-arrow {
+			margin-left: 0;
+			margin-right: 16px;
+			transform: scaleX(-1);
+		}
+	}
+
+	// ---- top-sidebar 布局 ----
+	.idea-menu--top-sidebar {
+		.idea-menu__logo {
+			margin-right: 0;
+			margin-left: 24px;
+		}
+		.idea-menu__top-extra {
+			margin-left: 0;
+			margin-right: auto;
+		}
+		.idea-menu__sidebar {
+			border-right: none;
+			border-left: 1px solid @menu-border;
+		}
+		.idea-menu__collapse-bar {
+			right: auto;
+			left: 0;
+		}
+		.idea-menu__collapse-icon {
+			display: inline-block;
+			transform: scaleX(-1);
+		}
+	}
+
+	// ---- double-sidebar 布局 ----
+	.idea-menu--double-sidebar {
+		.idea-menu__collapse-toolbar {
+			right: auto;
+			left: -12px;
+			border-radius: 4px 0 0 4px;
+			span {
+				display: inline-block;
+				transform: scaleX(-1);
+			}
+		}
+	}
+
+	// ---- 通用 ----
+	.idea-menu__logo-bar-right {
+		margin-left: 0;
+		margin-right: auto;
 	}
 }
 </style>
